@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name       AstroPad
-// @version    0.25
+// @version    0.25ff
 // @grant      GM_xmlhttpRequest
 // @match      http://mush.vg/*
 // @match      http://mush.vg/#
@@ -9,7 +9,7 @@
 // @match      http://mush.twinoid.es/*
 // @match      http://mush.twinoid.es/#
 // @require http://code.jquery.com/jquery-latest.js
-// @copyright  2012+, Sunsky (inspiration Skildor' scripts)
+// @copyright  2012+, Sunsky (inspiration Skildor' scripts), compatibility with Firefox 32+ by badconker
 // @updateurl http://astropad.sunsky.fr/astropad.user.js
 // ==/UserScript==
 var console = unsafeWindow.console;
