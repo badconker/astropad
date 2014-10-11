@@ -8,11 +8,12 @@
 // @match      http://mush.twinoid.com/#
 // @match      http://mush.twinoid.es/*
 // @match      http://mush.twinoid.es/#
+// @require http://code.jquery.com/jquery-latest.js
 // @copyright  2012+, Sunsky (inspiration Skildor' scripts)
 // @updateurl http://astropad.sunsky.fr/astropad.user.js
 // ==/UserScript==
-// @require http://code.jquery.com/jquery-latest.js
-var $ = unsafeWindow.jQuery;
+var console = unsafeWindow.console;
+var mush_jquery = unsafeWindow.jQuery;
 var Main = unsafeWindow.Main;
 var now;
 var url_astro="http://astropad.sunsky.fr/api.py"
