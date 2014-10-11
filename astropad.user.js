@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name       AstroPad
-// @version    0.25ff
+// @version    0.25ff.1
 // @grant      GM_xmlhttpRequest
 // @match      http://mush.vg/*
 // @match      http://mush.vg/#
