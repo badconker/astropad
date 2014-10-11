@@ -850,6 +850,11 @@ function fill_astrotab(content,gotoelemid) {
 	$('#astro_reset').bind('click', astro_reset);
 	$('#astro_test').bind('click', astro_test);
 	$('#astro_new').bind('click', astro_new);
+	$('#astrotab_content').find('.replybuttons a').each(function(){
+		$(this).on('click',function(e){
+			e.preventDefault();
+		});
+	});
 
 	if (gotoelemid){
 		scroll=$("#astro_scrollpanel");
