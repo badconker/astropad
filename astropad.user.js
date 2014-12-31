@@ -270,6 +270,7 @@ function canReadMedic() {
 			if (img=="biologist") return true;
 			if (img=="first_aid") return true;
 			if (img=="medic") return true;
+			if (img=="skilful") return true;
 		}
 	}
 	return false;
@@ -299,7 +300,9 @@ function canReadFruit() {
 		if (hname!=st1.surname.toLowerCase()) continue;
 		var $it1 = st1.skills.iterator();
 		while( $it1.hasNext() ) {
-			if ($it1.next().img=="botanic") return true;
+			img=$it1.next().img;
+			if (img=="botanic") return true;
+			if (img=="skilful") return true;
 		}
 	}
 	return false;
