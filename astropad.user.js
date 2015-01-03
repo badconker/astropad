@@ -723,7 +723,7 @@ function astro_get_inventaire() {
 
 						iname = iname.replace(new RegExp(capitalize(TXT_THIRSTY),"g"),"<img src='\/img\/icons\/ui\/plant_thirsty.png' alt='"+TXT_THIRSTY+"' title='"+TXT_THIRSTY+"'\/>");
 						iname = iname.replace(new RegExp(capitalize(TXT_DRY),"g"),"<img src='\/img\/icons\/ui\/plant_dry.png' alt='"+TXT_DRY+"' title='"+TXT_DRY+"'\/>");
-						iname = iname.replace(new RegExp(capitalize(TXT_DISEASED),"g"),"<img src='\/img\/icons\/ui\/plant_dry.png' alt='"+TXT_DISEASED+"' title='"+TXT_DISEASED+"'\/>");
+						iname = iname.replace(new RegExp(capitalize(TXT_DISEASED),"g"),"<img src='\/img\/icons\/ui\/plant_diseased.png' alt='"+TXT_DISEASED+"' title='"+TXT_DISEASED+"'\/>");
 						iname = iname.replace(new RegExp(capitalize(TXT_BROKEN2),"g"),"<img src='\/img\/icons\/ui\/broken.png' alt='"+TXT_BROKEN2+"' title='"+TXT_BROKEN2+"'\/>");
 						if (idetail) {
 							idetail = idetail.replace(/ :pa:/g,"<img class='paslot' src='\/img\/icons\/ui\/pa_slot1.png' alt='pa' \/>");
@@ -732,7 +732,7 @@ function astro_get_inventaire() {
 							idetail = idetail.replace(/ :hp:/g,"<img src='\/img\/icons\/ui\/lp.png' alt='hp' \/>");
 							idetail = idetail.replace(/:plant_thirsty:/g,"<img src='\/img\/icons\/ui\/plant_thirsty.png' alt='soif' title='Soif'\/>");
 							idetail = idetail.replace(/:plant_dry:/g,"<img src='\/img\/icons\/ui\/plant_dry.png' alt='desséché' title='Deséché'\/>");
-							idetail = idetail.replace(/:plant_thirsty:/g,"<img src='\/img\/icons\/ui\/plant_thirsty.png' alt='Malade' title='Malade'\/>");
+							idetail = idetail.replace(/:plant_diseased:/g,"<img src='\/img\/icons\/ui\/plant_diseased.png' alt='Malade' title='Malade'\/>");
 							//TODO a adapter pour les autres langues
 							idetail = idetail.replace(new RegExp(TXT_SATISFACTION,"g"),"<img src='\/img\/icons\/ui\/pa_cook.png' alt='"+TXT_SATISFACTION+"' title='"+TXT_SATISFACTION+"'\/>");
 							idetail = idetail.replace(/ :pa_cook:/g,"<img src='\/img\/icons\/ui\/pa_cook.png' alt='"+TXT_SATISFACTION+"' title='"+TXT_SATISFACTION+"'\/>");
