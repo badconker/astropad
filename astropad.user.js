@@ -390,7 +390,7 @@ function build_astrotab() {
 	$("#astrotab_content").css("display", "none");
 	$("#astrotab_content").parent().css('height','500px');
 	$("#astrotab").on("mouseover", AstroTabTip);
-	$("#astrotab").on("mouseout", Main.hideTip);
+	$("#astrotab").on("mouseout", function(){Main.hideTip();});
 	$("#cdTabsChat li").on("click", function() { SelectTab(this); });
 }
 
