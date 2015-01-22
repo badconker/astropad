@@ -8,9 +8,9 @@
 // @match      http://mush.twinoid.com/#
 // @match      http://mush.twinoid.es/*
 // @match      http://mush.twinoid.es/#
-// @require http://code.jquery.com/jquery-latest.js
+// @require    http://code.jquery.com/jquery-latest.js
 // @copyright  2012+, Sunsky (inspiration Skildor' scripts), compatibility with Firefox 32+ by badconker
-// @updateurl http://astropad.sunsky.fr/astropad.user.js
+// @downloadURL https://github.com/badconker/astropad/raw/master/astropad.user.js
 // ==/UserScript==
 var console = unsafeWindow.console;
 var mush_jquery = unsafeWindow.jQuery;
@@ -72,7 +72,7 @@ if (window.location.href.indexOf('mush.twinoid.com')!=-1) {
 	TXT_HELP_2+="//https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en//<br/>";
 	TXT_HELP_2+=" <br/>";
 	TXT_HELP_2+="Then follow this link to install the script:<br/>";
-	TXT_HELP_2+="//http://astropad.sunsky.fr/astropad.user.js//<br/>";
+	TXT_HELP_2+="//https://github.com/badconker/astropad/raw/master/astropad.user.js//<br/>";
 	TXT_HELP_2+=" <br/>";
 	TXT_HELP_2+="Then follow this link to join this game's AstroPad:<br/>";
 	TXT_HELP_3="Thank you for your attention"
@@ -134,7 +134,7 @@ if (window.location.href.indexOf('mush.twinoid.com')!=-1) {
 	TXT_HELP_2+="//https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=es//<br/>";
 	TXT_HELP_2+=" <br/>";
 	TXT_HELP_2+="A continuación, vaya al siguiente enlace para instalar el script<br/>";
-	TXT_HELP_2+="//http://astropad.sunsky.fr/astropad.user.js//<br/>";
+	TXT_HELP_2+="//https://github.com/badconker/astropad/raw/master/astropad.user.js//<br/>";
 	TXT_HELP_2+=" <br/>";
 	TXT_HELP_2+="A continuación, vaya al siguiente enlace para unirse el inventario de esta partida:<br/>";
 	TXT_HELP_3="Gracias por su atención"
@@ -196,7 +196,7 @@ if (window.location.href.indexOf('mush.twinoid.com')!=-1) {
 	TXT_HELP_2+="//https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=fr//<br/>";
 	TXT_HELP_2+=" <br/>";
 	TXT_HELP_2+="Aller ensuite sur le lien suivant pour installer le script<br/>";
-	TXT_HELP_2+="//http://astropad.sunsky.fr/astropad.user.js//<br/>";
+	TXT_HELP_2+="//https://github.com/badconker/astropad/raw/master/astropad.user.js//<br/>";
 	TXT_HELP_2+=" <br/>";
 	TXT_HELP_2+="Aller ensuite sur le lien suivant pour rejoindre l'inventaire de cette partie :<br/>";
 	TXT_HELP_3="Merci de votre attention"
