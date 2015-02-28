@@ -615,7 +615,7 @@ function astro_configuration() {
 	contenttxt+="    </div>";
 	contenttxt+="</div>";
 
-	contenttxt+="<div class='cdMushLog  cdChatLine'>";
+	contenttxt+="<div class='cdMushLog  cdChatLine' style='max-width: 373px'>";
 	contenttxt+="    <div class='bubble  tid_editorContent tid_parsed'>";
 	contenttxt+="        <img src='/img/design/pixel.gif' class='char' style='background:url(http://imgup.motion-twin.com/twinoid/6/7/4f22b23f_14716.jpg)!important;height:42px'>";
 	contenttxt+="        <div class='talks'>";
