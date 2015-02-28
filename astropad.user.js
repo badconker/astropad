@@ -604,7 +604,7 @@ function astro_configuration() {
 
 	url1="http://"+URL_MUSH+"/?astroId="+gid+"&astroKey="+gkey;
 	contenttxt ="<div class='cdMushLog  cdChatLine'>";
-	contenttxt+="    <div class='bubble bubble2 tid_editorContent'>";
+	contenttxt+="    <div class='bubble bubble2 tid_editorContent tid_parsed'>";
 	contenttxt+="        <img src='/img/design/pixel.gif' class='char' style='background:url(http://imgup.motion-twin.com/twinoid/0/1/d9869944_14716.jpg)!important;height:42px'>";
 	contenttxt+="        <div class='talks'>";
 	contenttxt+="            <div class='triangleright'></div>";
@@ -616,7 +616,7 @@ function astro_configuration() {
 	contenttxt+="</div>";
 
 	contenttxt+="<div class='cdMushLog  cdChatLine'>";
-	contenttxt+="    <div class='bubble  tid_editorContent'>";
+	contenttxt+="    <div class='bubble  tid_editorContent tid_parsed'>";
 	contenttxt+="        <img src='/img/design/pixel.gif' class='char' style='background:url(http://imgup.motion-twin.com/twinoid/6/7/4f22b23f_14716.jpg)!important;height:42px'>";
 	contenttxt+="        <div class='talks'>";
 	contenttxt+="            <div class='triangleleft'></div>";
