@@ -13,6 +13,7 @@
 // @downloadURL https://github.com/badconker/astropad/raw/master/astropad.user.js
 // ==/UserScript==
 var console = unsafeWindow.console;
+var localStorage = unsafeWindow.localStorage;
 var mush_jquery = unsafeWindow.jQuery;
 var Main = unsafeWindow.Main;
 var now;
