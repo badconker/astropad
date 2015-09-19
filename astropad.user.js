@@ -414,7 +414,7 @@ function astro_maj_inventaire() {
 		if ($it.iid == "CAMERA")
 			inb_cam++;
 		if ($it.iid == "HELP_DRONE") {
-			inb_drone++;
+			inb_drone = 1;
 			data+=rid+"|"+TXT_DRONE+"|help_drone|"+inb_drone+"|"+$it.serial+"|§";
 		}
 	}
