@@ -369,8 +369,7 @@ function SelectTab(el) {
 	$(".objective").css("display", "none");
 	$("#cdStdWall").css("display", "none");
 	$("#cdFavWall").css("display", "none");
-	for (var i=0; i<3; i++)
-		$("#cdPrivate"+i).css("display", "none");
+	$('#chatBlock > *').css('display', 'none');
 	$("#privateform").css("display", "none");
 	$("#wall").css("display", "none");
 	$("#astrotab_content").css("display", "block");
