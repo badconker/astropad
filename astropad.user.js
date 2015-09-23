@@ -413,9 +413,11 @@ function astro_maj_inventaire() {
 		if ($it.iid == "CAMERA")
 			inb_cam++;
 		if ($it.iid == "HELP_DRONE") {
-			inb_drone = 1;
-			data+=rid+"|"+TXT_DRONE+"|help_drone|"+inb_drone+"|"+$it.serial+"|§";
+			inb_drone++;
 		}
+	}
+	if(inb_drone > 0) {
+		data+=rid+"|"+TXT_DRONE+"|help_drone|"+inb_drone+"||§";
 	}
 	if (inb_cam>0)
 		data+=rid+"|"+TXT_CAMERA+"|camera|"+inb_cam+"||§";
