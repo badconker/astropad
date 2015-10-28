@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name       AstroPad
+// @name       Fake-AstroPad
 // @version    0.25.10
 // @grant      GM_xmlhttpRequest
 // @match      http://mush.vg/*
@@ -12,18 +12,41 @@
 // @copyright  2012+, Sunsky (inspiration Skildor' scripts), compatibility with Firefox 32+ by badconker
 // @downloadURL https://github.com/badconker/astropad/raw/master/astropad.user.js
 // ==/UserScript==
+
 var console = unsafeWindow.console;
 var localStorage = unsafeWindow.localStorage;
-var mush_jquery = unsafeWindow.jQuery;
 var Main = unsafeWindow.Main;
 var now;
 var url_astro="http://astropad.sunsky.fr/api.py"
+
 HERONAMES= new Array('jin su','frieda','kuan ti','janice','roland','hua','paola','chao','finola','stephen','ian','chun','raluca','gioele','eleesha','terrence','derek','andie')
 HERONAMES[-1]="?"
+
+ITEMS = {
+	alien_holographic_tv: ["alien", "Télé Holographique alien", "Alien Holographic TV"], alien_oil: ["alien", "Lubrifiant Alien", "Jar of Alien Oil"], computer_jelly: ["alien", "Gelée à Circuits Imprimés", "Printed Circuit Jelly"], insectoid_shell: ["alien", "Cartouche Invertébré", "Invertebrate Shell"], magellan_liquid_map: ["alien", "Carte Liquide de Magellan", "Magellan Liquid Map"], super_map: ["alien", "Morceau de carte stellaire", "Starmap Fragment"], water_stick: ["alien", "Batonnet Aqueux", "Water Stick"], 
+
+	blueprint_0: ["documents", "Plan du Casque de Visée", "Blueprint: Sniper Helmet"], blueprint_1: ["documents", "Plan du Drapeau Blanc", "Blueprint: White Flag"], blueprint_2: ["documents", "Plan du Drone de Soutien", "Blueprint: Support Drone"], blueprint_3: ["documents", "Plan de l'EchoLocateur", "Blueprint: EchoLocator"], blueprint_4: ["documents", "Plan de l'Extincteur", "Blueprint: Extinguisher"], blueprint_5: ["documents", "Plan de la Grenade", "Blueprint: Grenade"], blueprint_6: ["documents", "Plan du Lance-Roquette", "Blueprint: Rocket Launcher"], blueprint_7: ["documents", "Plan du Lizaro Jungle", "Blueprint: Lizaro Jungle"], blueprint_8: ["documents", "Plan du Module Babel", "Blueprint: Babel Module"], blueprint_9: ["documents", "Plan du Sofa Suédois", "Blueprint: Swedish Sofa"], blueprint_10: ["documents", "Plan de la Sulfateuse", "Blueprint: Old Faithful"], blueprint_11: ["documents", "Plan du ThermoSenseur", "Blueprint: Thermosensor"], blueprint_12: ["documents", "Plan du Vaguoscope", "Blueprint: Oscilloscope"], book_0: ["documents", "Apprentron : Astrophysicien", "Astrophysicist Mage Book"], book_1: ["documents", "Apprentron : Biologiste", "Biologist Mage Book"], book_2: ["documents", "Apprentron : Botaniste", "Botanist Mage Book"], book_3: ["documents", "Apprentron : Cuistot", "Chef Mage Book"], book_4: ["documents", "Apprentron : Diplomatie", "Diplomat Mage Book"], book_5: ["documents", "Apprentron : Expert radio", "Radio Expert Mage Book"], book_6: ["documents", "Apprentron : Informaticien", "IT Expert Mage Book"], book_7: ["documents", "Apprentron : Logistique", "Logistics Expert Mage Book"], book_8: ["documents", "Apprentron : Médecin", "Medic Mage Book"], book_9: ["documents", "Apprentron : Pilote", "Pilot Mage Book"], book_10: ["documents", "Apprentron : Pompier", "Firefighter Mage Book"], book_11: ["documents", "Apprentron : Psy", "Shrink Mage Book"], book_12: ["documents", "Apprentron : Robotiques", "Robotics Expert Mage Book"], book_13: ["documents", "Apprentron : Sprinter", "Sprinter Mage Book"], book_14: ["documents", "Apprentron : Technicien", "Technician Mage Book"], book_15: ["documents", "Apprentron : Tireur", "Shooter Mage Book"], book_16: ["documents", "De la Recherche sur le Mush.", "Mush Research Review"], book_17: ["documents", "Manuel du commandant", "Commander's Manual"], document: ["documents", "Document", "Document"], postit: ["documents", "Pense-Bête", "Post-it"], postit_bloc: ["documents", "Bloc de Pense-Bête", "Block of Post-it Notes"], 
+
+	driller: ["expedition", "Foreuse", "Drill"], echo_sounder: ["expedition", "EchoLocateur", "EchoLocator"], heat_seeker: ["expedition", "ThermoSenseur", "Thermosensor"], quad_compass: ["expedition", "Boussole quadrimetric", "Quadrimetric Compass"], rope: ["expedition", "Corde", "Rope"], space_suit: ["expedition", "Combinaison", "Spacesuit"], trad_module: ["expedition", "Module Babel", "Babel Module"], white_flag: ["expedition", "Drapeau blanc", "White Flag"], 
+
+	coffee_thermos: ["food", "Thermos de Café", "Thermos of Coffee"], lunchbox: ["food", "Panier Repas", "Lunchbox"], ration_0: ["food", "Ration standard", "Standard Ration"], ration_1: ["food", "Ration cuisinée", "Cooked Ration"], ration_2: ["food", "Riz soufflé proactif", "Proactive Puffed Rice"], ration_3: ["food", "Patate spatiale", "Space Potato"], ration_4: ["food", "Barre de Lombrics", "Lombrick Bar"], ration_5: ["food", "Steack alien", "Alien Steak"], ration_7: ["food", "Café", "Coffee"], ration_8: ["food", "Barre Supravitaminée", "SuperVitamin Bar"], ration_9: ["food", "Déchets Organiques", "Organic Waste"], 
+
+	bandage: ["health", "Bandage", "Bandage"], drug_0: ["health", "Twïnoid", "Twinoid"], drug_1: ["health", "Xenox", "Xenox"], drug_2: ["health", "Rixolam", "Puuquf"], drug_3: ["health", "Eufurysant", "Eufurylate"], drug_4: ["health", "Soma", "Soma"], drug_5: ["health", "Epice", "Spyce"], drug_6: ["health", "Nuke", "Newke"], drug_7: ["health", "Ponay", "Pinq"], drug_8: ["health", "Bacta", "Bacta"], drug_9: ["health", "Betapropyl", "Betapropyl"], drug_10: ["health", "Pimp", "Pymp"], drug_11: ["health", "Rosebud", "Rosebud"], medikit: ["health", "Médikit", "Medikit"], pill_box: ["health", "Kit de survie", "Survival Kit"], ration_6: ["health", "Anabolisant", "Anabolic"], spore_extractor: ["health", "Suceur de Spore", "Spore Sucker"], 
+
+	anti_mush_serum: ["misc", "Sérum Rétro-Fongique", "Retro-Fungal Serum"], apron: ["misc", "Tablier intachable", "Stainproof Apron"], body_cat: ["misc", "Schrödinger", "Schrödinger"], duck_tape: ["misc", "Ruban Adhésif", "Duct Tape"], freezer: ["misc", "Supergélateur", "Superfreezer"], fuel_capsule: ["misc", "Capsule de Fuel", "Fuel Capsule"], help_drone: ["misc", "Drone de Soutien", "Support Drone"], mad_kube: ["misc", "MAD Kube", "MAD Kube"], metal_scraps: ["misc", "Débris métallique", "Scrap Metal"], microwave: ["misc", "Micro-onde", "Microwave"], mush_floppy_disk: ["misc", "Disquette du Génome Mush", "Mush Genome Disk"], mush_sample: ["misc", "Souche de test Mush", "Mush Sample"], myco_alarm: ["misc", "Myco-Alarme", "Myco-Alarm"], old_shirt: ["misc", "Vieux T-Shirt", "Old T-Shirt"], oxy_capsule: ["misc", "Capsule d'Oxygène", "Oxygen Capsule"], plastenite_armor: ["misc", "Armure de plastenite", "Plastenite Armor"], plastic_scraps: ["misc", "Débris plastique", "Plastic Scraps"], printer: ["misc", "Tabulatrice", "Tabulatrix"], soap: ["misc", "Savon", "Soap"], sofa: ["misc", "Sofa Suédois", "Swedish Sofa"], space_capsule: ["misc", "Capsule Spatiale", "Space Capsule"], super_soap: ["misc", "Super Savon", "Super Soaper"], thick_tube: ["misc", "Tube épais", "Thick Tube"], 
+
+	fruit_tree00: ["plants", "Bananier", "Banana Tree"], fruit_tree01: ["plants", "Lianiste", "Creepist"], fruit_tree02: ["plants", "Cactuor", "Cactax"], fruit_tree03: ["plants", "Bifalon", "Bifflon"], fruit_tree04: ["plants", "Poulmino", "Pulminagro"], fruit_tree05: ["plants", "Precatus", "Precatus"], fruit_tree06: ["plants", "Buitalien", "Buttalien"], fruit_tree07: ["plants", "Platacia", "Platacia"], fruit_tree08: ["plants", "Tubiliscus", "Tubiliscus"], fruit_tree09: ["plants", "Peuplimoune", "Graapshoot"], fruit_tree10: ["plants", "Fiboniccus", "Fiboniccus"], fruit_tree11: ["plants", "Mycopia", "Mycopia"], fruit_tree12: ["plants", "Aspergilnuk", "Asperagunk"], fruit_tree13: ["plants", "Cucurbitatrouille", "Bumpjunkin"], fruit00: ["plants", "Banane", "Banana"], fruit01: ["plants", "Lianube", "Creepnut"], fruit02: ["plants", "Balargine", "Meztine"], fruit03: ["plants", "Goustiflon", "Guntiflop"], fruit04: ["plants", "Toupimino", "Ploshmina"], fruit05: ["plants", "Precati", "Precati"], fruit06: ["plants", "Bottine", "Bottine"], fruit07: ["plants", "Fragilane", "Fragilane"], fruit08: ["plants", "Anémole", "Anemole"], fruit09: ["plants", "Pénicule", "Peniraft"], fruit10: ["plants", "Kubinus", "Kubinus"], fruit11: ["plants", "Calebotte", "Caleboot"], fruit12: ["plants", "Filandru", "Filandra"], fruit13: ["plants", "Citrouïd", "Jumpkin"], tree_pot: ["plants", "HydroPot", "HydroPot"], 
+
+	aiming_helmet: ["tools", "Casque de Visée", "Sniper's Helmet"], alien_can_opener: ["tools", "Décapsuleur Alien", "Alien Bottle Opener"], antigrav_scooter: ["tools", "Trottinette Anti-Grav.", "Anti-Grav Scooter"], camera: ["tools", "Caméra", "Camera"], extinguisher: ["tools", "Extincteur", "Extinguisher"], hacker_kit: ["tools", "Bidouilleur", "Hacker Kit"], ncc_lens: ["tools", "Lentille NCC", "Lenses"], protection_gloves: ["tools", "Gants de protection", "Protective Gloves"], rolling_boulder: ["tools", "Monture Rocheuse", "Rolling Boulder"], wavoscope: ["tools", "Vaguoscope", "Oscilloscope"], wrench: ["tools", "Clé à molette", "Adjustable Wrench"], 
+
+	blaster: ["weaponry", "Blaster", "Blaster"], grenade: ["weaponry", "Grenade", "Grenade"], knife: ["weaponry", "Couteau", "Knife"], machine_gun: ["weaponry", "Sulfateuse", "Old Faithful"], missile_launcher: ["weaponry", "Lance-Roquette", "Rocket Launcher"], natamy_riffle: ["weaponry", "Natamy", "Natamy Rifle"], sniper_riffle: ["weaponry", "Lizaro Jungle", "Lizaro Jungle"]
+};
+
 if (window.location.href.indexOf('mush.twinoid.com')!=-1) {
 	language='en';
-	URL_MUSH="mush.twinoid.com"
-	READ_EFFECT=0
+	lang=2;
+	URL_MUSH="mush.twinoid.com";
+	READ_EFFECT=0;
 	var ROOMNAMES=new Array(
 		'Bridge','Alpha Bay','Bravo Bay','Alpha Bay 2','Nexus','Medlab','Laboratory','Refectory','Hydroponic Garden','Engine Room',
 		'Front Alpha Turret','Centre Alpha Turret','Rear Alpha Turret','Front Bravo Turret','Centre Bravo Turret','Rear Bravo Turret',
@@ -85,8 +108,9 @@ if (window.location.href.indexOf('mush.twinoid.com')!=-1) {
 
 } else if (window.location.href.indexOf('mush.twinoid.es')!=-1) {
 	language='es';
-	URL_MUSH="mush.twinoid.es"
-	READ_EFFECT=-1
+	lang=2;
+	URL_MUSH="mush.twinoid.es";
+	READ_EFFECT=-1;
 	var ROOMNAMES=new Array(
 		'Puente de mando','Plataforma Alpha','Plataforma Beta','Plataforma Alpha 2','Nexus','Enfermería','Laboratorio','Comedor','Jardín Hidropónico','Sala de motores',
 		'Cañón Alpha delantero','Cañón Alpha central','Cañón Alpha trasero','Cañón Beta delantero','Cañón Beta central','Cañón Beta trasero',
@@ -147,8 +171,9 @@ if (window.location.href.indexOf('mush.twinoid.com')!=-1) {
 
 } else {
 	language='';
-	URL_MUSH="mush.vg"
-	READ_EFFECT=0
+	lang=1;
+	URL_MUSH="mush.vg";
+	READ_EFFECT=0;
 	var ROOMNAMES=new Array(
 		'Pont','Baie Alpha','Baie Beta','Baie Alpha 2','Nexus','Infirmerie','Laboratoire','Réfectoire','Jardin Hydroponique','Salle des moteurs',
 		'Tourelle Alpha avant','Tourelle Alpha centre','Tourelle Alpha arrière','Tourelle Beta avant','Tourelle Beta centre','Tourelle Beta arrière',
@@ -232,13 +257,7 @@ function getCheckForAstroPad() {
 }
 
 function getHname() {
-	var nodes,node
-	nodes =document.evaluate("//td//h1[@class='h1 who']", document, null, XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, null);
-	if (nodes.snapshotLength != 0) {
-		node=nodes.snapshotItem(0);
-		return node.innerHTML.trim();
-	}
-	return "";
+	return $('.who').html().trim();
 }
 
 function getMushStatus() {
@@ -310,18 +329,8 @@ function canReadFruit() {
 }
 
 function getUserInfoForAstroPad() {
-	var tid=0,hid=0,nodes,node,hname,rname,rid;
-	nodes=document.evaluate("//a[@id='tid_openRight']", document, null, XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, null);
-	if (nodes.snapshotLength != 0) {
-		node=nodes.snapshotItem(0);
-		tid=node.getAttribute('href').replace(new RegExp("http://twinoid.com/user/(.*)", 'gi'),'$1');
-	}
-	nodes=document.evaluate("//a[@id='tid_openRight']//span[@class='tid_name']", document, null, XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, null);
-	if (nodes.snapshotLength != 0) {
-		node=nodes.snapshotItem(0);
-		uname=node.innerHTML;
-	}
-	hid=HERONAMES.indexOf(getHname().toLowerCase());
+	var tid=$('#tid_openRight').attr('href').match(/[0-9]+/)[0];
+	var hid=HERONAMES.indexOf(getHname().toLowerCase());
 	return 'tid='+tid+'&hid='+hid;
 }
 
@@ -394,42 +403,164 @@ function build_astrotab() {
 	$("#cdTabsChat li").on("click", function() { SelectTab(this); });
 }
 
-function astro_maj_inventaire() {
-	var url=url_astro+"/addItems";
-	var text ="";
+function send_data(items, conso, rid) {
 	var data=getDataForAstroPad()+'&data=';
-	var rid =getRoomIdForAstroPad();
+	var url=url_astro+"/addItems";
+
+	if (items.length)
+	{
+		for (var i = 0; i < items.length; i++) {
+			if (items[i].length) {
+				data+=items[i].join('|')+'§';
+			}
+		}
+		data=data.slice(0, -1);
+	}
+	else {
+		data+=rid+"||empty|0||";
+	}
+
+	data+="&conso="+conso;
+	console.log(url+'?'+data);
+	console.log(items);
+
+	//return;
+	GM_xmlhttpRequest({
+		method: 'POST', url: url, data: data, headers: {'Content-type':'application/x-www-form-urlencoded'},
+		onload: function(responseDetails) {
+			//console.log(responseDetails.responseText);
+			astro_get_inventaire();
+		}
+	});
+}
+
+function retrieve_astromod(add) {
+	var items = [];
+	var table = document.getElementById('astromod-table');
+	var rid = table.getAttribute('astromod-rid');
+	var rows = document.querySelectorAll('#astromod-table tr:not(#astromod-rowadd)');
+	for (var i = 0; i < rows.length; i++)
+	{
+		var iname = rows[i].querySelector('.astromod-data-name').textContent;
+		var iid = rows[i].querySelector('[data-astromod-id]').getAttribute('data-astromod-id');
+		var inb = rows[i].querySelector('.astromod-data-nb').value;
+		var idetail = rows[i].querySelector('.astromod-data-conso').textContent;
+		items.push([rid, iname, iid, inb, idetail, 0]);
+	}
+
+	if (add)
+	{
+		var rowadd = document.getElementById('astromod-rowadd');
+		var iname = rowadd.querySelector('.astromod-data-name').value;
+		var iid = rowadd.querySelector('[data-astromod-id]').getAttribute('data-astromod-id');
+		var inb = rowadd.querySelector('.astromod-data-nb').value;
+		var idetail = rowadd.querySelector('.astromod-data-conso').value;
+		items.push([rid, iname, iid, inb, idetail, 0]);
+	}
+
+	return items;
+}
+
+function astromod_change_item(el) {
+	var code = prompt("Code du nouvel item :", 'sold_out');
+	var name = ITEMS[code][lang];
+	if (/blueprint/.test(code)) { code = 'blueprint'; }
+	if (/book/.test(code)) { code = 'book'; }
+	if (!name) { name = "Item"; }
+	el.setAttribute('src', "http://"+URL_MUSH+"/img/icons/items/"+code+".jpg");
+	el.setAttribute('data-astromod-id', code);
+	el.parentNode.parentNode.querySelector('.astromod-data-name').value = name;
+}
+
+function build_astromod(items, conso, rid) {
+	var popup = document.getElementById('astromod-popup');
+	if (!popup) {
+		popup = document.createElement('div');
+		popup.id='astromod-popup';
+		popup.style.position='fixed';
+		popup.style.top='50px';
+		popup.style.padding='10px';
+		popup.style.backgroundColor='navy';
+		popup.style.border='2px solid black';
+		document.body.appendChild(popup);
+	}
+	popup.innerHTML='';
+
+	var table = document.createElement('table');
+	table.id='astromod-table';
+	table.setAttribute('astromod-rid', rid);
+	if (items.length)
+	{
+		for (var i = 0; i < items.length; i++)
+		{
+			var j = items[i];
+			var html = "<tr>";
+			html += "<td style='width:35px;height:35px;border-spacing: 0;padding: 0;'><img src='http://"+URL_MUSH+"/img/icons/items/"+j[2]+".jpg' height=35 width=35; data-astromod-id='"+j[2]+"' /></td>";
+			html += "<td style='text-align:left;border-spacing: 0;padding: 0;'><b class='astromod-data-name'>"+j[1]+"</b><span class='astromod-data-conso'>"+j[4]+"</span></td>";
+			html += "<td><input type='number' value='"+j[3]+"' min='1' style='color: black;' class='astromod-data-nb' /></td>";
+			html += "<td><div style='font-size: 20px; background-color: red;' onclick='var x = this.parentNode.parentNode; x.parentNode.removeChild(x);'>X</div></td>";
+			html += "</tr>";
+			table.innerHTML+=html;
+		}
+	}
+	var html = "<tr id='astromod-rowadd'>";
+	html += "<td style='width:35px;height:35px;border-spacing: 0;padding: 0;'><img src='http://"+URL_MUSH+"/img/icons/items/sold_out.jpg' height=35 width=35; data-astromod-id='sold_out' /></td>";
+	html += "<td style='text-align:left;border-spacing: 0;padding: 0;'><input type='text' style='color: black;' class='astromod-data-name' value='Item' /><input type='text' style='color: black;' class='astromod-data-conso' /></td>";
+	html += "<td><input type='number' value='1' min='1' style='color: black;' class='astromod-data-nb' /></td>";
+	html += "<td><div style='font-size: 20px; background-color: red;' id='astromod-add'>+</div></td>";
+	html += "</tr></table>";
+	table.innerHTML+=html;
+	popup.appendChild(table);
+	document.querySelector('#astromod-rowadd [data-astromod-id]').addEventListener('click', function() { astromod_change_item(this); });
+	document.getElementById('astromod-add').addEventListener('click', function() {
+		var i = retrieve_astromod(true);
+		build_astromod(i, conso, rid);
+	});
+
+	var send = document.createElement('div');
+	send.className = 'but';
+	send.innerHTML = "<div class='butright'><div class='butbg'>Envoyer</div></div>";
+	send.addEventListener('click', function() { send_data(retrieve_astromod(false), conso, rid); });
+
+	var cancel = document.createElement('div');
+	cancel.className = 'but';
+	cancel.innerHTML = "<div class='butright'><div class='butbg'>Annuler</div></div>";
+	cancel.addEventListener('click', function() { document.getElementById('astromod-popup').style.display = 'none'; });
+
+	popup.appendChild(send);
+	popup.appendChild(cancel);
+}
+
+function astro_maj_inventaire() {
+	var items=[];
+	var rid=getRoomIdForAstroPad();
 	var conso=""
 
 	var readMedicEffect=canReadMedic();
 	var readFoodEffect=canReadFood();
 	var readFruitEffect=canReadFruit();
-	var allItems = Main.items;
-	var $it1 = allItems.iterator();
+	var $it1 = Main.items.iterator();
 	var inb_cam=0;
 	var inb_drone=0;
 	while( $it1.hasNext() ) {
 		$it=$it1.next();
-		if ($it.iid == "CAMERA")
+		if ($it.iid == "CAMERA" && !document.querySelector('[serial="'+$it.serial+'"]')) //S'il y a une caméra et que ce n'est pas un item
 			inb_cam++;
 		if ($it.iid == "HELP_DRONE") {
 			inb_drone++;
 		}
 	}
 	if(inb_drone > 0) {
-		data+=rid+"|"+TXT_DRONE+"|help_drone|"+inb_drone+"||§";
+		items.push([rid, TXT_DRONE, 'help_drone', inb_drone, '', 0]);
 	}
-	if (inb_cam>0)
-		data+=rid+"|"+TXT_CAMERA+"|camera|"+inb_cam+"||§";
-	var allNpc = Main.npc;
-	var $it2 = allNpc.iterator();
+	if (inb_cam>0) {
+		items.push([rid, TXT_CAMERA, 'camera', inb_cam, '', 0]);
+	}
+	var $it2 = Main.npc.iterator();
 	var inb_cat=0
-	while( $it2.hasNext() ){
-		$it2.next()
-		inb_cat++;
+	if ($it2.hasNext()) {
+		items.push([rid, "Schrödinger", 'body_cat', 1, '', 0]);
 	}
-	if (inb_cat>0)
-		data+=rid+"|Schrödinger|body_cat|"+inb_cat+"||§";
 
 	var childs = $("#room").children(':not(.cdEmptySlot)');
 	if (childs.size() > 0) {
@@ -443,7 +574,6 @@ function astro_maj_inventaire() {
 			var idetail="";
 			var desc = li.attr("data-desc");
 
-			if (iid == "camera") return;
 			if(desc.indexOf(TXT_EFFECT) != -1 || desc.indexOf(TXT_EFFECT2) != -1 ) {
 				//TODO a adapter pour les autres langues
 				if (ok==2 || ok==-2) {
@@ -555,28 +685,17 @@ function astro_maj_inventaire() {
 					iname+=' '+TXT_DISEASED
 				var iday=0;
 
-				data+=rid+"|"+iname+"|"+iid+"|"+inb+"|"+idetail+"|"+iday+"§";
+				items.push([rid, iname, iid, inb, idetail, iday]);
 			}
 		});
-		data = data.substring(0,data.length-1);
-	} else if ((inb_cam+inb_drone+inb_cat)==0) {
-		data+=rid+"||empty|0||";
 	}
 
-	data+="&conso="+conso;
-	text+=url+'?'+data;
-	console.log(text);
-
-	//return;
-	setTimeout(function() {
-		GM_xmlhttpRequest({
-			method: 'POST',url: url,data: data,headers:{'Content-type':'application/x-www-form-urlencoded'},
-			onload: function(responseDetails) {
-				//console.log(responseDetails.responseText);
-				astro_get_inventaire();
-			}
-		});
-	}, 0);
+	if (confirm("Modifier les données ?")) {
+		build_astromod(items, conso, rid);
+	}
+	else {
+		send_data(items, conso, rid);
+	}
 }
 
 function astro_reset() {
@@ -711,11 +830,11 @@ function astro_get_inventaire() {
 						iname=capitalize(iname);//.charAt(0).toUpperCase() + iname.slice(1);
 						footer=TXT_BY+" "+capitalize(HERONAMES[heroid])+"<br>"+TXT_THE+" "+date.substring(6,8)+" "+TXT_AT+" "+date.substring(8,10)+":"+date.substring(10,12);
 						if (iid=="empty") {
-							contenttxt+="<tr  ><td style='width:35px;height:35px;border-spacing: 0;padding: 0;'>"+TXT_EMPTY+"</td><td style='text-align:left;border-spacing: 0;padding: 0;'></td>";
+							contenttxt+="<tr><td style='width:35px;height:35px;border-spacing: 0;padding: 0;'>"+TXT_EMPTY+"</td><td style='text-align:left;border-spacing: 0;padding: 0;'></td>";
 							contenttxt+="<td style='font-size:10px;text-align:right;vertical-align:bottom;width:75px'>"+footer+'</td></tr>';
 							continue;
 						}
-						iimg="<img src='http://"+URL_MUSH+"/img/icons/items/"+iid+".jpg' height=35 width=35;"
+						iimg="<img src='http://"+URL_MUSH+"/img/icons/items/"+iid+".jpg' height=35 width=35; />"
 
 						inb=parts[2];
 						if (parts[4])
@@ -752,7 +871,7 @@ function astro_get_inventaire() {
 						else
 							inb="";
 
-						contenttxt+="<tr  ><td style='width:35px;height:35px;border-spacing: 0;padding: 0;'>"+iimg+"</td><td style='text-align:left;border-spacing: 0;padding: 0;'><b>"+iname+inb+"</b>"+idetail+"</td>";
+						contenttxt+="<tr><td style='width:35px;height:35px;border-spacing: 0;padding: 0;'>"+iimg+"</td><td style='text-align:left;border-spacing: 0;padding: 0;'><b>"+iname+inb+"</b>"+idetail+"</td>";
 						contenttxt+="<td style='font-size:10px;text-align:right;vertical-align:bottom;width:75px'>"+footer+'</td></tr>';
 
 					}
