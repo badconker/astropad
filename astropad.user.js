@@ -404,14 +404,17 @@ function build_astrotab() {
 }
 
 function send_data(items, conso, rid) {
+	var astromod = $('#astromod-popup');
+	if (astromod.length) {
+		astromod.css('display', 'none');
+	}
+
 	var data=getDataForAstroPad()+'&data=';
 	var url=url_astro+"/addItems";
-
-	if (items.length)
-	{
+	if (items.length) {
 		for (var i = 0; i < items.length; i++) {
 			if (items[i].length) {
-				data+=items[i].join('|')+'§';
+				data+=encodeURIComponent(items[i].join('|'))+'§';
 			}
 		}
 		data=data.slice(0, -1);
@@ -422,11 +425,10 @@ function send_data(items, conso, rid) {
 
 	data+="&conso="+conso;
 	console.log(url+'?'+data);
-	console.log(items);
 
 	//return;
 	GM_xmlhttpRequest({
-		method: 'POST', url: url, data: data, headers: {'Content-type':'application/x-www-form-urlencoded'},
+		method: 'POST', url: url, data: data, headers: {'Content-type': 'application/x-www-form-urlencoded'},
 		onload: function(responseDetails) {
 			//console.log(responseDetails.responseText);
 			astro_get_inventaire();
@@ -436,99 +438,138 @@ function send_data(items, conso, rid) {
 
 function retrieve_astromod(add) {
 	var items = [];
-	var table = document.getElementById('astromod-table');
-	var rid = table.getAttribute('astromod-rid');
-	var rows = document.querySelectorAll('#astromod-table tr:not(#astromod-rowadd)');
-	for (var i = 0; i < rows.length; i++)
-	{
-		var iname = rows[i].querySelector('.astromod-data-name').textContent;
-		var iid = rows[i].querySelector('[data-astromod-id]').getAttribute('data-astromod-id');
-		var inb = rows[i].querySelector('.astromod-data-nb').value;
-		var idetail = rows[i].querySelector('.astromod-data-conso').textContent;
-		items.push([rid, iname, iid, inb, idetail, 0]);
+	var rid = $('#astromod-table').attr('data-astromod-rid');
+	var rows = $('#astromod-table tr:not(#astromod-rowadd)');
+	if (rows.length) {
+		rows.each(function() {
+			var row = $(this);
+			var iname = row.find('.astromod-data-name').text();
+			var iid = row.find('[data-astromod-id]').attr('data-astromod-id');
+			var inb = row.find('.astromod-data-nb').val();
+			var idetail = row.find('.astromod-data-conso').text();
+			items.push([rid, iname, iid, inb, idetail, 0]);
+		});
 	}
 
-	if (add)
-	{
-		var rowadd = document.getElementById('astromod-rowadd');
-		var iname = rowadd.querySelector('.astromod-data-name').value;
-		var iid = rowadd.querySelector('[data-astromod-id]').getAttribute('data-astromod-id');
-		var inb = rowadd.querySelector('.astromod-data-nb').value;
-		var idetail = rowadd.querySelector('.astromod-data-conso').value;
+	if (add) {
+		var rowadd = $('#astromod-rowadd');
+		var iname = rowadd.find('.astromod-data-name').val();
+		var iid = rowadd.find('[data-astromod-id]').attr('data-astromod-id');
+		var inb = rowadd.find('.astromod-data-nb').val();
+		var idetail = rowadd.find('.astromod-data-conso').val();
 		items.push([rid, iname, iid, inb, idetail, 0]);
 	}
 
 	return items;
 }
 
-function astromod_change_item(el) {
-	var code = prompt("Code du nouvel item :", 'sold_out');
-	var name = ITEMS[code][lang];
-	if (/blueprint/.test(code)) { code = 'blueprint'; }
-	if (/book/.test(code)) { code = 'book'; }
-	if (!name) { name = "Item"; }
-	el.setAttribute('src', "http://"+URL_MUSH+"/img/icons/items/"+code+".jpg");
-	el.setAttribute('data-astromod-id', code);
-	el.parentNode.parentNode.querySelector('.astromod-data-name').value = name;
+function astromod_change_item() {
+	var itempop = $('<div>').attr('id', 'astromod-item-list').css({
+		maxWidth: '400px', maxHeight: '400px', zIndex: '500', overflowY: 'auto', padding: '10px',
+		position: 'fixed', top: '50px', right: '50px',
+		backgroundColor: 'navy', border: '2px solid black'
+	}).appendTo(document.body);
+	$('<h3>').css('text-align', 'center').text("Choix d'item :").appendTo(itempop);
+
+	var list = $('<div>').css({ width: '100%' }).appendTo(itempop);
+	var cats = {
+		misc: ['talkie', 'Vrac'], tools: ['pa_eng', 'Outils'], weaponry: ['pa_shoot', 'Armes'], documents: ['book', 'Documents'],
+		food: ['pa_cook', 'Nourriture'], plants: ['pa_garden', 'Plantes'], health: ['drugs', 'Santé'],
+		expedition: ['planet', 'Expédition'], alien: ['artefact', 'Artefacts']
+	};
+	for (cat in cats) {
+		//Icône
+		var img = cats[cat][0];
+		$('<div>').attr('data-astromod-cat', cat).css({
+			display: 'inline-block', borderRight: '2px solid navy'
+		}).html("<img src='http://" + URL_MUSH + "/img/icons/ui/" + img + ".png' />").appendTo(list).bind('click', function() {
+			var c = $(this).attr('data-astromod-cat');
+			$('#astromod-cat-name').text(cats[c][1]);
+			$("#astromod-item-list table").css('display', 'none');
+			$('#astromod-table-' + c).css('display', 'table');
+		});
+
+		//Items
+		var table = $('<table>').attr('id', 'astromod-table-' + cat).appendTo(itempop);
+		var tr = $('<tr>').appendTo(table);
+		var p = 0;
+		for (item in ITEMS) {
+			if (ITEMS[item][0] != cat) { continue; }
+			if (p % 2 == 0) {
+				tr = $('<tr>').appendTo(table);
+			}
+			var code = item;
+			if (/blueprint/.test(code)) { code = 'blueprint'; }
+			if (/book/.test(code)) { code = 'book'; }
+			var td = $('<td>').css({ height: '50px', padding: '0', borderSpacing: '0' }).appendTo(tr);
+			$('<img>').attr({
+				src: "http://" + URL_MUSH + "/img/icons/items/" + code + ".jpg",
+				'data-astromod-itemcode': item
+			}).bind('click', function() {
+				var code = $(this).attr('data-astromod-itemcode');
+				var name = ITEMS[code][lang];
+				if (/blueprint/.test(code)) { code = 'blueprint'; }
+				if (/book/.test(code)) { code = 'book'; }
+				if (!name) { name = "Item"; }
+				$('#astromod-rowadd [data-astromod-id]').attr({ src: "http://" + URL_MUSH + "/img/icons/items/" + code + ".jpg", 'data-astromod-id': code });
+				$('#astromod-rowadd').find('.astromod-data-name').val(name);
+				document.body.removeChild(document.getElementById('astromod-item-list'));
+			}).appendTo(td);
+			$('<td>').css({ borderSpacing: '0', padding: '0' }).text(ITEMS[item][lang]).appendTo(tr);
+			p += 1;
+		}
+	}
+	$('<span>').attr('id', 'astromod-cat-name').css('margin-left', '20px').text("Vrac").appendTo(list);
+
+	$("#astromod-item-list table").css('display', 'none');
+	$('#astromod-table-misc').css('display', 'table');
 }
 
 function build_astromod(items, conso, rid) {
-	var popup = document.getElementById('astromod-popup');
-	if (!popup) {
-		popup = document.createElement('div');
-		popup.id='astromod-popup';
-		popup.style.position='fixed';
-		popup.style.top='50px';
-		popup.style.padding='10px';
-		popup.style.backgroundColor='navy';
-		popup.style.border='2px solid black';
-		document.body.appendChild(popup);
+	var popup = $('#astromod-popup');
+	if (!popup.length) {
+		popup = $('<div>').attr('id', 'astromod-popup').css({
+			maxHeight: '400px', zIndex: '500', padding: '10px',
+			position: 'fixed', top: '50px',
+			backgroundColor: 'navy', border: '2px solid black'
+		}).appendTo(document.body);
 	}
-	popup.innerHTML='';
+	popup.css('display', 'block');
+	popup.html('');
 
-	var table = document.createElement('table');
-	table.id='astromod-table';
-	table.setAttribute('astromod-rid', rid);
-	if (items.length)
-	{
-		for (var i = 0; i < items.length; i++)
-		{
+	var table=$('<table>').attr({ 'data-astromod-rid': rid, id: 'astromod-table' }).appendTo(popup);
+	var html='';
+	if (items.length) {
+		//Items présents et ajoutés
+		for (var i = 0; i < items.length; i++) {
 			var j = items[i];
-			var html = "<tr>";
+			html += "<tr>";
 			html += "<td style='width:35px;height:35px;border-spacing: 0;padding: 0;'><img src='http://"+URL_MUSH+"/img/icons/items/"+j[2]+".jpg' height=35 width=35; data-astromod-id='"+j[2]+"' /></td>";
 			html += "<td style='text-align:left;border-spacing: 0;padding: 0;'><b class='astromod-data-name'>"+j[1]+"</b><span class='astromod-data-conso'>"+j[4]+"</span></td>";
 			html += "<td><input type='number' value='"+j[3]+"' min='1' style='color: black;' class='astromod-data-nb' /></td>";
 			html += "<td><div style='font-size: 20px; background-color: red;' onclick='var x = this.parentNode.parentNode; x.parentNode.removeChild(x);'>X</div></td>";
 			html += "</tr>";
-			table.innerHTML+=html;
 		}
 	}
-	var html = "<tr id='astromod-rowadd'>";
+	//Ligne d'ajout d'item
+	html += "<tr id='astromod-rowadd'>";
 	html += "<td style='width:35px;height:35px;border-spacing: 0;padding: 0;'><img src='http://"+URL_MUSH+"/img/icons/items/sold_out.jpg' height=35 width=35; data-astromod-id='sold_out' /></td>";
 	html += "<td style='text-align:left;border-spacing: 0;padding: 0;'><input type='text' style='color: black;' class='astromod-data-name' value='Item' /><input type='text' style='color: black;' class='astromod-data-conso' /></td>";
 	html += "<td><input type='number' value='1' min='1' style='color: black;' class='astromod-data-nb' /></td>";
 	html += "<td><div style='font-size: 20px; background-color: red;' id='astromod-add'>+</div></td>";
 	html += "</tr></table>";
-	table.innerHTML+=html;
-	popup.appendChild(table);
-	document.querySelector('#astromod-rowadd [data-astromod-id]').addEventListener('click', function() { astromod_change_item(this); });
-	document.getElementById('astromod-add').addEventListener('click', function() {
-		var i = retrieve_astromod(true);
-		build_astromod(i, conso, rid);
+	table.html(html);
+
+	$('#astromod-rowadd [data-astromod-id]').bind('click', function() { astromod_change_item(); });
+	$('#astromod-add').bind('click', function() { build_astromod(retrieve_astromod(true), conso, rid); });
+
+	$('<div>').addClass('but').html("<div class='butright'><div class='butbg'>Envoyer</div></div>").css('margin-bottom', '10px').appendTo(popup).bind('click', function() {
+		send_data(retrieve_astromod(false), conso, rid);
 	});
 
-	var send = document.createElement('div');
-	send.className = 'but';
-	send.innerHTML = "<div class='butright'><div class='butbg'>Envoyer</div></div>";
-	send.addEventListener('click', function() { send_data(retrieve_astromod(false), conso, rid); });
-
-	var cancel = document.createElement('div');
-	cancel.className = 'but';
-	cancel.innerHTML = "<div class='butright'><div class='butbg'>Annuler</div></div>";
-	cancel.addEventListener('click', function() { document.getElementById('astromod-popup').style.display = 'none'; });
-
-	popup.appendChild(send);
-	popup.appendChild(cancel);
+	$('<div>').addClass('but').html("<div class='butright'><div class='butbg'>Annuler</div></div>").appendTo(popup).bind('click', function() {
+		$('#astromod-popup').css('display', 'none');
+	});
 }
 
 function astro_maj_inventaire() {
@@ -567,10 +608,12 @@ function astro_maj_inventaire() {
 		ok=0;
 		childs.each(function() {
 			var li = $(this);
-			var datatip = li.attr('data-tip');
+			var dataId = li.attr('data-id');
+			var dataTip = li.attr('data-tip');
 			var dataName = li.attr('data-name');
 			var iimg = li.find("td").css('background-image').replace('url(','').replace(/[)"]/g,'');
 			var iid=iimg.replace('.jpg','').replace(/\\/g,'/').replace( /.*\//, '' );
+			var iname='item';
 			var idetail="";
 			var desc = li.attr("data-desc");
 
@@ -627,17 +670,29 @@ function astro_maj_inventaire() {
 				}
 			}
 
-			if(dataName.indexOf(TXT_HIDDEN) ==-1) {
+			if(dataName.indexOf(TXT_HIDDEN)==-1) {
 				var qte = li.children('.qty:first');
-				//var iname=unserialize(datatip,'name')
-				iname='item';
-				a=datatip.indexOf('y4:namey')
+				//Sunsky's code: returns URI-encoded names
+				/*a=dataTip.indexOf('y4:namey')
 				if (a!=-1) {
-					b=datatip.indexOf(':',a+8)
+					b=dataTip.indexOf(':',a+8)
 
-					v=datatip.substring(a+8,b);
+					v=dataTip.substring(a+8,b);
 					v=parseInt(v);
-					iname=datatip.substring(b+1,b+1+v);
+					iname=dataTip.substring(b+1,b+1+v);
+				}*/
+				
+				if (dataId == 'BOOK') {
+					iname = decodeURIComponent(/namey[0-9]+:(.+)g$/.exec(dataTip)[1]);
+				}
+				else {
+					var offset = dataName.indexOf('<');
+					if (offset != -1) {
+						iname = dataName.trim().slice(0, dataName.indexOf('<') - 1);
+					}
+					else {
+						iname = dataName.trim();
+					}
 				}
 
 				var iserial = li.attr('serial');
