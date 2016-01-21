@@ -112,19 +112,12 @@ if (window.location.href.indexOf('mush.twinoid.com') != -1) {
 
 
 	Main.AstroPad.txt.updateEffect = "Do you want to update the effects ?\n\n(Cancel = update but without the effects)";
-	TXT_HELP_1 = "Here is the text that you should send to your teammates in order to share your AstroPad:";
-	TXT_HELP_2 = "    **I suggest using AstroPad for inventory tracking**<br/>";
-	TXT_HELP_2 += "This is a script that works with Firefox and Chrome:<br/>";
-	TXT_HELP_2 += " - for firefox, install GreaseMonkey<br/>";
-	TXT_HELP_2 += "//https://addons.mozilla.org/en/firefox/addon/greasemonkey//<br/>";
-	TXT_HELP_2 += " - for  Chrome, install TamperMonkey<br/>";
-	TXT_HELP_2 += "//https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en//<br/>";
-	TXT_HELP_2 += " <br/>";
-	TXT_HELP_2 += "Then follow this link to install the script:<br/>";
-	TXT_HELP_2 += "//https://github.com/badconker/astropad/raw/master/astropad.user.js//<br/>";
-	TXT_HELP_2 += " <br/>";
-	TXT_HELP_2 += "Then follow this link to join this game's AstroPad:<br/>";
-	TXT_HELP_3 = "Thank you for your attention";
+	Main.AstroPad.txt.greetShareMessage = "Here is the text that you should send to your teammates in order to share your AstroPad:";
+	Main.AstroPad.txt.defaultShareMessage = "Hi! I suggest we use the AstroPad to keep our inventory updated.\nYou may install it from this topic: %t.\nGet this game's inventory from this link: %u.\nTo see the map, follow this link: %v.\nThanks!";
+	Main.AstroPad.txt.helpTopic = "http://TODO"; //Topic explaining how to install the script
+	Main.AstroPad.txt.changeShareMessage = "Change default message";
+	Main.AstroPad.txt.helpShareMessage = "You can use the following expressions:<ul><li><b>%t</b> will be replaced by a link to the topic explaining how to install the script;</li><li><b>%u</b> will be replaced by the link to add the AstroPad;</li><li><b>%v</b> will be replaced by the link to the map of the AstroPad.</li></ul>";
+	Main.AstroPad.txt.saveShareMessage = "Save";
 	Main.AstroPad.txt.link = "Do you want to bind Astropad #%1 of which the key is %2 to this game?";
 	Main.AstroPad.txt.unlink = "Do you really want to delete the link between AstroPad #%1 and this game?\nIf you lose the Astropad Key, you cannot get it back.";
 }
@@ -213,19 +206,12 @@ else if (window.location.href.indexOf('mush.twinoid.es') != -1) {
 	Main.AstroPad.txt.propertyPsychological = "Psychologique";
 
 	Main.AstroPad.txt.updateEffect = "¿Desea actualizar los efectos? \n\n (Cancelar=actualizadas pero sin los efectos)"
-	TXT_HELP_1 = "Aqui está la prueba a ofrecer a vuestros compañeros de equipo para compartir vuestro AstroPad :"
-	TXT_HELP_2 = "    **Le sugiero usar AstroPad para el inventario**<br/>";
-	TXT_HELP_2 += "Este es un script que funciona con Firefox y Chrome:<br/>";
-	TXT_HELP_2 += " - Sobre Firefox, instalar GreaseMonkey<br/>"
-	TXT_HELP_2 += "//https://addons.mozilla.org/es/firefox/addon/greasemonkey//<br/>";
-	TXT_HELP_2 += " - Sobre Chrome, instalar TamperMonkey<br/>"
-	TXT_HELP_2 += "//https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=es//<br/>";
-	TXT_HELP_2 += " <br/>";
-	TXT_HELP_2 += "A continuación, vaya al siguiente enlace para instalar el script<br/>";
-	TXT_HELP_2 += "//https://github.com/badconker/astropad/raw/master/astropad.user.js//<br/>";
-	TXT_HELP_2 += " <br/>";
-	TXT_HELP_2 += "A continuación, vaya al siguiente enlace para unirse el inventario de esta partida:<br/>";
-	TXT_HELP_3 = "Gracias por su atención"
+	Main.AstroPad.txt.greetShareMessage = "Aqui está la prueba a ofrecer a vuestros compañeros de equipo para compartir vuestro AstroPad:"
+	Main.AstroPad.txt.defaultShareMessage = "Hi! I suggest we use the AstroPad to keep our inventory updated.\nYou may install it from this topic: %t.\nGet this game's inventory from this link: %u.\nTo see the map, follow this link: %v.\nThanks!";
+	Main.AstroPad.txt.helpTopic = "http://TODO";
+	Main.AstroPad.txt.changeShareMessage = "Modifier le message par défaut";
+	Main.AstroPad.txt.helpShareMessage = "Vous pouvez utiliser les expressions suivantes :<br /><ul><li><b>%t</b> sera remplacé par le lien vers le topic expliquant comment installer le script ;</li><li><b>%u</b> sera remplacé par le lien d'ajout de l'AstroPad ;</li><li><b>%v</b> sera remplacé par le lien vers la carte de l'AstroPad.</li></ul>";
+	Main.AstroPad.txt.saveShareMessage = "Sauvegarder";
 	Main.AstroPad.txt.link = "¿Deseas vincular el AstroPad n°%1 cuya clave es %2 a la partida?";
 	Main.AstroPad.txt.unlink = "¿Estás seguro que quieres eliminar el enlace entre el AstroPad n°%1 y la partida ?\nSi pierde la clave relativa a su partida, no será capaz de encontrarla.";
 }
@@ -314,19 +300,12 @@ else {
 	Main.AstroPad.txt.propertyPsychological = "Psychologique";
 
 	Main.AstroPad.txt.updateEffect = "Voulez-vous mettre à jour les effets ?\n\n(Annuler = mise à jour quand même mais sans les effets)";
-	TXT_HELP_1 = "Voici le texte à fournir à vos coéquipiers pour partager votre AstroPad :";
-	TXT_HELP_2 = "**Je vous propose l'AstroPad pour l'inventaire**<br/>";
-	TXT_HELP_2 += "Il s'agit d'un script qui fonctionne avec Firefox et Chrome :<br/>";
-	TXT_HELP_2 += " - Sur firefox, installer GreaseMonkey<br/>";
-	TXT_HELP_2 += "//https://addons.mozilla.org/fr/firefox/addon/greasemonkey//<br/>";
-	TXT_HELP_2 += " - Sur Chrome, installer TamperMonkey<br/>";
-	TXT_HELP_2 += "//https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=fr//<br/>";
-	TXT_HELP_2 += " <br/>";
-	TXT_HELP_2 += "Aller ensuite sur le lien suivant pour installer le script<br/>";
-	TXT_HELP_2 += "//https://github.com/badconker/astropad/raw/master/astropad.user.js//<br/>";
-	TXT_HELP_2 += " <br/>";
-	TXT_HELP_2 += "Aller ensuite sur le lien suivant pour rejoindre l'inventaire de cette partie :<br/>";
-	TXT_HELP_3 = "Merci de votre attention";
+	Main.AstroPad.txt.greetShareMessage = "Voici le texte à fournir à vos coéquipiers pour partager votre AstroPad :";
+	Main.AstroPad.txt.defaultShareMessage = "Bonjour ! Je vous propose d'utiliser l'AstroPad pour l'inventaire.\nPour l'installer, lisez ce topic : %t.\nCliquez ici pour avoir l'inventaire de cette partie : %u.\nPour voir la carte, suivez ce lien : %v.\nMerci !";
+	Main.AstroPad.txt.helpTopic = "http://TODO";
+	Main.AstroPad.txt.changeShareMessage = "Modifier le message par défaut";
+	Main.AstroPad.txt.helpShareMessage = "Vous pouvez utiliser les expressions suivantes :<br /><ul><li><b>%t</b> sera remplacé par le lien vers le topic expliquant comment installer le script ;</li><li><b>%u</b> sera remplacé par le lien d'ajout de l'AstroPad ;</li><li><b>%v</b> sera remplacé par le lien vers la carte de l'AstroPad.</li></ul>";
+	Main.AstroPad.txt.saveShareMessage = "Sauvegarder";
 	Main.AstroPad.txt.link = "Voulez-vous lier l'AstroPad n°%1 dont la clé est %2 à cette partie ?";
 	Main.AstroPad.txt.unlink = "Voulez-vous vraiment supprimer le lien entre l'AstroPad n°%1 et cette partie ?\nSi vous perdez la clé relative à votre partie, vous ne serez plus en mesure de la retrouver.";
 }
@@ -628,8 +607,6 @@ Main.AstroPad.sendData = function() {
 			var attrs = '';
 			if (idetail) {
 				var text = Main.AstroPad.propertiesToText(idetail);
-				//iname += text[0];
-				//attrs = text[1];
 				attrs = text[0] + '$' + text[1]; //Put iname attributes with attrs because iname is capped server-side
 				if (text[2]) {
 					conso += item.id + '|' + text[1] + '§';
@@ -774,6 +751,7 @@ Main.AstroPad.changeItemProperties = function(id) {
 
 	//Charges and broken
 	var machineField = $('<fieldset>').appendTo(form);
+	$('<input>').attr({ type: 'checkbox', checked: (attrs.charges != null), name: 'astromod-hascharges' }).css('color', 'black').appendTo(machineField);
 	$('<label>').text(Main.AstroPad.capitalize(Main.AstroPad.txt.charges)).attr('for', 'astromod-charges').appendTo(machineField);
 	$('<input>').attr({ type: 'number', min: 0, max: 20, value: attrs.charges, name: 'astromod-charges' }).css('color', 'black').appendTo(machineField);
 	$('<input>').attr({ type: 'checkbox', checked: attrs.broken, name: 'astromod-broken' }).css('color', 'black').appendTo(machineField);
@@ -915,7 +893,12 @@ Main.AstroPad.changeItemProperties = function(id) {
 	//Retrieve properties
 	$('<div>').addClass('but').html("<div class='butright'><div class='butbg'>" + Main.AstroPad.txt.applyProperties + "</div></div>").appendTo(form).bind('click', function() {
 		var index = parseInt($(this).closest('form').attr('data-astromod-item'));
-		Main.AstroPad.items[index].properties.charges = $('[name="astromod-charges"]').val();
+		if ($('[name="astromod-hascharges"]').is(':checked')) {
+			Main.AstroPad.items[index].properties.charges = $('[name="astromod-charges"]').val();
+		}
+		else {
+			Main.AstroPad.items[index].properties.charges = null;
+		}
 		Main.AstroPad.items[index].properties.broken = $('[name="astromod-broken"]').is(':checked');
 		Main.AstroPad.items[index].properties.frozen = $('[name="astromod-food-frozen"]').is(':checked');
 		Main.AstroPad.items[index].properties.plantIll = $('[name="astromod-plant-ill"]').is(':checked');
@@ -1271,35 +1254,43 @@ Main.AstroPad.reset = function() {
 Main.AstroPad.configuration = function() {
 	var gid = localStorage['ASTROPAD_' + Main.AstroPad.language + 'gid'];
 	var gkey = localStorage['ASTROPAD_' + Main.AstroPad.language + 'gkey'];
+	var rkey = localStorage['ASTROPAD_' + Main.AstroPad.language + 'rkey'];
+	if (!rkey) {
+		rkey = gkey;
+	}
+	var message = localStorage['ASTROPAD_' + Main.AstroPad.language + 'shareMessage'];
+	if (!message) {
+		message = Main.AstroPad.txt.defaultShareMessage;
+	}
 
-	var url = "http://" + Main.AstroPad.urlMush + "/?astroId=" + gid + "&astroKey=" + gkey;
-	var contenttxt = "<div class='cdMushLog  cdChatLine'>";
-	contenttxt += "    <div class='bubble bubble2 tid_editorContent tid_parsed'>";
-	contenttxt += "        <img src='/img/design/pixel.gif' class='char' style='background: url(http://imgup.motion-twin.com/twinoid/0/1/d9869944_14716.jpg) !important; height: 42px;'>";
-	contenttxt += "        <div class='talks'>";
-	contenttxt += "            <div class='triangleright'></div>";
-	contenttxt += "            <span class='buddy'> Sunsky :</span>";
-	contenttxt += "            <p>" + TXT_HELP_1 + "</p>";
-	contenttxt += "            <div class='clear'></div>";
-	contenttxt += "        </div>";
-	contenttxt += "    </div>";
-	contenttxt += "</div>";
+	var urlPad = "http://" + Main.AstroPad.urlMush + "/?astroId=" + gid + "&astroKey=" + gkey;
+	var urlMap = "http://astropad.sunsky.fr/?gid=" + gid + "&rkey=" + rkey + "&language=" + Main.AstroPad.language;
+	var bubble = $('<div>').addClass('cdMushLog cdChatLine').html(
+	"    <div class='bubble bubble2 tid_editorContent tid_parsed'>"
+	+ "        <img src='/img/design/pixel.gif' class='char' style='background: url(http://imgup.motion-twin.com/twinoid/0/1/d9869944_14716.jpg) !important; height: 42px;'>"
+	+ "        <div class='talks'>"
+	+ "            <div class='triangleright'></div>"
+	+ "            <span class='buddy'> Sunsky :</span>"
+	+ "            <p>" + Main.AstroPad.txt.greetShareMessage + "</p>"
+	+ "            <div class='clear'></div>"
+	+ "        </div>"
+	+ "    </div>");
 
-	contenttxt += "<div class='cdMushLog  cdChatLine' style='max-width: 373px;'>";
-	contenttxt += "    <div class='bubble  tid_editorContent tid_parsed'>";
-	contenttxt += "        <img src='/img/design/pixel.gif' class='char' style='background: url(http://imgup.motion-twin.com/twinoid/6/7/4f22b23f_14716.jpg) !important; height: 42px;'>";
-	contenttxt += "        <div class='talks'>";
-	contenttxt += "            <div class='triangleleft'></div>";
-	contenttxt += "            <span class='buddy'> Sunsky :</span>";
-	contenttxt += "            <p style='font-size:10px'>";
-	contenttxt += TXT_HELP_2;
-	contenttxt += "//<a href='" + url + "'>" + url + "</a>//<br/> <br/>" + TXT_HELP_3 + ".";
-	contenttxt += "            </p><div class='clear'></div>";
-	contenttxt += "        </div>";
-	contenttxt += "    </div>";
-	contenttxt += "</div>";
+	var textarea = $('<textarea>').css({ color: 'black', width: '100%', height: '250px' }).val(message.replace('%t', Main.AstroPad.txt.helpTopic).replace('%u', urlPad).replace('%v', urlMap));
 
-	Main.AstroPad.fill(contenttxt);
+	var button = $('<div>').addClass('but').html("<div class='butright'><div class='butbg'>" + Main.AstroPad.txt.changeShareMessage + "</div></div>").css('margin-top', '20px').bind('click', function() {
+		var newtext = $('<textarea>').attr('id', 'astro-config-message').css({ color: 'black', width: '100%', height: '250px' }).val(message);
+		var save = $('<div>').addClass('but').html("<div class='butright'><div class='butbg'>" + Main.AstroPad.txt.saveShareMessage + "</div></div>").css('margin-top', '20px').bind('click', function() {
+			var text = $('#astro-config-message').val();
+			if (text) {
+				localStorage['ASTROPAD_' + Main.AstroPad.language + 'shareMessage'] = text;
+			}
+			Main.AstroPad.configuration();
+		});
+		Main.AstroPad.fill([$('<p>').html(Main.AstroPad.txt.helpShareMessage), newtext, save]);
+	});
+
+	Main.AstroPad.fill([bubble, textarea, button]);
 };
 
 Main.AstroPad.viewInventory = function() {
@@ -1349,7 +1340,7 @@ Main.AstroPad.getInventory = function() {
 		onload: function(responseDetails) {
 			var res = responseDetails.responseText;
 			//console.log(res);
-			var contenttxt = "";
+			var elements = [];
 			var rooms = res.split('#');
 			var infos = rooms[0].split('|');
 
@@ -1357,83 +1348,97 @@ Main.AstroPad.getInventory = function() {
 			for (var j = 1; j < rooms.length; j++) {
 				var its = rooms[j].split('\n');
 				var roomid = parseInt(its[0]);
-				contenttxt += "<div class='astro_rid_" + roomid + "' id='astro_rid_" + roomid + "'><b>" + Main.AstroPad.roomNames[roomid] + "</b></div>";
-				if (its.length > 2)
-					contenttxt += "<div class='what_happened'><table class='table' >";
-				for(var i = 1; i < its.length - 1; i++) {
-					try{
-					var parts = its[i].split('|');
-					var iname = parts[0];
-					var iid = parts[1];
-					var date = parts[6];
-					var heroid = parts[7];
-					if (heroid == -1) {
-						heroid = Main.AstroPad.heronames.length - 1;
-					}
+				var roomTitle = $('<div>').addClass('astro_rid_' + roomid).attr('id', 'astro_rid_' + roomid);
+				$('<b>').text(Main.AstroPad.roomNames[roomid]).appendTo(roomTitle);
+				elements.push(roomTitle);
 
-					var footer = Main.AstroPad.txt.by + " " + Main.AstroPad.heronames[heroid] + "<br>" + Main.AstroPad.txt.the + " " + date.substring(6, 8) + " " + Main.AstroPad.txt.at + " " + date.substring(8, 10) + ":" + date.substring(10, 12);
-					if (iid == "empty") {
-						contenttxt += "<tr><td style='width: 35px; height: 35px; border-spacing: 0; padding: 0;'>" + Main.AstroPad.txt.empty + "</td><td style='text-align: left; border-spacing: 0; padding: 0;'></td>";
-						contenttxt += "<td style='font-size: 10px; text-align: right; vertical-align: bottom; width: 75px;'>" + footer + '</td></tr>';
-						continue;
-					}
-					var iimg = "<img src='http://" + Main.AstroPad.urlMush + "/img/icons/items/" + iid + ".jpg' style='height: 35px; width: 35px;' />";
+				if (its.length > 2) {
+					var div = $('<div>').addClass('what_happened');
+					var table = $('<table>').addClass('table').css('border-spacing', '0').appendTo(div);
+					
+					for (var i = 1; i < its.length - 1; i++) {
+						var tr = $('<tr>').appendTo(table);
+						var tdImg = $('<td>').css({ width: '35px', height: '35px', padding: '0' }).appendTo(tr);
+						var tdText = $('<td>').css({ textAlign: 'left', padding: '0' }).appendTo(tr);
+						var tdFooter = $('<td>').css({ fontSize: '10px', textAlign: 'right', verticalAlign: 'bottom', width: '75px' }).appendTo(tr);
 
-					var inb = parts[2];
-
-					if (parts[4]) { //Attributes sent from the conso var
-						var idetail = parts[4];
-						//Put item attributes in its name
-						var attrs = parts[3].split('$');
-						if (attrs.length == 2) { //If new version; old version will already have item attributes in iname
-							iname += attrs[0];
+						var parts = its[i].split('|');
+						var iname = parts[0];
+						var iid = parts[1];
+						var date = parts[6];
+						var heroid = parts[7];
+						if (heroid == -1) {
+							heroid = Main.AstroPad.heronames.length - 1;
 						}
-					}
-					else {
-						var idetail = parts[3];
-						//Put item attributes in its name
-						var attrs = idetail.split('$');
-						if (attrs.length == 2) { //If new version; old version will already have item attributes in iname
-							iname += attrs[0];
-							idetail = attrs[1];
+
+						var footer = Main.AstroPad.txt.by + " " + Main.AstroPad.heronames[heroid] + "<br>" + Main.AstroPad.txt.the + " " + date.substring(6, 8) + " " + Main.AstroPad.txt.at + " " + date.substring(8, 10) + ":" + date.substring(10, 12);
+
+						if (iid == "empty") {
+							tdImg.text(Main.AstroPad.txt.empty);
+							tdFooter.html(footer);
+							continue;
 						}
-					}
-					iname = Main.AstroPad.capitalize(iname);
 
-					function toImg(text, exp, img, alt) {
-						return text.replace(exp, "<img src='/img/icons/ui/" + img + ".png' alt='" + alt + "' title='" + alt + "' />");
-					}
+						if (parts[4]) { //Attributes sent from the conso var
+							var idetail = parts[4];
+							//Put item attributes in its name
+							var attrs = parts[3].split('$');
+							if (attrs.length == 2) { //If new version; old version will already have item attributes in iname
+								iname += attrs[0];
+							}
+						}
+						else {
+							var idetail = parts[3];
+							//Put item attributes in its name
+							var attrs = idetail.split('$');
+							if (attrs.length == 2) { //If new version; old version will already have item attributes in iname
+								iname += attrs[0];
+								idetail = attrs[1];
+							}
+						}
 
-					iname = toImg(iname, Main.AstroPad.capitalize(Main.AstroPad.txt.thirsty), "plant_thirsty", Main.AstroPad.txt.thirsty);
-					iname = toImg(iname, Main.AstroPad.capitalize(Main.AstroPad.txt.dry), "plant_dry", Main.AstroPad.txt.dry);
-					iname = toImg(iname, Main.AstroPad.capitalize(Main.AstroPad.txt.diseased), "plant_diseased", Main.AstroPad.txt.diseased);
-					iname = toImg(iname, Main.AstroPad.capitalize(Main.AstroPad.txt.broken), "broken", Main.AstroPad.txt.broken);
-					iname = toImg(iname, Main.AstroPad.txt.frozen, "food_frozen", Main.AstroPad.txt.frozen);
-					if (idetail) {
-						idetail = toImg(idetail, /:pa:/g, 'pa_slot1', 'pa');
-						idetail = toImg(idetail, /:moral:/g, 'moral', 'moral');
-						idetail = toImg(idetail, /:pm:/g, 'pa_slot2', 'pm');
-						idetail = toImg(idetail, /:hp:/g, 'lp', 'hp');
-						idetail = toImg(idetail, Main.AstroPad.txt.satisfaction, 'pa_cook', Main.AstroPad.txt.satisfaction);
-						idetail = toImg(idetail, /:pa_cook:/g, 'pa_cook', Main.AstroPad.txt.satisfaction);
-						idetail = toImg(idetail, ' ' + Main.AstroPad.txt.charges, 'charge', Main.AstroPad.txt.charges);
-						idetail = toImg(idetail, new RegExp(Main.AstroPad.txt.curesText, "g"), "pa_heal", 'heal');
-						idetail = " : <i>" + idetail + "</i>";
-					}
-					if (inb != "1") {
-						inb = " (x" + inb + ")";
-					}
-					else {
-						inb="";
-					}
+						//Name and attributes
+						function toImg(text, exp, img, alt) {
+							return text.replace(exp, "<img src='/img/icons/ui/" + img + ".png' alt='" + alt + "' title='" + alt + "' />");
+						}
 
-					contenttxt += "<tr><td style='width: 35px; height: 35px; border-spacing: 0; padding: 0;'>" + iimg + "</td><td style='text-align: left; border-spacing: 0; padding: 0;'><b>" + iname + inb + "</b>" + idetail + "</td>";
-					contenttxt += "<td style='font-size: 10px; text-align: right; vertical-align: bottom; width: 75px;'>" + footer + '</td></tr>';
-					}catch(e){console.log(e);}
+						iname = Main.AstroPad.capitalize(iname);
+						iname = toImg(iname, Main.AstroPad.capitalize(Main.AstroPad.txt.thirsty), "plant_thirsty", Main.AstroPad.txt.thirsty);
+						iname = toImg(iname, Main.AstroPad.capitalize(Main.AstroPad.txt.dry), "plant_dry", Main.AstroPad.txt.dry);
+						iname = toImg(iname, Main.AstroPad.capitalize(Main.AstroPad.txt.diseased), "plant_diseased", Main.AstroPad.txt.diseased);
+						iname = toImg(iname, Main.AstroPad.capitalize(Main.AstroPad.txt.broken), "broken", Main.AstroPad.txt.broken);
+						iname = toImg(iname, Main.AstroPad.txt.frozen, "food_frozen", Main.AstroPad.txt.frozen);
+						if (idetail) {
+							idetail = toImg(idetail, /:pa:/g, 'pa_slot1', 'pa');
+							idetail = toImg(idetail, /:moral:/g, 'moral', 'moral');
+							idetail = toImg(idetail, /:pm:/g, 'pa_slot2', 'pm');
+							idetail = toImg(idetail, /:hp:/g, 'lp', 'hp');
+							idetail = toImg(idetail, Main.AstroPad.txt.satisfaction, 'pa_cook', Main.AstroPad.txt.satisfaction);
+							idetail = toImg(idetail, /:pa_cook:/g, 'pa_cook', Main.AstroPad.txt.satisfaction);
+							idetail = toImg(idetail, ' ' + Main.AstroPad.txt.charges, 'charge', Main.AstroPad.txt.charges);
+							idetail = toImg(idetail, new RegExp(Main.AstroPad.txt.curesText, "g"), "pa_heal", 'heal');
+							idetail = " : <i>" + idetail + "</i>";
+						}
+
+						//Quantity
+						var inb = parts[2];
+						if (inb != "1") {
+							inb = " (x" + inb + ")";
+						}
+						else {
+							inb = "";
+						}
+
+						//Build row
+						$('<img>').attr('src', "http://" + Main.AstroPad.urlMush + "/img/icons/items/" + iid + ".jpg").css({ width: '35px', height: '35px' }).appendTo(tdImg);
+						$('<b>').html(iname + inb).appendTo(tdText);
+						tdText.append(idetail);
+						tdFooter.html(footer);
+					}
+					elements.push(div);
 				}
-				contenttxt += "</table></div>";
 			}
-			Main.AstroPad.fill(contenttxt, "#astro_rid_" + Main.AstroPad.getRoomId());
+			Main.AstroPad.fill(elements, "#astro_rid_" + Main.AstroPad.getRoomId());
 		}
 	});
 };
@@ -1459,7 +1464,7 @@ Main.AstroPad.getInventoryTxt = function() {
 			for (var j = 1; j < rooms.length; j++) {
 				var its = rooms[j].split('\n');
 				var roomid = parseInt(its[0]);
-				contenttxt += "- **" + Main.AstroPad.roomNames[roomid] + "**";
+				contenttxt += "-**" + Main.AstroPad.roomNames[roomid] + "**";
 				for (var i = 1; i < its.length - 1; i++) {
 					var parts = its[i].split('|');
 					var iname = parts[0];
@@ -1474,9 +1479,7 @@ Main.AstroPad.getInventoryTxt = function() {
 						contenttxt += Main.AstroPad.txt.empty + ".\n";
 						continue;
 					}
-					var inb = parts[2];
-					var idetail = parts[4];
-					
+
 					if (parts[4]) { //Attributes sent from the conso var
 						var idetail = parts[4];
 						//Put item attributes in its name
@@ -1500,6 +1503,9 @@ Main.AstroPad.getInventoryTxt = function() {
 						idetail = idetail.replace(Main.AstroPad.txt.satisfaction, ":pa_cook:");
 						idetail = idetail.replace(new RegExp(Main.AstroPad.txt.curesText, "g"), ":pa_heal:");
 					}
+
+					//Quantity
+					var inb = parts[2];
 					if (inb != "1") {
 						inb = " (x" + inb + ")";
 					}
@@ -1514,39 +1520,52 @@ Main.AstroPad.getInventoryTxt = function() {
 				}
 				contenttxt = contenttxt.slice(0, -2) + ".\n";
 			}
-			Main.AstroPad.fill("<textarea style='font-size: 8pt; color: black; width: 100%; height: 100%;'>" + contenttxt + "</textarea>");
+			Main.AstroPad.fill($('<textarea>').css({ fontSize: '8pt', color: 'black', width: '100%', height: '100%' }).val(contenttxt));
 		}
 	});
 };
 
-Main.AstroPad.fill = function(content, gotoelemid) {
+Main.AstroPad.fill = function(elements, gotoelemid) {
 	var gid = localStorage['ASTROPAD_' + Main.AstroPad.language + 'gid'];
-	var tab = $("#astrotab_content").empty();
+
+	var mainDiv = $('<div>').css("color", "rgb(9, 10, 97)").appendTo($("#astrotab_content").empty());
+	function addButton(src, text, hasText, func, parent) {
+		$('<img>').attr({ src: src, title: text }).appendTo(
+			$('<a>').addClass('butmini').attr('href', '#').append((hasText ? text : '')).bind('click', func).appendTo(parent)
+		);
+	}
 
 	if (localStorage['ASTROPAD_' + Main.AstroPad.language + 'gid'] && localStorage['ASTROPAD_' + Main.AstroPad.language + 'gkey']) {
-		var header = "<div class='objtitle'><img src='/img/icons/ui/pa_comp.png'> AstroPad (n°" + gid + ") <img src='/img/icons/ui/pa_comp.png'></div> &nbsp;<div class='replybuttons'>";
-		header += " <a class='butmini' href='#' id='astro_maj_inventaire' ><img src='/img/icons/ui/projects_done.png'>" + Main.AstroPad.txt.submit + "</a>";
-		header += " <a class='butmini' href='#' id='astro_maj_inventaire_tampered' ><img src='/img/icons/ui/pa_comp.png'>" + Main.AstroPad.txt.accessAstromod + "</a>";
-		header += " <a class='butmini' href='#' id='astro_get_inventaire' ><img src='http://twinoid.com/img/icons/refresh.png' title='" + Main.AstroPad.txt.refresh + "'></a>";
-		header += " <a class='butmini' href='#' id='astro_get_inventaire_txt' ><img src='/img/icons/ui/notes.gif' title='" + Main.AstroPad.txt.list + "'></a>";
-		header += " <a class='butmini' href='#' id='astro_view_inventaire' ><img src='http://www.hordes.fr/gfx/forum/smiley/h_exploration.gif' title='" + Main.AstroPad.txt.show + "'></a>";
-		header += " <a class='butmini' href='#' id='astro_configuration' ><img src='/img/icons/ui/guide.png'>" + Main.AstroPad.txt.help + "</a>";
-		header += " <a class='butmini' href='#' id='astro_new' ><img src='/img/icons/ui/goldplus.png'>" + Main.AstroPad.txt.new + "</a>";
-		header += " <a class='butmini' href='#' id='astro_reset' ><img src='/img/icons/ui/close.png' title='" + Main.AstroPad.txt.exit + "'></a>";
-	} else {
-		var header = "<div class='objtitle'><img src='/img/icons/ui/pa_comp.png'> AstroPad<img src='/img/icons/ui/pa_comp.png'></div> &nbsp;<div class='replybuttons'>";
-		header += " <a class='butmini' href='#' id='astro_new' ><img src='/img/icons/ui/goldplus.png'>" + Main.AstroPad.txt.new + "</a>";
+		$('<div>').addClass('objtitle').html("<img src='/img/icons/ui/pa_comp.png'> AstroPad (n°" + gid + ") <img src='/img/icons/ui/pa_comp.png'>").appendTo(mainDiv);
+		var menu = $('<div>').addClass('replybuttons').appendTo(mainDiv);
+		addButton('/img/icons/ui/projects_done.png', Main.AstroPad.txt.submit, true, function() { Main.AstroPad.updateInventory(false); }, menu);
+		addButton('/img/icons/ui/pa_comp.png', Main.AstroPad.txt.accessAstromod, true, function() { Main.AstroPad.updateInventory(true); }, menu);
+		addButton('http://twinoid.com/img/icons/refresh.png', Main.AstroPad.txt.refresh, false, Main.AstroPad.getInventory, menu);
+		addButton('/img/icons/ui/notes.gif', Main.AstroPad.txt.list, false, Main.AstroPad.getInventoryTxt, menu);
+		addButton('http://www.hordes.fr/gfx/forum/smiley/h_exploration.gif', Main.AstroPad.txt.show, false, Main.AstroPad.viewInventory, menu);
+		addButton('/img/icons/ui/guide.png', Main.AstroPad.txt.help, true, Main.AstroPad.configuration, menu);
+		addButton('/img/icons/ui/goldplus.png', Main.AstroPad.txt.new, true, Main.AstroPad.new, menu);
+		addButton('/img/icons/ui/close.png', Main.AstroPad.txt.exit, false, Main.AstroPad.reset, menu);
 	}
-	header += "</div>";
-	$("<div>").html(header + "<br><div id='astro_scrollpanel' class='astro_scrollpanel' style='overflow: auto; height: 400px;'>" + content + "</div>").css("color", "rgb(9, 10, 97)").appendTo(tab);
-	$('#astro_get_inventaire').bind('click', Main.AstroPad.getInventory);
-	$('#astro_get_inventaire_txt').bind('click', Main.AstroPad.getInventoryTxt);
-	$('#astro_view_inventaire').bind('click', Main.AstroPad.viewInventory);
-	$('#astro_maj_inventaire').bind('click', function() { Main.AstroPad.updateInventory(false); });
-	$('#astro_maj_inventaire_tampered').bind('click', function() { Main.AstroPad.updateInventory(true); });
-	$('#astro_configuration').bind('click', Main.AstroPad.configuration);
-	$('#astro_reset').bind('click', Main.AstroPad.reset);
-	$('#astro_new').bind('click', Main.AstroPad.new);
+	else {
+		$('<div>').addClass('objtitle').html("<img src='/img/icons/ui/pa_comp.png'> AstroPad (n°" + gid + ") <img src='/img/icons/ui/pa_comp.png'>").appendTo(mainDiv);
+		addButton('/img/icons/ui/goldplus.png', Main.AstroPad.txt.new, true, Main.AstroPad.new, $('<div>').addClass('replybuttons').appendTo(mainDiv));
+	}
+
+	var contentDiv = $('<div>').attr('id', 'astro_scrollpanel').addClass('astro_scrollpanel').css({ overflow: 'auto', height: '400px' }).appendTo(mainDiv);
+	if (elements.length > 1) { //Array of elements
+		for (var i = 0; i < elements.length; i++) {
+			if (elements[i] && elements[i].appendTo != undefined) {
+				elements[i].appendTo(contentDiv);
+			}
+		}
+	}
+	else { //Only one elements
+		if (elements) {
+			elements.appendTo(contentDiv);
+		}
+	}
+	
 	$('#astrotab_content').find('.replybuttons a').each(function(){
 		$(this).on('click', function(e){
 			e.preventDefault();
@@ -1592,15 +1611,6 @@ Main.AstroPad.startScript = function() {
 		}
 		Main.AstroPad.buildAstrotab();
 	}, 1000);
-
-	/*$('.talks p').each(function() {
-		text = replaceURLWithHTMLLinks($(this).text())
-		$(this).html(text);
-	});
-	 $('.bubble p').each(function() {
-		text = replaceURLWithHTMLLinks($(this).html())
-		$(this).html(text);
-	});*/
 };
 
 Main.AstroPad.startScript();
