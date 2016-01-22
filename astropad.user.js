@@ -23,7 +23,6 @@ Main.AstroPad.urlAstro = "http://astropad.sunsky.fr/api.py";
 Main.AstroPad.heronames = ['Jin Su', 'Frieda', 'Kuan Ti', 'Janice', 'Roland', 'Hua', 'Paola', 'Chao', 'Finola', 'Stephen', 'Ian', 'Chun', 'Raluca', 'Gioele', 'Eleesha', 'Terrence', 'Derek', 'Andie'];
 Main.AstroPad.heronames[-1] = "?";
 Main.AstroPad.items = [];
-Main.AstroPad.txt = {};
 
 
 if (window.location.href.indexOf('mush.twinoid.com') != -1) {
@@ -38,88 +37,98 @@ if (window.location.href.indexOf('mush.twinoid.com') != -1) {
 	Main.AstroPad.physicalDiseases = ["Acid Reflux", "Black Bite", "Cat Allergy", "Cold", "Extreme Tinnitus", "Flu", "Food Poisoning", "Fungic Infection", "Gastroenteritis", "Junkbumpkinitis", "Migraine", "Mush allergy", "Rejuvenation", "Rubella", "Sepsis", "Sinus Storm", "Skin Inflammation", "Slight Nausea", "Smallpox", "Space Rabies", "Syphilis", "Tapeworm", "Vitamin Deficiency"];
 	Main.AstroPad.psychologicalDiseases = ["Agoraphobia", "Ailurophobia", "Chronic Vertigo", "Crabism", "Coprolalia", "Chronic Migraine", "Depression", "Paranoia", "Psychotic Episodes", "Spleen", "Vertigo", "Weapon Phobia"];
 
-	Main.AstroPad.txt.desc = "Inventory Manager developed by Sunsky.";
-	Main.AstroPad.txt.camera = "Camera";
-	Main.AstroPad.txt.drone ="Drone";
-	Main.AstroPad.txt.intox = "Food Poisoning";
-	Main.AstroPad.txt.broken = "Broken";
-	Main.AstroPad.txt.frozen = "Frozen";
-	Main.AstroPad.txt.unstable = "Unstable";
-	Main.AstroPad.txt.hazardous = "Hazardous";
-	Main.AstroPad.txt.decaying = "Decomposing";
-	Main.AstroPad.txt.charges = "charge(s)";
-	Main.AstroPad.txt.effect = "Effects";
-	Main.AstroPad.txt.effect2 = "the effects";
-	Main.AstroPad.txt.curesTip = "Cures";
-	Main.AstroPad.txt.curesText = "Cures";
-	Main.AstroPad.txt.causesTip = "???"; //TODO
-	Main.AstroPad.txt.causesText = "Causes";
-	Main.AstroPad.txt.delayRegExp = /([0-9]+) to ([0-9]+) cycles/; //TODO
-	Main.AstroPad.txt.chef = "Chef";
-	Main.AstroPad.txt.botanist = "Botanist";
-	Main.AstroPad.txt.satisfaction = "satisfaction";
-	Main.AstroPad.txt.thirsty = "thirsty";
-	Main.AstroPad.txt.dry = "dry";
-	Main.AstroPad.txt.diseased = "diseased";
-	Main.AstroPad.txt.cycles = "cycles";
+	Main.AstroPad.txt = {
+		desc: "Inventory Manager developed by Sunsky.",
+		camera: "Camera",
+		drone:"Drone",
+		intox: "Food Poisoning",
+		broken: "Broken",
+		frozen: "Frozen",
+		unstable: "Unstable",
+		hazardous: "Hazardous",
+		decaying: "Decomposing",
+		charges: "charge(s)",
+		effect: "Effects",
+		effect2: "the effects",
+		curesTip: "Cures",
+		curesText: "Cures",
+		causesTip: "???", //TODO
+		causesText: "Causes",
+		delayRegExp: /([0-9]+) to ([0-9]+) cycles/, //TODO
+		chef: "Chef",
+		botanist: "Botanist",
+		satisfaction: "satisfaction",
+		thirsty: "thirsty",
+		dry: "dry",
+		diseased: "diseased",
+		cycles: "cycles",
 
-	Main.AstroPad.txt.by = "by";
-	Main.AstroPad.txt.the = "the";
-	Main.AstroPad.txt.at = "at";
-	Main.AstroPad.txt.empty = "Void";
-	Main.AstroPad.txt.inventory = "INVENTORY";
-	Main.AstroPad.txt.sumbit = "Synchronize";
-	Main.AstroPad.txt.refresh = "Refresh";
-	Main.AstroPad.txt.list = "Text Format";
-	Main.AstroPad.txt.show = "Show";
-	Main.AstroPad.txt.help = "Help";
-	Main.AstroPad.txt.new = "New";
-	Main.AstroPad.txt.exit = "Exit";
-	Main.AstroPad.txt.tipDesc = "Displays inventory.";
+		by: "by",
+		the: "the",
+		at: "at",
+		empty: "Void",
+		inventory: "INVENTORY",
+		sumbit: "Synchronize",
+		refresh: "Refresh",
+		list: "Text Format",
+		show: "Show",
+		help: "Help",
+		newPad: "New",
+		exit: "Exit",
+		tipDesc: "Displays inventory.",
 
-	Main.AstroPad.txt.itemChoice = "Choose an item:";
-	Main.AstroPad.txt.itemCatMisc = "Miscellaneous";
-	Main.AstroPad.txt.itemCatTools = "Tools";
-	Main.AstroPad.txt.itemCatWeaponry = "Weapons";
-	Main.AstroPad.txt.itemCatDocuments = "Documents";
-	Main.AstroPad.txt.itemCatFood = "Food";
-	Main.AstroPad.txt.itemCatPlants = "Plants";
-	Main.AstroPad.txt.itemCatHealth = "Health";
-	Main.AstroPad.txt.itemCatExpedition = "Expedition";
-	Main.AstroPad.txt.itemCatAlien = "Artefacts";
-	Main.AstroPad.txt.defaultItem = "Item";
-	Main.AstroPad.txt.addItem = "Add an item";
-	Main.AstroPad.txt.sendAstromod = "Share";
-	Main.AstroPad.txt.cancelAstromod = "Cancel";
-	Main.AstroPad.txt.accessAstromod = "Alter"
+		astromodTitle: "Changing the AstroPad",
+		itemChoice: "Choose an item:",
+		itemCatMisc: "Miscellaneous",
+		itemCatTools: "Tools",
+		itemCatWeaponry: "Weapons",
+		itemCatDocuments: "Documents",
+		itemCatFood: "Food",
+		itemCatPlants: "Plants",
+		itemCatHealth: "Health",
+		itemCatExpedition: "Expedition",
+		itemCatAlien: "Artefacts",
+		defaultItem: "Item",
+		addItem: "Add an item",
+		sendAstromod: "Share",
+		cancelAstromod: "Cancel",
+		accessAstromod: "Alter",
 
-	Main.AstroPad.txt.changeProperties = "Change properties";
-	Main.AstroPad.txt.propertyTitle = "Item properties:";
-	Main.AstroPad.txt.foodEffects = "Food effects:";
-	Main.AstroPad.txt.addEffect = "Add an effect:";
-	Main.AstroPad.txt.applyProperties = "Apply properties";
-	Main.AstroPad.txt.propertyAP = "Action points";
-	Main.AstroPad.txt.propertyMP = "Movement points";
-	Main.AstroPad.txt.propertyHP = "Health points";
-	Main.AstroPad.txt.propertyMoral = "Moral";
-	Main.AstroPad.txt.propertyChances = "Chances:";
-	Main.AstroPad.txt.propertyDelay = "Delay:";
-	Main.AstroPad.txt.propertyTo = "to";
-	Main.AstroPad.txt.propertyPlant = "Plant:";
-	Main.AstroPad.txt.propertyFoodState = "Food state:";
-	Main.AstroPad.txt.propertyPhysical = "Physical";
-	Main.AstroPad.txt.propertyPsychological = "Psychological";
+		changeProperties: "Change properties",
+		propertyTitle: "Item properties:",
+		foodEffects: "Food effects:",
+		addEffect: "Add an effect:",
+		defaultProperties: "Default properties",
+		applyProperties: "Apply properties",
+		propertyAP: "Action points",
+		propertyMP: "Movement points",
+		propertyHP: "Health points",
+		propertyMoral: "Moral",
+		propertyChances: "Chances:",
+		propertyDelay: "Delay:",
+		propertyTo: "to",
+		propertyPlant: "Plant:",
+		propertyFoodState: "Food state:",
+		propertyPhysical: "Physical",
+		propertyPsychological: "Psychological",
 
+		titleTxtInventory: "Rooms to share:",
+		checkAll: "Check all",
+		uncheckAll: "Uncheck All",
+		generateTxtInventory: "Generate text inventory",
 
-	Main.AstroPad.txt.updateEffect = "Do you want to update the effects ?\n\n(Cancel = update but without the effects)";
-	Main.AstroPad.txt.greetShareMessage = "Here is the text that you should send to your teammates in order to share your AstroPad:";
-	Main.AstroPad.txt.defaultShareMessage = "Hi! I suggest we use the AstroPad to keep our inventory updated.\nYou may install it from this topic: %t.\nGet this game's inventory from this link: %u.\nTo see the map, follow this link: %v.\nThanks!";
-	Main.AstroPad.txt.helpTopic = "http://TODO"; //Topic explaining how to install the script
-	Main.AstroPad.txt.changeShareMessage = "Change default message";
-	Main.AstroPad.txt.helpShareMessage = "You can use the following expressions:<ul><li><b>%t</b> will be replaced by a link to the topic explaining how to install the script;</li><li><b>%u</b> will be replaced by the link to add the AstroPad;</li><li><b>%v</b> will be replaced by the link to the map of the AstroPad.</li></ul>";
-	Main.AstroPad.txt.saveShareMessage = "Save";
-	Main.AstroPad.txt.link = "Do you want to bind Astropad #%1 of which the key is %2 to this game?";
-	Main.AstroPad.txt.unlink = "Do you really want to delete the link between AstroPad #%1 and this game?\nIf you lose the Astropad Key, you cannot get it back.";
+		updateEffect: "Do you want to update the effects ?\n\n(Cancel = update but without the effects)",
+		greetShareMessage: "Here is the text that you should send to your teammates in order to share your AstroPad:",
+		defaultShareMessage: "Hi! I suggest we use the AstroPad to keep our inventory updated.\nYou may install it from this topic: %t.\nGet this game's inventory from this link: %u.\nTo see the map, follow this link: %v.\nThanks!",
+		helpTopic: "http://TODO", //Topic explaining how to install the script
+		changeShareMessage: "Change default message",
+		helpShareMessage: "You can use the following expressions:<ul><li><b>%t</b> will be replaced by a link to the topic explaining how to install the script;</li><li><b>%u</b> will be replaced by the link to add the AstroPad;</li><li><b>%v</b> will be replaced by the link to the map of the AstroPad.</li></ul>",
+		saveShareMessage: "Save",
+		link: "Do you want to bind Astropad #%1 of which the key is %2 to this game?",
+		unlink: "Do you really want to delete the link between AstroPad #%1 and this game?\nIf you lose the Astropad Key, you cannot get it back.",
+		newShip: "It seems you are in a new game. Don't forget to create a new AstroPad!",
+		loading: "Loading…"
+	};
 }
 else if (window.location.href.indexOf('mush.twinoid.es') != -1) {
 	Main.AstroPad.language = 'es';
@@ -133,87 +142,98 @@ else if (window.location.href.indexOf('mush.twinoid.es') != -1) {
 	Main.AstroPad.physicalDiseases = ["Alergia a los gatos", "Alergia al Mush", "Carencia de vitaminas", "Citroiditis", "Enverdecimiento", "Erupción cutánea", "Gastroenteritis", "Gripe", "Infección aguda", "Infección por hongos", "Intoxicación alimentaria", "Migraña", "Mordida negra", "Náusea Ligera", "Rabia espacial", "Reflujos gástricos", "Resfrío", "Rubéola", "Sífilis", "Solitaria", "Tormenta sinusal", "Virulea", "Zumbido extremo"];
 	Main.AstroPad.psychologicalDiseases = ["Acceso psicótico", "Agorafobia", "Ailurofobia", "Bazo", "Coprolalia", "Crabismo", "Crisis de paranoia", "Depresión", "Mareo", "Mareo crónico", "Migraña crónica", "Temor a las armas"];
 
-	Main.AstroPad.txt.desc = "Gestor de inventario desarrollado por Sunsky. Traducción xxbrut0xx.";
-	Main.AstroPad.txt.camera = "Cámara";
-	Main.AstroPad.txt.drone = "Dron";
-	Main.AstroPad.txt.intox = "Intoxicación Alimentaria";
-	Main.AstroPad.txt.broken = "Roto";
-	Main.AstroPad.txt.frozen = "Congelado";
-	Main.AstroPad.txt.unstable = "Sospechosa";
-	Main.AstroPad.txt.hazardous = "Nociva";
-	Main.AstroPad.txt.decaying = "Toxica";
-	Main.AstroPad.txt.charges = "carga(s)";
-	Main.AstroPad.txt.effect = "Efectos";
-	Main.AstroPad.txt.effect2 = "los efectos";
-	Main.AstroPad.txt.curesTip = "Cura la enfermedad";
-	Main.AstroPad.txt.curesText = "Cura";
-	Main.AstroPad.txt.causesTip = "Provoca la enfermedad";
-	Main.AstroPad.txt.causesText = "Provoca";
-	Main.AstroPad.txt.delayRegExp = /en un plazo de ([0-9]+) a ([0-9]+) ciclos/;
-	Main.AstroPad.txt.chef = "Chef";
-	Main.AstroPad.txt.botanist = "Botanista";
-	Main.AstroPad.txt.satisfaction = "saciedad";
-	Main.AstroPad.txt.thirsty = "sedienta";
-	Main.AstroPad.txt.dry = "seca";
-	Main.AstroPad.txt.diseased = "enferma";
-	Main.AstroPad.txt.cycles = "ciclos";
+	Main.AstroPad.txt = {
+		desc: "Gestor de inventario desarrollado por Sunsky. Traducción xxbrut0xx.",
+		camera: "Cámara",
+		drone: "Dron",
+		intox: "Intoxicación Alimentaria",
+		broken: "Roto",
+		frozen: "Congelado",
+		unstable: "Sospechosa",
+		hazardous: "Nociva",
+		decaying: "Toxica",
+		charges: "carga(s)",
+		effect: "Efectos",
+		effect2: "los efectos",
+		curesTip: "Cura la enfermedad",
+		curesText: "Cura",
+		causesTip: "Provoca la enfermedad",
+		causesText: "Provoca",
+		delayRegExp: /en un plazo de ([0-9]+) a ([0-9]+) ciclos/,
+		chef: "Chef",
+		botanist: "Botanista",
+		satisfaction: "saciedad",
+		thirsty: "sedienta",
+		dry: "seca",
+		diseased: "enferma",
+		cycles: "ciclos",
 
-	Main.AstroPad.txt.by = "por";
-	Main.AstroPad.txt.the = "el";
-	Main.AstroPad.txt.at = "a las";
-	Main.AstroPad.txt.empty = "Vacío";
-	Main.AstroPad.txt.inventory = "INVENTARIO";
-	Main.AstroPad.txt.submit = "Sincronizar";
-	Main.AstroPad.txt.refresh = "Actualizar";
-	Main.AstroPad.txt.list = "Formato Texto";
-	Main.AstroPad.txt.show = "Visualizar";
-	Main.AstroPad.txt.help = "Ayuda";
-	Main.AstroPad.txt.new = "Nuevo";
-	Main.AstroPad.txt.exit = "Quitar";
-	Main.AstroPad.txt.tipDesc = "Affiche l'inventaire.";
+		by: "por",
+		the: "el",
+		at: "a las",
+		empty: "Vacío",
+		inventory: "INVENTARIO",
+		submit: "Sincronizar",
+		refresh: "Actualizar",
+		list: "Formato Texto",
+		show: "Visualizar",
+		help: "Ayuda",
+		newPad: "Nuevo",
+		exit: "Quitar",
+		tipDesc: "Affiche l'inventaire.",
 
-	Main.AstroPad.txt.itemChoice = "Choix d'item :";
-	Main.AstroPad.txt.itemCatMisc = "Vrac";
-	Main.AstroPad.txt.itemCatTools = "Outils";
-	Main.AstroPad.txt.itemCatWeaponry = "Armes";
-	Main.AstroPad.txt.itemCatDocuments = "Documents";
-	Main.AstroPad.txt.itemCatFood = "Nourriture";
-	Main.AstroPad.txt.itemCatPlants = "Plantes";
-	Main.AstroPad.txt.itemCatHealth = "Santé";
-	Main.AstroPad.txt.itemCatExpedition = "Expédition";
-	Main.AstroPad.txt.itemCatAlien = "Artefacts";
-	Main.AstroPad.txt.defaultItem = "Item";
-	Main.AstroPad.txt.addItem = "Ajouter un item";
-	Main.AstroPad.txt.sendAstromod = "Envoyer";
-	Main.AstroPad.txt.cancelAstromod = "Annuler";
-	Main.AstroPad.txt.accessAstromod = "Modifier"
+		astromodTitle: "Modification de l'AstroPad",
+		itemChoice: "Choix d'item :",
+		itemCatMisc: "Vrac",
+		itemCatTools: "Outils",
+		itemCatWeaponry: "Armes",
+		itemCatDocuments: "Documents",
+		itemCatFood: "Nourriture",
+		itemCatPlants: "Plantes",
+		itemCatHealth: "Santé",
+		itemCatExpedition: "Expédition",
+		itemCatAlien: "Artefacts",
+		defaultItem: "Item",
+		addItem: "Ajouter un item",
+		sendAstromod: "Envoyer",
+		cancelAstromod: "Annuler",
+		accessAstromod: "Modifier",
 
-	Main.AstroPad.txt.changeProperties = "Modifier les attributs";
-	Main.AstroPad.txt.propertyTitle = "Attributs de l'item :";
-	Main.AstroPad.txt.foodEffects = "Effets nutritifs :";
-	Main.AstroPad.txt.addEffect = "Ajouter un effet :";
-	Main.AstroPad.txt.applyProperties = "Affecter ces attributs";
-	Main.AstroPad.txt.propertyAP = "Points d'action";
-	Main.AstroPad.txt.propertyMP = "Points de mouvement";
-	Main.AstroPad.txt.propertyHP = "Points de vie";
-	Main.AstroPad.txt.propertyMoral = "Moral";
-	Main.AstroPad.txt.propertyChances = "Probabilité :";
-	Main.AstroPad.txt.propertyDelay = "Délai :";
-	Main.AstroPad.txt.propertyTo = "a";
-	Main.AstroPad.txt.propertyPlant = "Plante :";
-	Main.AstroPad.txt.propertyFoodState = "Péremption :";
-	Main.AstroPad.txt.propertyPhysical = "Physiologique";
-	Main.AstroPad.txt.propertyPsychological = "Psychologique";
+		changeProperties: "Modifier les attributs",
+		propertyTitle: "Attributs de l'item :",
+		foodEffects: "Effets nutritifs :",
+		addEffect: "Ajouter un effet :",
+		defaultProperties: "Attributs par défaut",
+		applyProperties: "Affecter ces attributs",
+		propertyAP: "Points d'action",
+		propertyMP: "Points de mouvement",
+		propertyHP: "Points de vie",
+		propertyMoral: "Moral",
+		propertyChances: "Probabilité :",
+		propertyDelay: "Délai :",
+		propertyTo: "a",
+		propertyPlant: "Plante :",
+		propertyFoodState: "Péremption :",
+		propertyPhysical: "Physiologique",
+		propertyPsychological: "Psychologique",
+		
+		titleTxtInventory: "Salles à partager :",
+		checkAll: "Tout cocher",
+		uncheckAll: "Tout décocher",
+		generateTxtInventory: "Générer l'inventaire texte",
 
-	Main.AstroPad.txt.updateEffect = "¿Desea actualizar los efectos? \n\n (Cancelar=actualizadas pero sin los efectos)"
-	Main.AstroPad.txt.greetShareMessage = "Aqui está la prueba a ofrecer a vuestros compañeros de equipo para compartir vuestro AstroPad:"
-	Main.AstroPad.txt.defaultShareMessage = "Hi! I suggest we use the AstroPad to keep our inventory updated.\nYou may install it from this topic: %t.\nGet this game's inventory from this link: %u.\nTo see the map, follow this link: %v.\nThanks!";
-	Main.AstroPad.txt.helpTopic = "http://TODO";
-	Main.AstroPad.txt.changeShareMessage = "Modifier le message par défaut";
-	Main.AstroPad.txt.helpShareMessage = "Vous pouvez utiliser les expressions suivantes :<br /><ul><li><b>%t</b> sera remplacé par le lien vers le topic expliquant comment installer le script ;</li><li><b>%u</b> sera remplacé par le lien d'ajout de l'AstroPad ;</li><li><b>%v</b> sera remplacé par le lien vers la carte de l'AstroPad.</li></ul>";
-	Main.AstroPad.txt.saveShareMessage = "Sauvegarder";
-	Main.AstroPad.txt.link = "¿Deseas vincular el AstroPad n°%1 cuya clave es %2 a la partida?";
-	Main.AstroPad.txt.unlink = "¿Estás seguro que quieres eliminar el enlace entre el AstroPad n°%1 y la partida ?\nSi pierde la clave relativa a su partida, no será capaz de encontrarla.";
+		updateEffect: "¿Desea actualizar los efectos? \n\n (Cancelar=actualizadas pero sin los efectos)",
+		greetShareMessage: "Aqui está la prueba a ofrecer a vuestros compañeros de equipo para compartir vuestro AstroPad:",
+		defaultShareMessage: "Hi! I suggest we use the AstroPad to keep our inventory updated.\nYou may install it from this topic: %t.\nGet this game's inventory from this link: %u.\nTo see the map, follow this link: %v.\nThanks!",
+		helpTopic: "http://TODO",
+		changeShareMessage: "Modifier le message par défaut",
+		helpShareMessage: "Vous pouvez utiliser les expressions suivantes :<br /><ul><li><b>%t</b> sera remplacé par le lien vers le topic expliquant comment installer le script ;</li><li><b>%u</b> sera remplacé par le lien d'ajout de l'AstroPad ;</li><li><b>%v</b> sera remplacé par le lien vers la carte de l'AstroPad.</li></ul>",
+		saveShareMessage: "Sauvegarder",
+		link: "¿Deseas vincular el AstroPad n°%1 cuya clave es %2 a la partida?",
+		unlink: "¿Estás seguro que quieres eliminar el enlace entre el AstroPad n°%1 y la partida ?\nSi pierde la clave relativa a su partida, no será capaz de encontrarla.",
+		newShip: "It seems you are in a new game. Don't forget to create a new AstroPad!",
+		loading: "Chargement en cours…"
+	};
 }
 else {
 	Main.AstroPad.language = '';
@@ -227,87 +247,98 @@ else {
 	Main.AstroPad.physicalDiseases = ["Acouphènes Extrême", "Allergie au chat", "Allergie au mush", "Carence en vitamines", "Citrouillite", "Éruption cutanée", "Gastro Entérite", "Grippe", "Infection aïgue", "Infection fongique", "Intoxication alimentaire", "Migraine", "Morsure Noire", "Nausée légère", "Rage spatiale", "Reflux Gastriques", "Rhume", "Rubéole", "Syphilis", "Tempête sinusale", "Variole", "Verdoiement", "Vers Solitaire"];
 	Main.AstroPad.psychologicalDiseases = ["Agoraphobie", "Ailurophobie", "Coprolalie", "Crabisme", "Crise Paranoïaque", "Dépression", "Episodes Psychotiques", "Migraine chronique", "Phobie des armes", "Spleen", "Vertige", "Vertige chronique"];
 
-	Main.AstroPad.txt.desc = "Gestionnaire d'inventaire développé par Sunsky.";
-	Main.AstroPad.txt.camera = "Caméra";
-	Main.AstroPad.txt.drone = "Drone";
-	Main.AstroPad.txt.intox = "Intoxication Alimentaire";
-	Main.AstroPad.txt.broken = "Cassé(e)";
-	Main.AstroPad.txt.frozen = "Congelé";
-	Main.AstroPad.txt.unstable = "Instable";
-	Main.AstroPad.txt.hazardous = "Avariée";
-	Main.AstroPad.txt.decaying = "Décomposée";
-	Main.AstroPad.txt.charges = "charge(s)";
-	Main.AstroPad.txt.effect = "Effets";
-	Main.AstroPad.txt.effect2 = "les effets";
-	Main.AstroPad.txt.curesTip = "Guérie la maladie";
-	Main.AstroPad.txt.curesText = "Guérit";
-	Main.AstroPad.txt.causesTip = "Provoque la maladie";
-	Main.AstroPad.txt.causesText = "Provoque";
-	Main.AstroPad.txt.delayRegExp = /dans un délai de ([0-9]+) à ([0-9]+) cycle/;
-	Main.AstroPad.txt.chef = "Cuistot";
-	Main.AstroPad.txt.botanist = "Botaniste";
-	Main.AstroPad.txt.satisfaction = "satiété";
-	Main.AstroPad.txt.thirsty = "assoiffé";
-	Main.AstroPad.txt.dry = "desseché";
-	Main.AstroPad.txt.diseased = "malade";
-	Main.AstroPad.txt.cycles = "cycles";
+	Main.AstroPad.txt = {
+		desc: "Gestionnaire d'inventaire développé par Sunsky.",
+		camera: "Caméra",
+		drone: "Drone",
+		intox: "Intoxication Alimentaire",
+		broken: "Cassé(e)",
+		frozen: "Congelé",
+		unstable: "Instable",
+		hazardous: "Avariée",
+		decaying: "Décomposée",
+		charges: "charge(s)",
+		effect: "Effets",
+		effect2: "les effets",
+		curesTip: "Guérie la maladie",
+		curesText: "Guérit",
+		causesTip: "Provoque la maladie",
+		causesText: "Provoque",
+		delayRegExp: /dans un délai de ([0-9]+) à ([0-9]+) cycle/,
+		chef: "Cuistot",
+		botanist: "Botaniste",
+		satisfaction: "satiété",
+		thirsty: "assoiffé",
+		dry: "desseché",
+		diseased: "malade",
+		cycles: "cycles",
 
-	Main.AstroPad.txt.by = "par";
-	Main.AstroPad.txt.the = "le";
-	Main.AstroPad.txt.at = "à";
-	Main.AstroPad.txt.empty = "Vide";
-	Main.AstroPad.txt.inventory = "INVENTAIRE";
-	Main.AstroPad.txt.submit = "Synchroniser";
-	Main.AstroPad.txt.refresh = "Rafraîchir";
-	Main.AstroPad.txt.list = "Format texte";
-	Main.AstroPad.txt.show = "Visualiser";
-	Main.AstroPad.txt.help = "Aide";
-	Main.AstroPad.txt.new = "Nouveau";
-	Main.AstroPad.txt.exit = "Quitter";
-	Main.AstroPad.txt.tipDesc = "Affiche l'inventaire.";
+		by: "par",
+		the: "le",
+		at: "à",
+		empty: "Vide",
+		inventory: "INVENTAIRE",
+		submit: "Synchroniser",
+		refresh: "Rafraîchir",
+		list: "Format texte",
+		show: "Visualiser",
+		help: "Aide",
+		newPad: "Nouveau",
+		exit: "Quitter",
+		tipDesc: "Affiche l'inventaire.",
 
-	Main.AstroPad.txt.itemChoice = "Choix d'item :";
-	Main.AstroPad.txt.itemCatMisc = "Vrac";
-	Main.AstroPad.txt.itemCatTools = "Outils";
-	Main.AstroPad.txt.itemCatWeaponry = "Armes";
-	Main.AstroPad.txt.itemCatDocuments = "Documents";
-	Main.AstroPad.txt.itemCatFood = "Nourriture";
-	Main.AstroPad.txt.itemCatPlants = "Plantes";
-	Main.AstroPad.txt.itemCatHealth = "Santé";
-	Main.AstroPad.txt.itemCatExpedition = "Expédition";
-	Main.AstroPad.txt.itemCatAlien = "Artefacts";
-	Main.AstroPad.txt.defaultItem = "Item";
-	Main.AstroPad.txt.addItem = "Ajouter un item";
-	Main.AstroPad.txt.sendAstromod = "Partager";
-	Main.AstroPad.txt.cancelAstromod = "Annuler";
-	Main.AstroPad.txt.accessAstromod = "Modifier"
+		astromodTitle: "Modification de l'AstroPad",
+		itemChoice: "Choix d'item :",
+		itemCatMisc: "Vrac",
+		itemCatTools: "Outils",
+		itemCatWeaponry: "Armes",
+		itemCatDocuments: "Documents",
+		itemCatFood: "Nourriture",
+		itemCatPlants: "Plantes",
+		itemCatHealth: "Santé",
+		itemCatExpedition: "Expédition",
+		itemCatAlien: "Artefacts",
+		defaultItem: "Item",
+		addItem: "Ajouter un item",
+		sendAstromod: "Partager",
+		cancelAstromod: "Annuler",
+		accessAstromod: "Modifier",
 
-	Main.AstroPad.txt.changeProperties = "Modifier les attributs";
-	Main.AstroPad.txt.propertyTitle = "Attributs de l'item :";
-	Main.AstroPad.txt.foodEffects = "Effets nutritifs :";
-	Main.AstroPad.txt.addEffect = "Ajouter un effet :";
-	Main.AstroPad.txt.applyProperties = "Affecter ces attributs";
-	Main.AstroPad.txt.propertyAP = "Points d'action";
-	Main.AstroPad.txt.propertyMP = "Points de mouvement";
-	Main.AstroPad.txt.propertyHP = "Points de vie";
-	Main.AstroPad.txt.propertyMoral = "Moral";
-	Main.AstroPad.txt.propertyChances = "Probabilité :";
-	Main.AstroPad.txt.propertyDelay = "Délai :";
-	Main.AstroPad.txt.propertyTo = "à";
-	Main.AstroPad.txt.propertyPlant = "Plante :";
-	Main.AstroPad.txt.propertyFoodState = "Péremption :";
-	Main.AstroPad.txt.propertyPhysical = "Physiologique";
-	Main.AstroPad.txt.propertyPsychological = "Psychologique";
+		changeProperties: "Modifier les attributs",
+		propertyTitle: "Attributs de l'item :",
+		foodEffects: "Effets nutritifs :",
+		addEffect: "Ajouter un effet :",
+		defaultProperties: "Attributs par défaut",
+		applyProperties: "Affecter ces attributs",
+		propertyAP: "Points d'action",
+		propertyMP: "Points de mouvement",
+		propertyHP: "Points de vie",
+		propertyMoral: "Moral",
+		propertyChances: "Probabilité :",
+		propertyDelay: "Délai :",
+		propertyTo: "à",
+		propertyPlant: "Plante :",
+		propertyFoodState: "Péremption :",
+		propertyPhysical: "Physiologique",
+		propertyPsychological: "Psychologique",
+	
+		titleTxtInventory: "Salles à partager :",
+		checkAll: "Tout cocher",
+		uncheckAll: "Tout décocher",
+		generateTxtInventory: "Générer l'inventaire texte",
 
-	Main.AstroPad.txt.updateEffect = "Voulez-vous mettre à jour les effets ?\n\n(Annuler = mise à jour quand même mais sans les effets)";
-	Main.AstroPad.txt.greetShareMessage = "Voici le texte à fournir à vos coéquipiers pour partager votre AstroPad :";
-	Main.AstroPad.txt.defaultShareMessage = "Bonjour ! Je vous propose d'utiliser l'AstroPad pour l'inventaire.\nPour l'installer, lisez ce topic : %t.\nCliquez ici pour avoir l'inventaire de cette partie : %u.\nPour voir la carte, suivez ce lien : %v.\nMerci !";
-	Main.AstroPad.txt.helpTopic = "http://TODO";
-	Main.AstroPad.txt.changeShareMessage = "Modifier le message par défaut";
-	Main.AstroPad.txt.helpShareMessage = "Vous pouvez utiliser les expressions suivantes :<br /><ul><li><b>%t</b> sera remplacé par le lien vers le topic expliquant comment installer le script ;</li><li><b>%u</b> sera remplacé par le lien d'ajout de l'AstroPad ;</li><li><b>%v</b> sera remplacé par le lien vers la carte de l'AstroPad.</li></ul>";
-	Main.AstroPad.txt.saveShareMessage = "Sauvegarder";
-	Main.AstroPad.txt.link = "Voulez-vous lier l'AstroPad n°%1 dont la clé est %2 à cette partie ?";
-	Main.AstroPad.txt.unlink = "Voulez-vous vraiment supprimer le lien entre l'AstroPad n°%1 et cette partie ?\nSi vous perdez la clé relative à votre partie, vous ne serez plus en mesure de la retrouver.";
+		updateEffect: "Voulez-vous mettre à jour les effets ?\n\n(Annuler = mise à jour quand même mais sans les effets)",
+		greetShareMessage: "Voici le texte à fournir à vos coéquipiers pour partager votre AstroPad :",
+		defaultShareMessage: "Bonjour ! Je vous propose d'utiliser l'AstroPad pour l'inventaire.\nPour l'installer, lisez ce topic : %t.\nCliquez ici pour avoir l'inventaire de cette partie : %u.\nPour voir la carte, suivez ce lien : %v.\nMerci !",
+		helpTopic: "http://TODO",
+		changeShareMessage: "Modifier le message par défaut",
+		helpShareMessage: "Vous pouvez utiliser les expressions suivantes :<br /><ul><li><b>%t</b> sera remplacé par le lien vers le topic expliquant comment installer le script ;</li><li><b>%u</b> sera remplacé par le lien d'ajout de l'AstroPad ;</li><li><b>%v</b> sera remplacé par le lien vers la carte de l'AstroPad.</li></ul>",
+		saveShareMessage: "Sauvegarder",
+		link: "Voulez-vous lier l'AstroPad n°%1 dont la clé est %2 à cette partie ?",
+		unlink: "Voulez-vous vraiment supprimer le lien entre l'AstroPad n°%1 et cette partie ?\nSi vous perdez la clé relative à votre partie, vous ne serez plus en mesure de la retrouver.",
+		newShip: "Il semblerait que vous ayiez commencé une nouvelle partie. Pensez à recréer un AstroPad !",
+		loading: "Chargement en cours…"
+	};
 }
 
 Main.AstroPad.allItems = {
@@ -491,6 +522,10 @@ Main.AstroPad.buildAstrotab = function() {
 	$("#cdTabsChat li").on("click", function() { Main.AstroPad.selectTab(this); });
 };
 
+Main.AstroPad.createButton = function(text) {
+	return $('<div>').addClass('but').html("<div class='butright'><div class='butbg'>" + text + "</div></div>");
+}
+
 Main.AstroPad.propertiesToText = function(idetail) {
 	var attrs = '';
 	var iname = '';
@@ -587,15 +622,10 @@ Main.AstroPad.propertiesToText = function(idetail) {
 		}
 	}
 
-	return [iname, attrs, isConso];
+	return [iname, attrs.trim(), isConso];
 };
 
 Main.AstroPad.sendData = function() {
-	var astromod = $('#astromod-popup');
-	if (astromod.length) {
-		astromod.css('display', 'none');
-	}
-
 	var data = Main.AstroPad.getData() + '&data=';
 	var url = Main.AstroPad.urlAstro + "/addItems";
 	var conso = '';
@@ -620,7 +650,7 @@ Main.AstroPad.sendData = function() {
 		data += Main.AstroPad.getRoomId() + "||empty|0||";
 	}
 
-	data += "&conso=" + conso;
+	data += "&conso=" + encodeURIComponent(conso);
 	console.log(url + '?' + data);
 
 	GM_xmlhttpRequest({
@@ -632,25 +662,11 @@ Main.AstroPad.sendData = function() {
 	});
 };
 
-Main.AstroPad.buildPopup = function() {
-	var popup = $('#astromod-popup');
-	if (!popup.length) {
-		popup = $('<div>').attr('id', 'astromod-popup').css({
-			maxHeight: '400px', zIndex: '500', overflow: 'auto', padding: '10px',
-			position: 'fixed', top: '50px',
-			backgroundColor: 'navy', border: '2px solid black'
-		}).appendTo(document.body);
-	}
-	popup.css('display', 'block');
-	popup.html('');
-	return popup;
-};
-
 Main.AstroPad.addItem = function() {
-	var popup = Main.AstroPad.buildPopup();
-	$('<h3>').css('text-align', 'center').text(Main.AstroPad.txt.itemChoice).appendTo(popup);
+	var elements = [];
+	elements.push($('<h3>').css('text-align', 'center').text(Main.AstroPad.txt.itemChoice));
 
-	var list = $('<div>').css({ width: '100%' }).appendTo(popup);
+	var list = $('<div>').css({ width: '100%', backgroundColor: '#3D5F8D', color: 'white', borderTop: '2px solid navy', borderBottom: '2px solid navy' });
 	var cats = {
 		misc: ['talkie', Main.AstroPad.txt.itemCatMisc],
 		tools: ['pa_eng', Main.AstroPad.txt.itemCatTools],
@@ -662,20 +678,33 @@ Main.AstroPad.addItem = function() {
 		expedition: ['planet', Main.AstroPad.txt.itemCatExpedition],
 		alien: ['artefact', Main.AstroPad.txt.itemCatAlien]
 	};
+
+	var div = $('<div>').addClass('what_happened').attr('id', 'astromod-add-item');
 	for (cat in cats) {
 		//Icon
 		var img = cats[cat][0];
 		$('<div>').attr('data-astromod-cat', cat).css({
-			display: 'inline-block', borderRight: '2px solid navy'
+			display: 'inline-block', borderRight: '2px solid navy', padding: '5px', cursor: 'pointer', backgroundColor: (cat == 'misc' ? '#7D7FAD' : 'transparent') //Misc selected by default
+		}).hover(function() { //In
+			$(this).css('background-color', '#7D7FAD');
+		}, function() { //Out
+			if (!$this.hasClass('astromod-cat-selected')) {
+				$(this).css('background-color', 'transparent');
+			}
 		}).html("<img src='http://" + Main.AstroPad.urlMush + "/img/icons/ui/" + img + ".png' />").appendTo(list).bind('click', function() {
 			var c = $(this).attr('data-astromod-cat');
 			$('#astromod-cat-name').text(cats[c][1]);
-			$("#astromod-popup table").css('display', 'none');
-			$('#astromod-table-' + c).css('display', 'table');
+			$("#astromod-add-item table").hide();
+			$('#astromod-table-' + c).show();
+			$('[data-astromod-cat]').css('background-color', 'transparent').removeClass('astromod-cat-selected');
+			$(this).css('background-color', '#7D7FAD').addClass('astromod-cat-selected');
 		});
 
 		//Items
-		var table = $('<table>').attr('id', 'astromod-table-' + cat).appendTo(popup);
+		var table = $('<table>').addClass('table').attr('id', 'astromod-table-' + cat).appendTo(div);
+		if (cat != 'misc') {
+			table.hide();
+		}
 		var tr = $('<tr>').appendTo(table);
 		var p = 0;
 		for (item in Main.AstroPad.allItems) {
@@ -686,8 +715,15 @@ Main.AstroPad.addItem = function() {
 			var code = item.replace('young_fruit_tree', 'fruit_tree');
 			if (/blueprint/.test(code)) { code = 'blueprint'; }
 			if (/book/.test(code)) { code = 'book'; }
-			var td = $('<td>').css({ height: '50px', padding: '0', borderSpacing: '0' }).appendTo(tr);
-			$('<img>').attr({
+			//Image
+			var td = $('<td>').css({ height: '35px', width: '35px', padding: '0', borderSpacing: '0', border: '2px solid #1D3F6D' }).hover(function() { //In
+				$(this).css('border', '2px solid #4D3F6D');
+				$(this).next().css('background-color', '#4D3F6D');
+			}, function() { //Out
+				$(this).css('border', '2px solid #1D3F6D');
+				$(this).next().css('background-color', 'transparent');
+			}).appendTo(tr);
+			$('<img>').css({ height: '35px', width: '35px', cursor: 'pointer' }).attr({
 				src: "http://" + Main.AstroPad.urlMush + "/img/icons/items/" + code + ".jpg",
 				'data-astromod-itemcode': item
 			}).bind('click', function() {
@@ -705,28 +741,30 @@ Main.AstroPad.addItem = function() {
 					properties: { charges: null, broken: false, foodState: null, frozen: false, plantThirst: null, plantIll: false, foodProperties: [] },
 					day: 0
 				});
-				$('#astromod-popup').remove();
 				Main.AstroPad.buildAstromod();
 			}).appendTo(td);
+			//Name
 			$('<td>').css({ borderSpacing: '0', padding: '0' }).text(Main.AstroPad.allItems[item][Main.AstroPad.lang]).appendTo(tr);
 			p += 1;
 		}
 	}
 	$('<span>').attr('id', 'astromod-cat-name').css('margin-left', '20px').text(Main.AstroPad.txt.itemCatMisc).appendTo(list);
+	elements.push(list, div);
 
-	$('<div>').addClass('but').html("<div class='butright'><div class='butbg'>" + Main.AstroPad.txt.cancelAstromod + "</div></div>").appendTo(popup).bind('click', function() {
+	elements.push(Main.AstroPad.createButton(Main.AstroPad.txt.cancelAstromod).bind('click', function() {
 		Main.AstroPad.buildAstromod();
-	});
+	}));
 
-	$("#astromod-popup table").css('display', 'none');
-	$('#astromod-table-misc').css('display', 'table');
+	Main.AstroPad.fill(elements);
 };
 
 Main.AstroPad.changeItemProperties = function(id) {
-	var attrs = Main.AstroPad.items[id].properties;
-	var popup = Main.AstroPad.buildPopup();
-	var form = $('<form>').css('color', 'black !important').attr('data-astromod-item', id).appendTo(popup);
-	$('<h3>').text(Main.AstroPad.txt.propertyTitle).appendTo(form);
+	var item = Main.AstroPad.items[id];
+	var attrs = item.properties;
+	var form = $('<form>').css('color', 'black !important').attr('data-astromod-item', id);
+	$('<img>').css({ width: '20px', height: '20px', marginLeft: '5px' }).attr('src', '/img/icons/items/' + item.id + '.jpg').appendTo(
+		$('<h3>').text(Main.AstroPad.txt.propertyTitle + "  " + item.name).css({ textAlign: 'center', margin: '10px 0' }).appendTo(form)
+	);
 
 	//Plant properties
 	var plantField = $('<fieldset>').appendTo(form);
@@ -741,20 +779,20 @@ Main.AstroPad.changeItemProperties = function(id) {
 			var defaultThirst = ['selected', false, false];
 			break;
 	}
-	$('<label>').text(Main.AstroPad.txt.propertyPlant).attr('for', 'astromod-plant-thirst').appendTo(plantField);
+	$('<label>').text(Main.AstroPad.txt.propertyPlant + " ").attr('for', 'astromod-plant-thirst').appendTo(plantField);
 	var plantSelect = $('<select>').attr('name', 'astromod-plant-thirst').css('color', 'black').appendTo(plantField);
 	$('<option>').text("—").attr({ selected: defaultThirst[0], value: null }).appendTo(plantSelect);
 	$('<option>').text(Main.AstroPad.txt.thirsty).attr({ selected: defaultThirst[1], value: 'thirsty' }).appendTo(plantSelect);
 	$('<option>').text(Main.AstroPad.txt.dry).attr({ selected: defaultThirst[2], value: 'dry' }).appendTo(plantSelect);
-	$('<input>').attr({ type: 'checkbox', checked: attrs.plantIll, name: 'astromod-plant-ill' }).css('color', 'black').appendTo(plantField);
+	$('<input>').attr({ type: 'checkbox', checked: attrs.plantIll, name: 'astromod-plant-ill' }).css('margin-left', '20px').appendTo(plantField);
 	$('<label>').text(Main.AstroPad.txt.diseased).attr('for', 'astromod-plant-ill').appendTo(plantField);
 
 	//Charges and broken
 	var machineField = $('<fieldset>').appendTo(form);
 	$('<input>').attr({ type: 'checkbox', checked: (attrs.charges != null), name: 'astromod-hascharges' }).css('color', 'black').appendTo(machineField);
-	$('<label>').text(Main.AstroPad.capitalize(Main.AstroPad.txt.charges)).attr('for', 'astromod-charges').appendTo(machineField);
-	$('<input>').attr({ type: 'number', min: 0, max: 20, value: attrs.charges, name: 'astromod-charges' }).css('color', 'black').appendTo(machineField);
-	$('<input>').attr({ type: 'checkbox', checked: attrs.broken, name: 'astromod-broken' }).css('color', 'black').appendTo(machineField);
+	$('<label>').text(Main.AstroPad.capitalize(Main.AstroPad.txt.charges) + " : ").attr('for', 'astromod-charges').appendTo(machineField);
+	$('<input>').attr({ type: 'number', min: 0, max: 20, value: attrs.charges, name: 'astromod-charges' }).css({ color: 'black', width: '4em' }).appendTo(machineField);
+	$('<input>').attr({ type: 'checkbox', checked: attrs.broken, name: 'astromod-broken' }).css('margin-left', '20px').appendTo(machineField);
 	$('<label>').text(Main.AstroPad.txt.broken).attr('for', 'astromod-broken').appendTo(machineField);
 
 	//Food properties
@@ -773,22 +811,22 @@ Main.AstroPad.changeItemProperties = function(id) {
 			var rottenState = ['selected', false, false, false];
 			break;
 	}
-	$('<label>').text(Main.AstroPad.txt.propertyFoodState).attr('for', 'astromod-food-state').appendTo(foodField);
+	$('<label>').text(Main.AstroPad.txt.propertyFoodState + " ").attr('for', 'astromod-food-state').appendTo(foodField);
 	var foodSelect = $('<select>').attr('name', 'astromod-food-state').css('color', 'black').appendTo(foodField);
 	$('<option>').text("—").attr({ selected: rottenState[0], value: null }).appendTo(foodSelect);
 	$('<option>').text(Main.AstroPad.txt.unstable).attr({ selected: rottenState[1], value: 'unstable' }).appendTo(foodSelect);
 	$('<option>').text(Main.AstroPad.txt.hazardous).attr({ selected: rottenState[2], value: 'hazardous' }).appendTo(foodSelect);
 	$('<option>').text(Main.AstroPad.txt.decaying).attr({ selected: rottenState[3], value: 'decaying' }).appendTo(foodSelect);
-	$('<input>').attr({ type: 'checkbox', checked: attrs.frozen, name: 'astromod-food-frozen' }).css('color', 'black').appendTo(foodField);
+	$('<input>').attr({ type: 'checkbox', checked: attrs.frozen, name: 'astromod-food-frozen' }).css('margin-left', '20px').appendTo(foodField);
 	$('<label>').text(Main.AstroPad.txt.frozen).attr('for', 'astromod-food-frozen').appendTo(foodField);
 
 	//Food effects
 	var effectsField = $('<fieldset>').attr('id', 'astromod-effects').appendTo(form);
 	$('<h3>').text(Main.AstroPad.txt.foodEffects).appendTo(effectsField);
-	var effectsTable = $('<table>').appendTo(effectsField);
+	var effectsTable = $('<table>').addClass('table').appendTo($('<div>').addClass('what_happened').appendTo(effectsField));
 
-	function generateDiseasesSelect(parent, currentDisease) {
-		var select = $('<select>').attr('name', 'astromod-effect-value-' + i).css('color', 'black').appendTo(parent);
+	function generateDiseasesSelect(currentDisease) {
+		var select = $('<select>').attr('name', 'astromod-effect-value-' + i).css('color', 'black');
 		var phyGroup = $('<optgroup>').attr('label', Main.AstroPad.txt.propertyPhysical).appendTo(select);
 		for (var j = 0; j < Main.AstroPad.physicalDiseases.length; j++) {
 			var disease = Main.AstroPad.physicalDiseases[j];
@@ -809,6 +847,7 @@ Main.AstroPad.changeItemProperties = function(id) {
 				$('<option>').text(disease).attr({ value: disease }).appendTo(psyGroup);
 			}
 		}
+		return select;
 	}
 
 	function generateEffectLine(effect) {
@@ -816,32 +855,44 @@ Main.AstroPad.changeItemProperties = function(id) {
 
 		switch (effect.type) {
 			case 'pa':
-				$('<td>').text(Main.AstroPad.txt.propertyAP).appendTo(tr);
-				$('<input>').attr({ type: 'number', min: -20, max: 20, value: effect.value, name: 'astromod-effect-value-' + i }).css('color', 'black').appendTo($('<td>').appendTo(tr));
+				var td = $('<td>');
+				$('<input>').attr({ type: 'number', min: -20, max: 20, value: effect.value, name: 'astromod-effect-value-' + i }).css({ color: 'black', width: '4em' }).appendTo(td);
+				$('<img>').attr('src', '/img/icons/ui/pa_slot1.png').appendTo(td);
+				td.appendTo(tr);
 				break;
 			case 'pm':
-				$('<td>').text(Main.AstroPad.txt.propertyMP).appendTo(tr);
-				$('<input>').attr({ type: 'number', min: -20, max: 20, value: effect.value, name: 'astromod-effect-value-' + i }).css('color', 'black').appendTo($('<td>').appendTo(tr));
+				var td = $('<td>');
+				$('<input>').attr({ type: 'number', min: -20, max: 20, value: effect.value, name: 'astromod-effect-value-' + i }).css({ color: 'black', width: '4em' }).appendTo(td);
+				$('<img>').attr('src', '/img/icons/ui/pa_slot2.png').appendTo(td);
+				td.appendTo(tr);
 				break;
 			case 'hp':
-				$('<td>').text(Main.AstroPad.txt.propertyHP).appendTo(tr);
-				$('<input>').attr({ type: 'number', min: -20, max: 20, value: effect.value, name: 'astromod-effect-value-' + i }).css('color', 'black').appendTo($('<td>').appendTo(tr));
+				var td = $('<td>');
+				$('<input>').attr({ type: 'number', min: -20, max: 20, value: effect.value, name: 'astromod-effect-value-' + i }).css({ color: 'black', width: '4em' }).appendTo(td);
+				$('<img>').attr('src', '/img/icons/ui/lp.png').appendTo(td);
+				td.appendTo(tr);
 				break;
 			case 'moral':
-				$('<td>').text(Main.AstroPad.txt.propertyMoral).appendTo(tr);
-				$('<input>').attr({ type: 'number', min: -20, max: 20, value: effect.value, name: 'astromod-effect-value-' + i }).css('color', 'black').appendTo($('<td>').appendTo(tr));
+				var td = $('<td>');
+				$('<input>').attr({ type: 'number', min: -20, max: 20, value: effect.value, name: 'astromod-effect-value-' + i }).css({ color: 'black', width: '4em' }).appendTo(td);
+				$('<img>').attr('src', '/img/icons/ui/moral.png').appendTo(td);
+				td.appendTo(tr);
 				break;
 			case 'satisfaction':
-				$('<td>').text(Main.AstroPad.capitalize(Main.AstroPad.txt.satisfaction)).appendTo(tr);
-				$('<input>').attr({ type: 'number', min: -20, max: 20, value: effect.value, name: 'astromod-effect-value-' + i }).css('color', 'black').appendTo($('<td>').appendTo(tr));
+				var td = $('<td>');
+				$('<input>').attr({ type: 'number', min: -20, max: 20, value: effect.value, name: 'astromod-effect-value-' + i }).css({ color: 'black', width: '4em' }).appendTo(td);
+				$('<img>').attr('src', '/img/icons/ui/pa_cook.png').appendTo(td);
+				td.appendTo(tr);
 				break;
 			case 'cures':
-				$('<td>').text(Main.AstroPad.txt.curesText).appendTo(tr);
-				generateDiseasesSelect($('<td>').appendTo(tr), effect.value);
+				$('<td>').text(Main.AstroPad.txt.curesText).append(" :<br><br>",
+					generateDiseasesSelect(effect.value)
+				).appendTo(tr);
 				break;
 			case 'causes':
-				$('<td>').text(Main.AstroPad.txt.causesText).appendTo(tr);
-				generateDiseasesSelect($('<td>').appendTo(tr), effect.value);
+				$('<td>').text(Main.AstroPad.txt.causesText).append(" :<br><br>",
+					generateDiseasesSelect(effect.value)
+				).appendTo(tr);
 				break;
 		}
 
@@ -854,8 +905,9 @@ Main.AstroPad.changeItemProperties = function(id) {
 		}
 		var tdChances = $('<td>').appendTo(tr);
 		$('<label>').text(Main.AstroPad.txt.propertyChances).attr('for', 'astromod-effect-chances-' + i).appendTo(tdChances);
-		$('<input>').attr({ type: 'number', min: 0, max: 100, value: chances, name: 'astromod-effect-chances-' + i }).css('color', 'black').appendTo(tdChances);
-		$('<span>').text('%').appendTo(tdChances);
+		tdChances.append('<br><br>');
+		$('<input>').attr({ type: 'number', min: 0, max: 100, value: chances, name: 'astromod-effect-chances-' + i }).css({ color: 'black', width: '4em' }).appendTo(tdChances);
+		$('<span>').text(' %').appendTo(tdChances);
 
 		//Delay
 		if (effect.delay) {
@@ -866,18 +918,20 @@ Main.AstroPad.changeItemProperties = function(id) {
 		}
 		var tdDelay = $('<td>').appendTo(tr);
 		$('<label>').text(Main.AstroPad.txt.propertyDelay).attr('for', 'astromod-effect-delayBegin-' + i).appendTo(tdDelay);
-		$('<input>').attr({ type: 'number', min: 0, max: 20, value: parseInt(delay[0]), name: 'astromod-effect-delayBegin-' + i }).css('color', 'black').appendTo(tdDelay);
-		$('<label>').text(Main.AstroPad.txt.propertyTo).attr('for', 'astromod-effect-delayEnd-' + i).appendTo(tdDelay);
-		$('<input>').attr({ type: 'number', min: 0, max: 20, value: parseInt(delay[1]), name: 'astromod-effect-delayEnd-' + i }).css('color', 'black').appendTo(tdDelay);
+		tdDelay.append('<br><br>');
+		$('<input>').attr({ type: 'number', min: 0, max: 20, value: parseInt(delay[0]), name: 'astromod-effect-delayBegin-' + i }).css({ color: 'black', width: '4em' }).appendTo(tdDelay);
+		$('<label>').text(" " + Main.AstroPad.txt.propertyTo + " ").attr('for', 'astromod-effect-delayEnd-' + i).appendTo(tdDelay);
+		$('<input>').attr({ type: 'number', min: 0, max: 20, value: parseInt(delay[1]), name: 'astromod-effect-delayEnd-' + i }).css({ color: 'black', width: '4em' }).appendTo(tdDelay);
+		tdDelay.append(" " + Main.AstroPad.txt.cycles);
 
 		//Remove
-		$('<span>').text("X").css({ fontSize: '20px', backgroundColor: 'red' }).bind('click', function() { $(this).closest('div').remove(); }).appendTo($('<td>').appendTo(tr));
+		$('<img>').attr('src', '/img/icons/ui/close.png').css('cursor', 'pointer').bind('click', function() { $(this).closest('tr').remove(); }).appendTo($('<td>').appendTo(tr));
 	}
 	
-	$('<div>').addClass('but').html("<div class='butright'><div class='butbg'>" + Main.AstroPad.txt.addEffect + "</div></div>").appendTo(effectsField).bind('click', function() {
+	Main.AstroPad.createButton(Main.AstroPad.txt.addEffect).css({ display: 'inline-block', verticalAlign: 'middle', margin: '0' }).appendTo(effectsField).bind('click', function() {
 		generateEffectLine({ type: $('[name="astromod-add-effect"]').val(), value: 0, chances: null, delay: null });
 	});
-	var addEffect = $('<select>').attr('name', 'astromod-add-effect').css('color', 'black').appendTo(effectsField);
+	var addEffect = $('<select>').attr('name', 'astromod-add-effect').css({ color: 'black', verticalAlign: 'middle', marginLeft: '5px' }).appendTo(effectsField);
 	$('<option>').text(Main.AstroPad.txt.propertyAP).attr({ value: 'pa' }).appendTo(addEffect);
 	$('<option>').text(Main.AstroPad.txt.propertyMP).attr({ value: 'pm' }).appendTo(addEffect);
 	$('<option>').text(Main.AstroPad.txt.propertyHP).attr({ value: 'hp' }).appendTo(addEffect);
@@ -891,7 +945,7 @@ Main.AstroPad.changeItemProperties = function(id) {
 	}
 
 	//Retrieve properties
-	$('<div>').addClass('but').html("<div class='butright'><div class='butbg'>" + Main.AstroPad.txt.applyProperties + "</div></div>").appendTo(form).bind('click', function() {
+	Main.AstroPad.createButton(Main.AstroPad.txt.applyProperties).appendTo(form).bind('click', function() {
 		var index = parseInt($(this).closest('form').attr('data-astromod-item'));
 		if ($('[name="astromod-hascharges"]').is(':checked')) {
 			Main.AstroPad.items[index].properties.charges = $('[name="astromod-charges"]').val();
@@ -937,15 +991,37 @@ Main.AstroPad.changeItemProperties = function(id) {
 		$('[data-astromod-effect="causes"]').each(function() { pushProperty($(this), 'causes', false); });
 		Main.AstroPad.buildAstromod();
 	});
-	$('<div>').addClass('but').html("<div class='butright'><div class='butbg'>" + Main.AstroPad.txt.cancelAstromod + "</div></div>").appendTo(form).bind('click', function() {
+
+	//Set default properties
+	Main.AstroPad.createButton(Main.AstroPad.txt.defaultProperties).appendTo(form).bind('click', function() {
+		var index = parseInt($(this).closest('form').attr('data-astromod-item'));
+		Main.AstroPad.items[index].properties.charges = null;
+		Main.AstroPad.items[index].properties.broken = false;
+		Main.AstroPad.items[index].properties.frozen = false;
+		Main.AstroPad.items[index].properties.plantIll = false;
+		Main.AstroPad.items[index].properties.plantThirst = null;
+		Main.AstroPad.items[index].properties.foodState = null;
+		Main.AstroPad.items[index].properties.foodProperties = [];
+		var defaultAttrs = Main.AstroPad.allItems[Main.AstroPad.items[index].id][4];
+		for (key in defaultAttrs) {
+			Main.AstroPad.items[index].properties[key] = defaultAttrs[key];
+		}
+		Main.AstroPad.changeItemProperties(index);
+	});
+
+	//Cancel
+	Main.AstroPad.createButton(Main.AstroPad.txt.cancelAstromod).appendTo(form).bind('click', function() {
 		Main.AstroPad.buildAstromod();
 	});
+
+	Main.AstroPad.fill(form);
 };
 
 Main.AstroPad.buildAstromod = function() {
-	var popup = Main.AstroPad.buildPopup();
-
-	var table = $('<table>').attr('id', 'astromod-table').appendTo(popup);
+	var elements = [];
+	elements.push($('<h3>').text(Main.AstroPad.txt.astromodTitle).css('text-align', 'center'));
+	var div = $('<div>').addClass('what_happened');
+	var table = $('<table>').addClass('table').attr('id', 'astromod-table').appendTo(div);
 	if (Main.AstroPad.items.length) {
 		//All items in Main.AstroPad.items
 		for (var i = 0; i < Main.AstroPad.items.length; i++) {
@@ -979,7 +1055,7 @@ Main.AstroPad.buildAstromod = function() {
 			}
 			var tr = $('<tr>').attr('data-astromod-id', i).appendTo(table);
 			//Image
-			$('<img>').attr({
+			$('<img>').css({ width: '35px', height: '35px' }).attr({
 				src: "http://" + Main.AstroPad.urlMush + "/img/icons/items/" + item.id + ".jpg"
 			}).appendTo(
 				$('<td>').css({
@@ -987,7 +1063,7 @@ Main.AstroPad.buildAstromod = function() {
 				}).appendTo(tr)
 			);
 			//Name
-			$('<b>').html(name).appendTo($('<td>').css({ textAlign: 'left', borderSpacing: '0', padding: '0' }).appendTo(tr));
+			$('<b>').html(name).appendTo($('<td>').css({ textAlign: 'left', borderSpacing: '0', padding: '0 2px' }).appendTo(tr));
 			//Properties
 			$('<a>').text(Main.AstroPad.txt.changeProperties).css({
 				display: 'block', cursor: 'pointer', textDecoration: 'underline'
@@ -995,17 +1071,17 @@ Main.AstroPad.buildAstromod = function() {
 				Main.AstroPad.changeItemProperties(parseInt($(this).closest('tr').attr('data-astromod-id')));
 			}).appendTo(
 				$('<span>').html(attrs).appendTo(
-					$('<td>').css({ textAlign: 'left', borderSpacing: '0', padding: '0' }).appendTo(tr)
+					$('<td>').css({ textAlign: 'center', borderSpacing: '0', padding: '2px' }).appendTo(tr)
 				)
 			);
 			//Amount
-			$('<input>').attr({ type: 'number', value: item.amount, min: '1' }).css('color', 'black').bind('change', function() {
+			$('<input>').attr({ type: 'number', value: item.amount, min: '1' }).css({ color: 'black', width: '3em' }).bind('change', function() {
 				Main.AstroPad.items[parseInt($(this).closest('tr').attr('data-astromod-id'))].amount = $(this).val();
 			}).appendTo(
 				$('<td>').appendTo(tr)
 			);
 			//Delete
-			$('<div>').text("X").css({ fontSize: '20px', backgroundColor: 'red' }).bind('click', function() {
+			$('<img>').attr('src', '/img/icons/ui/close.png').css('cursor', 'pointer').bind('click', function() {
 				Main.AstroPad.items.splice(parseInt($(this).closest('tr').attr('data-astromod-id')), 1);
 				Main.AstroPad.buildAstromod();
 			}).appendTo(
@@ -1014,20 +1090,21 @@ Main.AstroPad.buildAstromod = function() {
 		}
 	}
 	
-	var but1 = "<div class='butright'><div class='butbg'>";
-	var but2 = "</div></div>";
+	elements.push(div);
 
-	$('<div>').addClass('but').html(but1 + Main.AstroPad.txt.addItem + but2).css('margin-bottom', '10px').appendTo(popup).bind('click', function() {
+	elements.push(Main.AstroPad.createButton(Main.AstroPad.txt.addItem).css('margin-bottom', '10px').bind('click', function() {
 		Main.AstroPad.addItem();
-	});
+	}));
 
-	$('<div>').addClass('but').html(but1 + Main.AstroPad.txt.sendAstromod + but2).css('margin-bottom', '10px').appendTo(popup).bind('click', function() {
+	elements.push(Main.AstroPad.createButton(Main.AstroPad.txt.sendAstromod).css('margin-bottom', '10px').bind('click', function() {
 		Main.AstroPad.sendData();
-	});
+	}));
 
-	$('<div>').addClass('but').html(but1 + Main.AstroPad.txt.cancelAstromod + but2).appendTo(popup).bind('click', function() {
-		$('#astromod-popup').css('display', 'none');
-	});
+	elements.push(Main.AstroPad.createButton(Main.AstroPad.txt.cancelAstromod).bind('click', function() {
+		Main.AstroPad.getInventory();
+	}));
+	
+	Main.AstroPad.fill(elements);
 };
 
 Main.AstroPad.updateInventory = function(tamper) {
@@ -1266,28 +1343,28 @@ Main.AstroPad.configuration = function() {
 	var urlPad = "http://" + Main.AstroPad.urlMush + "/?astroId=" + gid + "&astroKey=" + gkey;
 	var urlMap = "http://astropad.sunsky.fr/?gid=" + gid + "&rkey=" + rkey + "&language=" + Main.AstroPad.language;
 	var bubble = $('<div>').addClass('cdMushLog cdChatLine').html(
-	"    <div class='bubble bubble2 tid_editorContent tid_parsed'>"
-	+ "        <img src='/img/design/pixel.gif' class='char' style='background: url(http://imgup.motion-twin.com/twinoid/0/1/d9869944_14716.jpg) !important; height: 42px;'>"
-	+ "        <div class='talks'>"
-	+ "            <div class='triangleright'></div>"
-	+ "            <span class='buddy'> Sunsky :</span>"
-	+ "            <p>" + Main.AstroPad.txt.greetShareMessage + "</p>"
-	+ "            <div class='clear'></div>"
-	+ "        </div>"
-	+ "    </div>");
+	  "<div class='bubble bubble2 tid_editorContent tid_parsed'>"
+	+ "    <img src='/img/design/pixel.gif' class='char' style='background: url(http://imgup.motion-twin.com/twinoid/0/1/d9869944_14716.jpg) !important; height: 42px;'>"
+	+ "    <div class='talks'>"
+	+ "        <div class='triangleright'></div>"
+	+ "        <span class='buddy'>Sunsky :</span>"
+	+ "        <p>" + Main.AstroPad.txt.greetShareMessage + "</p>"
+	+ "        <div class='clear'></div>"
+	+ "    </div>"
+	+ "</div>");
 
 	var textarea = $('<textarea>').css({ color: 'black', width: '100%', height: '250px' }).val(message.replace('%t', Main.AstroPad.txt.helpTopic).replace('%u', urlPad).replace('%v', urlMap));
 
-	var button = $('<div>').addClass('but').html("<div class='butright'><div class='butbg'>" + Main.AstroPad.txt.changeShareMessage + "</div></div>").css('margin-top', '20px').bind('click', function() {
+	var button = Main.AstroPad.createButton(Main.AstroPad.txt.changeShareMessage).css('margin-top', '20px').bind('click', function() {
 		var newtext = $('<textarea>').attr('id', 'astro-config-message').css({ color: 'black', width: '100%', height: '250px' }).val(message);
-		var save = $('<div>').addClass('but').html("<div class='butright'><div class='butbg'>" + Main.AstroPad.txt.saveShareMessage + "</div></div>").css('margin-top', '20px').bind('click', function() {
+		var save = Main.AstroPad.createButton(Main.AstroPad.txt.saveShareMessage).css('margin-top', '20px').bind('click', function() {
 			var text = $('#astro-config-message').val();
 			if (text) {
 				localStorage['ASTROPAD_' + Main.AstroPad.language + 'shareMessage'] = text;
 			}
 			Main.AstroPad.configuration();
 		});
-		Main.AstroPad.fill([$('<p>').html(Main.AstroPad.txt.helpShareMessage), newtext, save]);
+		Main.AstroPad.fill([$('<p>').html(Main.AstroPad.txt.helpShareMessage).css('padding', '3px'), newtext, save]);
 	});
 
 	Main.AstroPad.fill([bubble, textarea, button]);
@@ -1332,6 +1409,8 @@ Main.AstroPad.getInventory = function() {
 	var url = Main.AstroPad.urlAstro + "/getItems";
 	var text = "";
 	var data = Main.AstroPad.getData();
+	
+	Main.AstroPad.fill($('<div>').css('text-align', 'center').html("<img src='/img/icons/ui/loading1.gif' /> " + Main.AstroPad.txt.loading));
 
 	console.log(url + '?' + data);
 	GM_xmlhttpRequest({
@@ -1450,6 +1529,7 @@ Main.AstroPad.getInventoryTxt = function() {
 	var url = Main.AstroPad.urlAstro + "/getItems";
 	var text = "";
 	var data = Main.AstroPad.getData();
+	var elements = [];
 
 	console.log(url + '?' + data);
 	GM_xmlhttpRequest({
@@ -1457,14 +1537,29 @@ Main.AstroPad.getInventoryTxt = function() {
 		url: url + "?" + data,
 		onload: function(responseDetails) {
 			var res = responseDetails.responseText;
-			var contenttxt = "**//" + Main.AstroPad.txt.inventory + "//**\n";
+			var elements = [];
+
+			elements.push($('<h3>').css('text-align', 'center').text(Main.AstroPad.txt.titleTxtInventory));
+
+			var buttons = $('<div>').css('text-align', 'center');
+			Main.AstroPad.createButton(Main.AstroPad.txt.checkAll).css({ display: 'inline-block', width: '45%' }).bind('click', function() {
+				$('.astromod-txtinv-room input').each(function() { $(this)[0].checked = true; });
+			}).appendTo(buttons);
+			Main.AstroPad.createButton(Main.AstroPad.txt.uncheckAll).css({ display: 'inline-block', width: '45%', marginLeft: '5px' }).bind('click', function() {
+				$('.astromod-txtinv-room input').each(function() { $(this)[0].checked = false; });
+			}).appendTo(buttons);
+			elements.push(buttons);
+
+			var div = $('<div>').addClass('what_happened');
+			var table = $('<table>').addClass('table').appendTo(div);
+			
 			var rooms = res.split('#');
 			var rkey = rooms[0];
 			localStorage['ASTROPAD_' + Main.AstroPad.language + 'rkey'] = rkey;
 			for (var j = 1; j < rooms.length; j++) {
 				var its = rooms[j].split('\n');
 				var roomid = parseInt(its[0]);
-				contenttxt += "-**" + Main.AstroPad.roomNames[roomid] + "**";
+				var txt = "-**" + Main.AstroPad.roomNames[roomid] + "**";
 				for (var i = 1; i < its.length - 1; i++) {
 					var parts = its[i].split('|');
 					var iname = parts[0];
@@ -1473,10 +1568,10 @@ Main.AstroPad.getInventoryTxt = function() {
 					var heroid = parts[7];
 					var iname = Main.AstroPad.capitalize(iname);
 					if (i == 1) {
-						contenttxt += " [" + Main.AstroPad.heronames[heroid] + ", " + date.substring(6, 8) + "." + date.substring(4, 6) + " " + date.substring(8, 10) + ":" + date.substring(10, 12) + "] : ";
+						txt += " [" + Main.AstroPad.heronames[heroid] + ", " + date.substring(6, 8) + "." + date.substring(4, 6) + " " + date.substring(8, 10) + ":" + date.substring(10, 12) + "] : ";
 					}
 					if (iid == "empty") {
-						contenttxt += Main.AstroPad.txt.empty + ".\n";
+						txt += Main.AstroPad.txt.empty + ".\n";
 						continue;
 					}
 
@@ -1512,15 +1607,30 @@ Main.AstroPad.getInventoryTxt = function() {
 					else {
 						inb = "";
 					}
-					contenttxt += iname + inb;
+					txt += iname + inb;
 					if (idetail) {
-						contenttxt += " //" + idetail + " //";
+						txt += " //" + idetail + "//";
 					}
-					contenttxt += ", ";
+					txt += ", ";
 				}
-				contenttxt = contenttxt.slice(0, -2) + ".\n";
+				txt = txt.slice(0, -2) + ".";
+
+				var tr = $('<tr>').addClass('astromod-txtinv-room').appendTo(table);
+				$('<input>').attr('type', 'checkbox').appendTo($('<td>').css('width', '25px').appendTo(tr));
+				$('<td>').addClass('astromod-txtinv-text').text(txt).appendTo(tr);
 			}
-			Main.AstroPad.fill($('<textarea>').css({ fontSize: '8pt', color: 'black', width: '100%', height: '100%' }).val(contenttxt));
+			elements.push(div);
+			
+			elements.push(Main.AstroPad.createButton(Main.AstroPad.txt.generateTxtInventory).bind('click', function() {
+				var texts = ["**//" + Main.AstroPad.txt.inventory + "//**"];
+				$('.astromod-txtinv-room').each(function() {
+					if ($(this).find('input').is(':checked')) {
+						texts.push($(this).find('.astromod-txtinv-text').text());
+					}
+				});
+				Main.AstroPad.fill($('<textarea>').css({ fontSize: '8pt', color: 'black', width: '100%', height: '100%' }).val(texts.join("\n")));
+			}));
+			Main.AstroPad.fill(elements);
 		}
 	});
 };
@@ -1544,12 +1654,12 @@ Main.AstroPad.fill = function(elements, gotoelemid) {
 		addButton('/img/icons/ui/notes.gif', Main.AstroPad.txt.list, false, Main.AstroPad.getInventoryTxt, menu);
 		addButton('http://www.hordes.fr/gfx/forum/smiley/h_exploration.gif', Main.AstroPad.txt.show, false, Main.AstroPad.viewInventory, menu);
 		addButton('/img/icons/ui/guide.png', Main.AstroPad.txt.help, true, Main.AstroPad.configuration, menu);
-		addButton('/img/icons/ui/goldplus.png', Main.AstroPad.txt.new, true, Main.AstroPad.new, menu);
+		addButton('/img/icons/ui/goldplus.png', Main.AstroPad.txt.newPad, true, Main.AstroPad.new, menu);
 		addButton('/img/icons/ui/close.png', Main.AstroPad.txt.exit, false, Main.AstroPad.reset, menu);
 	}
 	else {
 		$('<div>').addClass('objtitle').html("<img src='/img/icons/ui/pa_comp.png'> AstroPad (n°" + gid + ") <img src='/img/icons/ui/pa_comp.png'>").appendTo(mainDiv);
-		addButton('/img/icons/ui/goldplus.png', Main.AstroPad.txt.new, true, Main.AstroPad.new, $('<div>').addClass('replybuttons').appendTo(mainDiv));
+		addButton('/img/icons/ui/goldplus.png', Main.AstroPad.txt.newPad, true, Main.AstroPad.new, $('<div>').addClass('replybuttons').appendTo(mainDiv));
 	}
 
 	var contentDiv = $('<div>').attr('id', 'astro_scrollpanel').addClass('astro_scrollpanel').css({ overflow: 'auto', height: '400px' }).appendTo(mainDiv);
@@ -1595,6 +1705,15 @@ Main.AstroPad.startScript = function() {
 		}
 	}
 
+	//Remind players in new ships to get rid of their old AstroPad
+	var curCycle = parseInt(Main.curCycle());
+	if (localStorage['ASTROPAD_' + Main.AstroPad.language + 'gid']  && localStorage['ASTROPAD_' + Main.AstroPad.language + 'gkey']) { //Don't remind them if they haven't got one…
+		if (localStorage['ASTROPAD_' + Main.AstroPad.language + 'curCycle'] && parseInt(localStorage['ASTROPAD_' + Main.AstroPad.language + 'curCycle']) > curCycle) {
+			$('<p>').css({ backgroundColor: '#800', padding: '2px', textAlign: 'center' }).text(Main.AstroPad.txt.newShip).appendTo($('#cdContent'));
+		}
+		localStorage['ASTROPAD_' + Main.AstroPad.language + 'curCycle'] = curCycle;
+	}
+
 	if($("#input").length == 0) {
 		return;
 	}
@@ -1606,7 +1725,7 @@ Main.AstroPad.startScript = function() {
 	var now = $("#input").attr('now');
 	setInterval(function() {
 		var gameNow = $("#input").attr('now');
-		if(gameNow != now) {
+		if (gameNow != now) {
 			now = gameNow;
 		}
 		Main.AstroPad.buildAstrotab();
