@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name       AstroPad
-// @version    0.25.10
+// @version    0.25.11
 // @grant      GM_xmlhttpRequest
 // @match      http://mush.vg/*
 // @match      http://mush.vg/#
@@ -10,7 +10,7 @@
 // @match      http://mush.twinoid.es/#
 // @require    http://code.jquery.com/jquery-latest.js
 // @copyright  2012+, Sunsky (inspiration Skildor' scripts), compatibility with Firefox 32+ by badconker
-// @downloadURL https://github.com/badconker/astropad/raw/master/astropad.user.js
+// @downloadURL https://github.com/Javiernh/astropad/raw/master/astropad.user.js
 // ==/UserScript==
 var console = unsafeWindow.console;
 var localStorage = unsafeWindow.localStorage;
@@ -48,6 +48,11 @@ if (window.location.href.indexOf('mush.twinoid.com')!=-1) {
 	TXT_THIRSTY="thirsty"
 	TXT_DRY="dry"
 	TXT_DISEASED="diseased"
+
+	TXT_UNSTABLE='Unstable'
+	TXT_HAZARDOUS='Hazardous'
+	TXT_DECAYING='Decomposing'
+	TXT_CHARGES='namey7:Chargesg'	// TODO a verification
 
 	TXT_BY="by"
 	TXT_THE="the"
@@ -106,11 +111,16 @@ if (window.location.href.indexOf('mush.twinoid.com')!=-1) {
 	TXT_IMPERISHABLE="No perecible"
 	TXT_HEAL="Cura la enfermedad"
 	TXT_CHEF="Chef"
-	TXT_BOTANISTE="Botaniste"
-	TXT_SATISFACTION="satisfaction"
-	TXT_THIRSTY="thirsty"
-	TXT_DRY="dry"
-	TXT_DISEASED="diseased"
+	TXT_BOTANISTE="Botánico"
+	TXT_SATISFACTION="satisfacción"
+	TXT_THIRSTY="Sedienta"
+	TXT_DRY="Seca"
+	TXT_DISEASED="Enferma"
+
+	TXT_UNSTABLE='Sospechosa'
+	TXT_HAZARDOUS='Nocivo'
+	TXT_DECAYING='Tóxica'
+	TXT_CHARGES='y4:namey6:Cargasg'
 
 	TXT_BY="por"
 	TXT_THE="el"
@@ -126,18 +136,18 @@ if (window.location.href.indexOf('mush.twinoid.com')!=-1) {
 	TXT_EXIT="Quitar"
 
 	TXT_UPDATEEFFECT="¿Desea actualizar los efectos? \n\n (Cancelar=actualizadas pero sin los efectos)"
-	TXT_HELP_1="Aqui está la prueba a ofrecer a vuestros compañeros de equipo para compartir vuestro AstroPad :"
-	TXT_HELP_2 ="    **Le sugiero usar AstroPad para el inventario**<br/>";
-	TXT_HELP_2+="Este es un script que funciona con Firefox y Chrome:<br/>";
-	TXT_HELP_2+=" - Sobre Firefox, instalar GreaseMonkey<br/>"
+//	TXT_HELP_1="Aqui está la prueba a ofrecer a vuestros compañeros de equipo para compartir vuestro AstroPad :"
+	TXT_HELP_2 ="**//Les sugiero usar AstroPad para el inventario//**<br/>";
+	TXT_HELP_2+="Script permitido por Motion Twin que funciona con Firefox y Chrome:<br/>";
+	TXT_HELP_2+=" - Sobre **Firefox**, instalar **GreaseMonkey**<br/>";
 	TXT_HELP_2+="//https://addons.mozilla.org/es/firefox/addon/greasemonkey//<br/>";
-	TXT_HELP_2+=" - Sobre Chrome, instalar TamperMonkey<br/>"
+	TXT_HELP_2+=" - Sobre **Chrome**, instalar **TamperMonkey**<br/>";
 	TXT_HELP_2+="//https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=es//<br/>";
 	TXT_HELP_2+=" <br/>";
-	TXT_HELP_2+="A continuación, vaya al siguiente enlace para instalar el script<br/>";
+	TXT_HELP_2+="Luego, vaya al siguiente enlace para instalar el script<br/>";
 	TXT_HELP_2+="//https://github.com/badconker/astropad/raw/master/astropad.user.js//<br/>";
 	TXT_HELP_2+=" <br/>";
-	TXT_HELP_2+="A continuación, vaya al siguiente enlace para unirse el inventario de esta partida:<br/>";
+	TXT_HELP_2+="Finalmente, únase al **inventario de la nave** en este enlace:<br/>";
 	TXT_HELP_3="Gracias por su atención"
 	TXT_LINK_1="¿Deseas vincular el AstroPad n°"
 	TXT_LINK_2="cuya clave es"
@@ -173,6 +183,11 @@ if (window.location.href.indexOf('mush.twinoid.com')!=-1) {
 	TXT_THIRSTY="assoiffé"
 	TXT_DRY="desseché"
 	TXT_DISEASED="malade"
+
+	TXT_UNSTABLE='Instable'
+	TXT_HAZARDOUS='Avariée'
+	TXT_DECAYING='Décomposition'
+	TXT_CHARGES='namey7:Chargesg'
 
 	TXT_BY="par"
 	TXT_THE="le"
@@ -355,7 +370,7 @@ function AstroTabTip (e) {
 function SelectTab(el) {
 	if (el.getAttribute('data-tab')!=undefined) {
 		$("#astrotab").removeClass("tabon").addClass("taboff");
-		$("#astrotab_content").css("display", "none");
+		$("#astrotab_content").css({"display":"none", "width":"373px"});
 		fill_astrotab("");
 		return Main.selChat(el.getAttribute('data-tab'));
 	}
@@ -388,7 +403,7 @@ function build_astrotab() {
 	$("<img>").attr("src", "/img/icons/ui/pa_comp.png").appendTo(tabs);
 	fill_astrotab("");
 	$("#astrotab_content").css("display", "none");
-	$("#astrotab_content").parent().css('height','500px');
+	$("#astrotab_content").parent().css('height','427px');
 	$("#astrotab").on("mouseover", AstroTabTip);
 	$("#astrotab").on("mouseout", function(){Main.hideTip();});
 	$("#cdTabsChat li").on("click", function() { SelectTab(this); });
@@ -517,26 +532,23 @@ function astro_maj_inventaire() {
 				if(dataName.indexOf('namey12:Congel%C3%A9g') !=-1) {
 					iname+=" Congelé";
 				}
-				//TODO a adapter pour les autres langues
+
 				if (readFoodEffect) {
-					if (desc.indexOf('Avariée') !=-1) {
-						iname+=" Avariée";
+					if (desc.indexOf(TXT_UNSTABLE) !=-1) {
+						iname+=" "+TXT_UNSTABLE;
 					}
-					if (desc.indexOf('Instable') !=-1) {
-						iname+=" Instable";
+					if (desc.indexOf(TXT_HAZARDOUS) !=-1) {
+						iname+=" "+TXT_HAZARDOUS;
 					}
-					if (desc.indexOf('Décomposition') !=-1) {
-						iname+=" Décomposée";
-					}
-					if (desc.indexOf('Décompostion') !=-1) {
-						iname+=" Décomposée";
+					if (desc.indexOf(TXT_DECAYING) !=-1) {
+						iname+=" "+TXT_DECAYING;
 					}
 				}
 				if(dataName.indexOf(TXT_BROKEN) !=-1) {
 					iname+=" "+TXT_BROKEN2;
 				}
-				//TODO a adapter pour les autres langues
-				icharge=dataName.indexOf('namey7:Chargesg')
+
+				icharge=dataName.indexOf(TXT_CHARGES)
 				if(icharge !=-1) {
 					a=dataName.indexOf('>x',icharge);
 					b=dataName.length
@@ -546,7 +558,7 @@ function astro_maj_inventaire() {
 					inb = parseInt(qte.text().trim());
 				else
 					inb = 1;
-				//TODO a adapter pour les autres langues
+
 				if (dataName.indexOf("thirsty") != -1)
 					iname+=' '+TXT_THIRSTY
 				else if (dataName.indexOf("dry") != -1)
@@ -605,8 +617,8 @@ function astro_configuration() {
 	var gkey=localStorage['ASTROPAD_'+language+'gkey'];
 
 	url1="http://"+URL_MUSH+"/?astroId="+gid+"&astroKey="+gkey;
-	contenttxt ="<div class='cdMushLog  cdChatLine'>";
-	contenttxt+="    <div class='bubble bubble2 tid_editorContent tid_parsed'>";
+	contenttxt ="<div class='cdMushLog  cdChatLine' style='max-width: 373px'>";
+/*	contenttxt+="    <div class='bubble bubble2 tid_editorContent tid_parsed'>";
 	contenttxt+="        <img src='/img/design/pixel.gif' class='char' style='background:url(http://imgup.motion-twin.com/twinoid/0/1/d9869944_14716.jpg)!important;height:42px'>";
 	contenttxt+="        <div class='talks'>";
 	contenttxt+="            <div class='triangleright'></div>";
@@ -616,8 +628,8 @@ function astro_configuration() {
 	contenttxt+="        </div>";
 	contenttxt+="    </div>";
 	contenttxt+="</div>";
-
-	contenttxt+="<div class='cdMushLog  cdChatLine' style='max-width: 373px'>";
+*/
+//	contenttxt+="<div class='cdMushLog  cdChatLine' style='max-width: 373px'>";
 	contenttxt+="    <div class='bubble  tid_editorContent tid_parsed'>";
 	contenttxt+="        <img src='/img/design/pixel.gif' class='char' style='background:url(http://imgup.motion-twin.com/twinoid/6/7/4f22b23f_14716.jpg)!important;height:42px'>";
 	contenttxt+="        <div class='talks'>";
@@ -727,6 +739,9 @@ function astro_get_inventaire() {
 						iname = iname.replace(new RegExp(capitalize(TXT_DRY),"g"),"<img src='\/img\/icons\/ui\/plant_dry.png' alt='"+TXT_DRY+"' title='"+TXT_DRY+"'\/>");
 						iname = iname.replace(new RegExp(capitalize(TXT_DISEASED),"g"),"<img src='\/img\/icons\/ui\/plant_diseased.png' alt='"+TXT_DISEASED+"' title='"+TXT_DISEASED+"'\/>");
 						iname = iname.replace(new RegExp(capitalize(TXT_BROKEN2),"g"),"<img src='\/img\/icons\/ui\/broken.png' alt='"+TXT_BROKEN2+"' title='"+TXT_BROKEN2+"'\/>");
+						iname = iname.replace(new RegExp(capitalize(TXT_UNSTABLE),"g"),"<img src='\/img\/icons\/ui\/food_unstable.png' alt='"+TXT_UNSTABLE+"' title='"+TXT_UNSTABLE+"'\/>");
+						iname = iname.replace(new RegExp(capitalize(TXT_HAZARDOUS),"g"),"<img src='\/img\/icons\/ui\/food_hazardous.png' alt='"+TXT_HAZARDOUS+"' title='"+TXT_HAZARDOUS+"'\/>");
+						iname = iname.replace(new RegExp(capitalize(TXT_DECAYING),"g"),"<img src='\/img\/icons\/ui\/food_decaying.png' alt='"+TXT_DECAYING+"' title='"+TXT_DECAYING+"'\/>");
 						if (idetail) {
 							idetail = idetail.replace(/ :pa:/g,"<img class='paslot' src='\/img\/icons\/ui\/pa_slot1.png' alt='pa' \/>");
 							idetail = idetail.replace(/ :moral:/g,"<img src='\/img\/icons\/ui\/moral.png' alt='moral' \/>");
@@ -758,7 +773,7 @@ function astro_get_inventaire() {
 					}
 					contenttxt+="</table></div>";
 				}
-				fill_astrotab(contenttxt,"#astro_rid_"+getRoomIdForAstroPad());
+				fill_astrotab(contenttxt, "#astro_rid_"+getRoomIdForAstroPad());
 			}
 		});
 	}, 0);
@@ -821,13 +836,13 @@ function astro_get_inventaire_txt() {
 						contenttxt+="\n";
 					}
 				}
-				fill_astrotab("<textarea style='font-size:8pt;color:black;width:100%;height:100%'>"+contenttxt+"</textarea>");
+				fill_astrotab("<textarea style='font-size:8pt;color:black;width:100%;height:100%'>"+contenttxt+"</textarea>", "",1);
 			}
 		});
 	}, 0);
 }
 
-function fill_astrotab(content,gotoelemid) {
+function fill_astrotab(content,gotoelemid,scrolled) {
 	gid=localStorage['ASTROPAD_'+language+'gid'];
 	var tab = $("#astrotab_content").empty();
 
@@ -846,7 +861,12 @@ function fill_astrotab(content,gotoelemid) {
 	}
 	//header+=" <a class='butmini' href='#' id='astro_test' ><img src='http://www.hordes.fr/img/icons/r_beta.gif'></a>";
 	header+="</div>";
-	$("<div>").html(header+"<br><div id='astro_scrollpanel' class='astro_scrollpanel' style='overflow:scroll;overflow-y;hidden;overflow : -moz-scrollbars-vertical;;height:400px'>"+content+"</div>").css("color", "rgb(9, 10, 97)").appendTo(tab);
+	//	$("<div>").html(header+"<br><div id='astro_scrollpanel' class='astro_scrollpanel' style='overflow:scroll;overflow-y;hidden;overflow : -moz-scrollbars-vertical;;height:400px'>"+content+"</div>").css("color", "rgb(9, 10, 97)").appendTo(tab);
+	if (scrolled === 1) {
+		$("<div>").html(header+"<br><div id='astro_scrollpanel' class='astro_scrollpanel' style='overflow: -moz-scrollbars-vertical; ; height: 379px;'>"+content+"</div>").css("color", "rgb(9, 10, 97)").appendTo(tab);
+	} else {
+		$("<div>").html(header+"<br><div id='astro_scrollpanel' class='astro_scrollpanel' style='overflow: scroll; overflow: -moz-scrollbars-vertical; ; height: 379px;'>"+content+"</div>").css("color", "rgb(9, 10, 97)").appendTo(tab);
+	}
 	$('#astro_get_inventaire').bind('click', astro_get_inventaire);
 	$('#astro_get_inventaire_txt').bind('click', astro_get_inventaire_txt);
 	$('#astro_view_inventaire').bind('click', astro_view_inventaire);
