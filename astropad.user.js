@@ -2,6 +2,7 @@
 // @name       AstroPad
 // @version    0.26
 // @grant      GM_xmlhttpRequest
+// @grant      unsafeWindow
 // @match      http://mush.vg/*
 // @match      http://mush.vg/#
 // @match      http://mush.twinoid.com/*
@@ -9,7 +10,7 @@
 // @match      http://mush.twinoid.es/*
 // @match      http://mush.twinoid.es/#
 // @require    http://code.jquery.com/jquery-latest.js
-// @copyright  2012+, Sunsky (inspiration Skildor' scripts), compatibility with Firefox 32+ by badconker
+// @copyright  2012+, Sunsky (inspiration Skildor' scripts), compatibility with Firefox 32+ by badconker, update by LAbare
 // @downloadURL https://github.com/badconker/astropad/raw/master/astropad.user.js
 // ==/UserScript==
 
@@ -17,9 +18,9 @@ var console = unsafeWindow.console;
 var localStorage = unsafeWindow.localStorage;
 var Main = unsafeWindow.Main;
 
-Main.AstroPad = {};
+Main.AstroPad = createObjectIn(unsafeWindow.Main, { defineAs: 'AstroPad' });
 
-Main.AstroPad.version = '0.26';
+Main.AstroPad.version = GM_info.script.version;
 Main.AstroPad.urlAstro = "http://astropad.sunsky.fr/api.py";
 Main.AstroPad.heronames = ['Jin Su', 'Frieda', 'Kuan Ti', 'Janice', 'Roland', 'Hua', 'Paola', 'Chao', 'Finola', 'Stephen', 'Ian', 'Chun', 'Raluca', 'Gioele', 'Eleesha', 'Terrence', 'Derek', 'Andie'];
 Main.AstroPad.heronames[-1] = "?";
@@ -41,21 +42,21 @@ if (window.location.href.indexOf('mush.twinoid.com') != -1) {
 	Main.AstroPad.txt = {
 		desc: "Inventory Manager developed by Sunsky.",
 		camera: "Installed camera",
-		drone:"Drone",
+		drone: "Drone",
 		broken: "Broken",
 		frozen: "Frozen",
 		unstable: "Unstable",
 		hazardous: "Hazardous",
 		decaying: "Decomposing",
 		charges: "charge(s)",
-		effect: "Effects",
-		effect2: "the effects",
-		curesTip: /Cures|cure|curing/,
+		effect: "Effect",
+		effect2: "the effect",
+		curesTip: /Cures?|cures?|curing/,
 		curesText: "Cures",
-		causesTip: /Causes|cause|causing/,
+		causesTip: /Causes?|causes?|causing/,
 		causesText: "Causes",
 		delayRegExp: /within ([0-9]+) to ([0-9]+) cycles/,
-		chancesRegExp: /([0-9]+)% chance (:|of)/,
+		chancesRegExp: /([0-9]+)\s*% chance (:|of)/,
 		chef: "Chef",
 		botanist: "Botanist",
 		satisfaction: "satisfaction",
@@ -69,7 +70,7 @@ if (window.location.href.indexOf('mush.twinoid.com') != -1) {
 		at: "at",
 		empty: "Void",
 		inventory: "INVENTORY",
-		sumbit: "Synchronize",
+		submit: "Synchronize",
 		refresh: "Refresh",
 		list: "Text Format",
 		show: "Show",
@@ -119,12 +120,12 @@ if (window.location.href.indexOf('mush.twinoid.com') != -1) {
 
 		updateEffect: "Do you want to update the effects ?\n\n(Cancel = update but without the effects)",
 		greetShareMessage: "Here is the text that you should send to your teammates in order to share your AstroPad:",
-		defaultShareMessage: "Hi! I suggest we use the AstroPad to keep our inventory updated.\nYou may install it from this topic: %t.\nGet this game's inventory from this link: %u.\nTo see the map, follow this link: %v.\nThanks!",
+		defaultShareMessage: "Hi! I suggest we use the AstroPad to keep our inventory updated.\nYou may install it from this topic: %t.\nJoin this game's inventory by clicking this code: %u.\nTo see the map, follow this link: %v.\nThanks!",
 		helpTopic: "http://TODO", //Topic explaining how to install the script TODO
 		changeShareMessage: "Change default message",
-		helpShareMessage: "You can use the following expressions:<ul><li><b>%t</b> will be replaced by a link to the topic explaining how to install the script;</li><li><b>%u</b> will be replaced by the link to add the AstroPad;</li><li><b>%v</b> will be replaced by the link to the map of the AstroPad.</li></ul>",
+		helpShareMessage: "You can use the following expressions:<ul><li><b>%t</b> will be replaced by a link to the topic explaining how to install the script;</li><li><b>%u</b> will be replaced by the code to add the AstroPad;</li><li><b>%v</b> will be replaced by the link to the map of the AstroPad.</li></ul>",
 		saveShareMessage: "Save",
-		link: "Do you want to bind Astropad #%1 of which the key is %2 to this game?",
+		link: "Do you want to bind Astropad #%1 (which key is %2) to this game?",
 		unlink: "Do you really want to delete the link between AstroPad #%1 and this game?\nIf you lose the Astropad Key, you cannot get it back.",
 		newShip: "It seems you are in a new game. Don't forget to create a new AstroPad!",
 		loading: "Loading…",
@@ -156,9 +157,9 @@ else if (window.location.href.indexOf('mush.twinoid.es') != -1) {
 		charges: "carga(s)",
 		effect: "Efectos",
 		effect2: "los efectos",
-		curesTip: /(Cura|curar) la enfermedad/,
+		curesTip: /(Curar?|curar?) (la enfermedad)?/,
 		curesText: "Cura",
-		causesTip: /(Provoca|provocar) la enfermedad/,
+		causesTip: /(Provocar?|provocar?) la enfermedad/,
 		causesText: "Provoca",
 		delayRegExp: /en un plazo de ([0-9]+) a ([0-9]+) ciclos/,
 		chancesRegExp: /([0-9]+)\s*% de probabilidades\s*:/,
@@ -184,7 +185,7 @@ else if (window.location.href.indexOf('mush.twinoid.es') != -1) {
 		exit: "Quitar",
 
 		astromodTitle: "Modificación del AstroPad",
-		itemChoice: "Choix d'item :", //TODO
+		itemChoice: "Elijan un item:",
 		itemCatMisc: "Variado",
 		itemCatTools: "Herramientas",
 		itemCatWeaponry: "Armas",
@@ -194,22 +195,22 @@ else if (window.location.href.indexOf('mush.twinoid.es') != -1) {
 		itemCatHealth: "Salud",
 		itemCatExpedition: "Expedición",
 		itemCatAlien: "Artefactos",
-		defaultItem: "Item", //TODO
-		addItem: "Ajouter un item", //TODO
+		defaultItem: "Item",
+		addItem: "Añadir un item",
 		sendAstromod: "Compartir",
 		cancelAstromod: "Cancelar",
 		accessAstromod: "Modificar",
 
 		changeProperties: "Modificar los atributos",
-		propertyTitle: "Attributs de l'item :", //TODO
+		propertyTitle: "Atributos del item:",
 		foodEffects: "Efectos nutritivos:",
-		addEffect: "Ajouter un effet :", //TODO
-		defaultProperties: "Attributs originaux/par défaut", //TODO
+		addEffect: "Añadir un efecto:",
+		defaultProperties: "Atributos originales/por defecto",
 		propertyAP: "Puntos de acción",
 		propertyMP: "Puntos de movimiento",
 		propertyHP: "Puntos de vida",
 		propertyMoral: "Ánimo",
-		applyProperties: "Affecter ces attributs", //TODO
+		applyProperties: "Asignar los atributos",
 		propertyChances: "Probabilidad:",
 		propertyDelay: "Plazo:",
 		propertyTo: "a",
@@ -221,21 +222,21 @@ else if (window.location.href.indexOf('mush.twinoid.es') != -1) {
 		titleTxtInventory: "Cuartos para compartir:",
 		checkAll: "Seleccionar todo",
 		uncheckAll: "Deseleccionar todo",
-		generateTxtInventory: "Générer l'inventaire texte", //TODO
+		generateTxtInventory: "Generar texto de inventario",
 
 		updateEffect: "¿Desea actualizar los efectos? \n\n (Cancelar = actualizadas pero sin los efectos)",
 		greetShareMessage: "Aqui está la prueba a ofrecer a vuestros compañeros de equipo para compartir vuestro AstroPad:",
-		defaultShareMessage: "Hi! I suggest we use the AstroPad to keep our inventory updated.\nYou may install it from this topic: %t.\nGet this game's inventory from this link: %u.\nTo see the map, follow this link: %v.\nThanks!", //TODO
+		defaultShareMessage: "¡Hola! Le sugiero usar AstroPad para el inventario.\Para instalar el script, lea este tema : %t.\nPara añadir este astropad, haga clic en este código: %u.\nPara ver el mapa, siga este enlace : %v.\n¡Gracias!",
 		helpTopic: "http://TODO", //TODO
-		changeShareMessage: "Modifier le message par défaut",
-		helpShareMessage: "Vous pouvez utiliser les expressions suivantes :<br /><ul><li><b>%t</b> sera remplacé par le lien vers le topic expliquant comment installer le script ;</li><li><b>%u</b> sera remplacé par le lien d'ajout de l'AstroPad ;</li><li><b>%v</b> sera remplacé par le lien vers la carte de l'AstroPad.</li></ul>", //TODO
-		saveShareMessage: "Sauvegarder", //TODO
-		link: "¿Deseas vincular el AstroPad n°%1 cuya clave es %2 a la partida?",
+		changeShareMessage: "Modificar el mensaje por defecto",
+		helpShareMessage: "Puede itilizar las expresiones siguientes:<br /><ul><li><b>%t</b> será reemplazado por el enlace hacia el tópico explicando como instalar el script;</li><li><b>%u</b> será reemplazado por el codigo para añadir el AstroPad;</li><li><b>%v</b> será reemplazado por el enlace hacia la mapa del AstroPad.</li></ul>",
+		saveShareMessage: "Registrar",
+		link: "¿Deseas vincular el AstroPad n°%1 (cuya clave es %2) a la partida?",
 		unlink: "¿Estás seguro que quieres eliminar el enlace entre el AstroPad n°%1 y la partida ?\nSi pierde la clave relativa a su partida, no será capaz de encontrarla.",
-		newShip: "It seems you are in a new game. Don't forget to create a new AstroPad!", //TODO
+		newShip: "Parece que usted comenzó una nueva partida. ¡Considere la creación de un nuevo AstroPad!",
 		loading: "Cargando…",
-		credits: "AstroPad v." + Main.AstroPad.version + " — Original sin by Sunsky, passed on by badconker and LAbare.", //TODO
-		foodNote: "Note: Food effects shared by a specialist are kept in memory for the whole ship. The AstroPad cannot reveal a Mush in any way." //TODO
+		credits: "AstroPad v." + Main.AstroPad.version + " — Pecado original por Sunsky, transmitido por badconker y LAbare.",
+		foodNote: "Nota: los efectos nutritivos compartidos por un especialista se quedarán en memoria para todo la nave. AstroPad no permite en ningún caso detectar Mush."
 	};
 }
 else {
@@ -263,12 +264,12 @@ else {
 		charges: "charge(s)",
 		effect: "Effets",
 		effect2: "les effets",
-		curesTip: /(Guérie|guérir) la maladie/,
+		curesTip: /(Guérie|guérir) (la maladie)?/,
 		curesText: "Guérit",
-		causesTip: /(Provoque|provoquer) la maladie/,
+		causesTip: /(Provoquer?|provoquer?|Donner?|donner?) la maladie/,
 		causesText: "Provoque",
 		delayRegExp: /dans un délai de ([0-9]+) à ([0-9]+) cycle/,
-		chancesRegExp: /([0-9]+) de chances (:|de)/,
+		chancesRegExp: /([0-9]+)\s*% de chances (:|de)/,
 		chef: "Cuistot",
 		botanist: "Botaniste",
 		satisfaction: "satiété",
@@ -331,15 +332,15 @@ else {
 		generateTxtInventory: "Générer l'inventaire texte",
 
 		updateEffect: "Voulez-vous mettre à jour les effets ?\n\n(Annuler = mise à jour quand même mais sans les effets)",
-		greetShareMessage: "Voici le texte à fournir à vos coéquipiers pour partager votre AstroPad :",
-		defaultShareMessage: "Bonjour ! Je vous propose d'utiliser l'AstroPad pour l'inventaire.\nPour l'installer, lisez ce topic : %t.\nCliquez ici pour avoir l'inventaire de cette partie : %u.\nPour voir la carte, suivez ce lien : %v.\nMerci !",
+		greetShareMessage: "Voici le texte à fournir à vos coéquipiers pour partager votre AstroPad :",
+		defaultShareMessage: "Bonjour ! Je vous propose d'utiliser l'AstroPad pour l'inventaire.\nPour installer le script, lisez ce topic : %t.\nPour ajouter cet astropad, cliquez sur ce code : %u.\nPour voir la carte, suivez ce lien : %v.\nMerci !",
 		helpTopic: "http://TODO", //TODO
 		changeShareMessage: "Modifier le message par défaut",
-		helpShareMessage: "Vous pouvez utiliser les expressions suivantes :<br /><ul><li><b>%t</b> sera remplacé par le lien vers le topic expliquant comment installer le script ;</li><li><b>%u</b> sera remplacé par le lien d'ajout de l'AstroPad ;</li><li><b>%v</b> sera remplacé par le lien vers la carte de l'AstroPad.</li></ul>",
+		helpShareMessage: "Vous pouvez utiliser les expressions suivantes :<br /><ul><li><b>%t</b> sera remplacé par le lien vers le topic expliquant comment installer le script ;</li><li><b>%u</b> sera remplacé par le code d'ajout de l'AstroPad ;</li><li><b>%v</b> sera remplacé par le lien vers la carte de l'AstroPad.</li></ul>",
 		saveShareMessage: "Sauvegarder",
-		link: "Voulez-vous lier l'AstroPad n°%1 dont la clé est %2 à cette partie ?",
+		link: "Voulez-vous lier l'AstroPad n°%1 (dont la clé est %2) à cette partie ?",
 		unlink: "Voulez-vous vraiment supprimer le lien entre l'AstroPad n°%1 et cette partie ?\nSi vous perdez la clé relative à votre partie, vous ne serez plus en mesure de la retrouver.",
-		newShip: "Il semblerait que vous ayiez commencé une nouvelle partie. Pensez à recréer un AstroPad !",
+		newShip: "Il semblerait que vous ayiez commencé une nouvelle partie. Pensez à recréer un AstroPad !",
 		loading: "Chargement en cours…",
 		credits: "AstroPad v." + Main.AstroPad.version + " — Péché originel par Sunsky, transmis par badconker et LAbare.",
 		foodNote: "Note : Les effets nutritifs partagés par un spécialiste restent en mémoire pour tout le vaisseau. L'AstroPad ne permet en aucun cas de détecter un Mush."
@@ -359,11 +360,21 @@ Main.AstroPad.allItems = {
 
 	spore_extractor: ["misc", "Suceur de Spore", "Spore Sucker", "Extractor de Esporas", {}, ""], anti_mush_serum: ["misc", "Sérum Rétro-Fongique", "Retro-Fungal Serum", "Antídoto Retrofúngico", {}, ""], apron: ["misc", "Tablier intachable", "Stainproof Apron", "Mandil anti-manchas", {}, ""], mush_floppy_disk: ["misc", "Disquette du Génome Mush", "Mush Genome Disk", "Diskette Del Genoma Mush", {}, ""], mush_sample: ["misc", "Souche de test Mush", "Mush Sample", "Muestra De Raíz Mush", {}, ""], myco_alarm: ["misc", "Myco-Alarme", "Myco-Alarm", "MycoAlarma", {}, ""], body_cat: ["misc", "Schrödinger", "Schrödinger", "Schrödinger", {}, ""], help_drone: ["misc", "Drone de Soutien", "Support Drone", "Dron", {}, ""], freezer: ["misc", "Supergélateur", "Superfreezer", "Supergelador", {}, ""], microwave: ["misc", "Micro-onde", "Microwave", "Microondas", { charges: 4 }, ""], sofa: ["misc", "Sofa Suédois", "Swedish Sofa", "Sofá Sueco", {}, ""], plastenite_armor: ["misc", "Armure de plastenite", "Plastenite Armor", "Armadura De Plastenita", {}, ""], soap: ["misc", "Savon", "Soap", "Jabón", {}, ""], super_soap: ["misc", "Super Savon", "Super Soaper", "Jabón mushicida", {}, ""], metal_scraps: ["misc", "Débris métallique", "Scrap Metal", "Pieza metálica", {}, ""], plastic_scraps: ["misc", "Débris plastique", "Plastic Scraps", "Pieza plástica", {}, ""], space_capsule: ["misc", "Capsule Spatiale", "Space Capsule", "Cápsula Espacial", {}, ""], fuel_capsule: ["misc", "Capsule de Fuel", "Fuel Capsule", "Cápsula De Combustible", {}, ""], oxy_capsule: ["misc", "Capsule d'Oxygène", "Oxygen Capsule", "Cápsula De Oxígeno", {}, ""], thick_tube: ["misc", "Tube épais", "Thick Tube", "Tubo grueso", {}, ""], duck_tape: ["misc", "Ruban Adhésif", "Duct Tape", "Cinta adhesiva", {}, ""], mad_kube: ["misc", "MAD Kube", "MAD Kube", "MAD Kube", {}, ""], old_shirt: ["misc", "Vieux T-Shirt", "Old T-Shirt", "Vieja camiseta", {}, ""], printer: ["misc", "Tabulatrice", "Tabulatrix", "Tabuladora", {}, ""], 
 
-	fruit_tree00: ["plants", "Bananier", "Banana Tree", "Árbol plátano", {}, ""], young_fruit_tree00: ["plants", "Jeune Bananier", "Young Banana Tree", "Joven Árbol plátano", {}, ""], fruit_tree01: ["plants", "Lianiste", "Creepist", "Lianesto", {}, ""], young_fruit_tree01: ["plants", "Jeune Lianiste", "Young Creepist", "Joven Lianesto", {}, ""], fruit_tree02: ["plants", "Cactuor", "Cactax", "Cactour", {}, ""], young_fruit_tree02: ["plants", "Jeune Cactuor", "Young Cactax", "Joven Cactour", {}, ""], fruit_tree03: ["plants", "Bifalon", "Bifflon", "Bifalón", {}, ""], young_fruit_tree03: ["plants", "Jeune Bifalon", "Young Bifflon", "Joven Bifalón", {}, ""], fruit_tree04: ["plants", "Poulmino", "Pulminagro", "Pulmino", {}, ""], young_fruit_tree04: ["plants", "Jeune Poulmino", "Young Pulminagro", "Joven Pulmino", {}, ""], fruit_tree05: ["plants", "Precatus", "Precatus", "Precatia", {}, ""], young_fruit_tree05: ["plants", "Jeune Precatus", "Young Precatus", "Joven Precatia", {}, ""], fruit_tree06: ["plants", "Buitalien", "Buttalien", "Buitalien", {}, ""], young_fruit_tree06: ["plants", "Jeune Buitalien", "Young Buttalien", "Joven Buitalien", {}, ""], fruit_tree07: ["plants", "Platacia", "Platacia", "Platacia", {}, ""], young_fruit_tree07: ["plants", "Jeune Platacia", "Young Platacia", "Joven Platacia", {}, ""], fruit_tree08: ["plants", "Tubiliscus", "Tubiliscus", "Tubiliscus", {}, ""], young_fruit_tree08: ["plants", "Jeune Tubiliscus", "Young Tubiliscus", "Joven Tubiliscus", {}, ""], fruit_tree09: ["plants", "Peuplimoune", "Graapshoot", "Poplimuno", {}, ""], young_fruit_tree09: ["plants", "Jeune Peuplimoune", "Young Graapshoot", "Joven Poplimuno", {}, ""], fruit_tree10: ["plants", "Fiboniccus", "Fiboniccus", "Fibonicio", {}, ""], young_fruit_tree10: ["plants", "Jeune Fiboniccus", "Young Fiboniccus", "Joven Fibonicio", {}, ""], fruit_tree11: ["plants", "Mycopia", "Mycopia", "Mycopia", {}, ""], young_fruit_tree11: ["plants", "Jeune Mycopia", "Young Mycopia", "Joven Mycopia", {}, ""], fruit_tree12: ["plants", "Aspergilnuk", "Asperagunk", "Desconocido", {}, ""], young_fruit_tree12: ["plants", "Jeune Aspergilnuk", "Young Asperagunk", "Joven Desconocido", {}, ""], fruit_tree13: ["plants", "Cucurbitatrouille", "Bumpjunkin", "Cucurbitacia", {}, ""], young_fruit_tree13: ["plants", "Jeune Cucurbitatrouille", "Young Bumpjunkin", "Joven Cucurbitacia", {}, ""], fruit00: ["plants", "Banane", "Banana", "Plátano", { foodEffects: [{ type: 'pa', value: 1 }, { type: 'moral', value: 1 }, { type: 'hp', value: 1 }, { type: 'satisfaction', value: 1 }] }, "fruit"], fruit01: ["plants", "Lianube", "Creepnut", "Lianuba", { foodEffects: [{ type: 'satisfaction', value: 1 }] }, "fruit"], fruit02: ["plants", "Balargine", "Meztine", "Balargina", { foodEffects: [{ type: 'satisfaction', value: 1 }] }, "fruit"], fruit03: ["plants", "Goustiflon", "Guntiflop", "Gustiflón", { foodEffects: [{ type: 'satisfaction', value: 1 }] }, "fruit"], fruit04: ["plants", "Toupimino", "Ploshmina", "Tupimino", { foodEffects: [{ type: 'satisfaction', value: 1 }] }, "fruit"], fruit05: ["plants", "Precati", "Precati", "Precatia", { foodEffects: [{ type: 'satisfaction', value: 1 }] }, "fruit"], fruit06: ["plants", "Bottine", "Bottine", "Botino", { foodEffects: [{ type: 'satisfaction', value: 1 }] }, "fruit"], fruit07: ["plants", "Fragilane", "Fragilane", "Fragilana", { foodEffects: [{ type: 'satisfaction', value: 1 }] }, "fruit"], fruit08: ["plants", "Anémole", "Anemole", "Anémola", { foodEffects: [{ type: 'satisfaction', value: 1 }] }, "fruit"], fruit09: ["plants", "Pénicule", "Peniraft", "Peniclo", { foodEffects: [{ type: 'satisfaction', value: 1 }] }, "fruit"], fruit10: ["plants", "Kubinus", "Kubinus", "Kubinus", { foodEffects: [{ type: 'satisfaction', value: 1 }] }, "fruit"], fruit11: ["plants", "Calebotte", "Caleboot", "Calebota", { foodEffects: [{ type: 'satisfaction', value: 1 }] }, "fruit"], fruit12: ["plants", "Filandru", "Filandra", "Filandru", { foodEffects: [{ type: 'satisfaction', value: 1 }] }, "fruit"], fruit13: ["plants", "Citrouïd", "Jumpkin", "Citroida", { foodEffects: [{ type: 'pa', value: 3 }, { type: 'moral', value: 1 }, { type: 'hp', value: 1 }] }, "fruit"], tree_pot: ["plants", "HydroPot", "HydroPot", "Hydromaceta", {}, ""],
+	fruit_tree00: ["plants", "Bananier", "Banana Tree", "Árbol plátano", {}, ""], young_fruit_tree00: ["plants", "Jeune Bananier", "Young Banana Tree", "Joven Árbol plátano", {}, ""], fruit_tree01: ["plants", "Lianiste", "Creepist", "Lianesto", {}, ""], young_fruit_tree01: ["plants", "Jeune Lianiste", "Young Creepist", "Joven Lianesto", {}, ""], fruit_tree02: ["plants", "Cactuor", "Cactax", "Cactour", {}, ""], young_fruit_tree02: ["plants", "Jeune Cactuor", "Young Cactax", "Joven Cactour", {}, ""], fruit_tree03: ["plants", "Bifalon", "Bifflon", "Bifalón", {}, ""], young_fruit_tree03: ["plants", "Jeune Bifalon", "Young Bifflon", "Joven Bifalón", {}, ""], fruit_tree04: ["plants", "Poulmino", "Pulminagro", "Pulmino", {}, ""], young_fruit_tree04: ["plants", "Jeune Poulmino", "Young Pulminagro", "Joven Pulmino", {}, ""], fruit_tree05: ["plants", "Precatus", "Precatus", "Precatia", {}, ""], young_fruit_tree05: ["plants", "Jeune Precatus", "Young Precatus", "Joven Precatia", {}, ""], fruit_tree06: ["plants", "Buitalien", "Buttalien", "Buitalien", {}, ""], young_fruit_tree06: ["plants", "Jeune Buitalien", "Young Buttalien", "Joven Buitalien", {}, ""], fruit_tree07: ["plants", "Platacia", "Platacia", "Platacia", {}, ""], young_fruit_tree07: ["plants", "Jeune Platacia", "Young Platacia", "Joven Platacia", {}, ""], fruit_tree08: ["plants", "Tubiliscus", "Tubiliscus", "Tubiliscus", {}, ""], young_fruit_tree08: ["plants", "Jeune Tubiliscus", "Young Tubiliscus", "Joven Tubiliscus", {}, ""], fruit_tree09: ["plants", "Peuplimoune", "Graapshoot", "Poplimuno", {}, ""], young_fruit_tree09: ["plants", "Jeune Peuplimoune", "Young Graapshoot", "Joven Poplimuno", {}, ""], fruit_tree10: ["plants", "Fiboniccus", "Fiboniccus", "Fibonicio", {}, ""], young_fruit_tree10: ["plants", "Jeune Fiboniccus", "Young Fiboniccus", "Joven Fibonicio", {}, ""], fruit_tree11: ["plants", "Mycopia", "Mycopia", "Mycopia", {}, ""], young_fruit_tree11: ["plants", "Jeune Mycopia", "Young Mycopia", "Joven Mycopia", {}, ""], fruit_tree12: ["plants", "Asperginulk", "Asperagunk", "Asperginulk", {}, ""], young_fruit_tree12: ["plants", "Jeune Asperginulk", "Young Asperagunk", "Joven Asperginulk", {}, ""], fruit_tree13: ["plants", "Cucurbitatrouille", "Bumpjunkin", "Cucurbitacia", {}, ""], young_fruit_tree13: ["plants", "Jeune Cucurbitatrouille", "Young Bumpjunkin", "Joven Cucurbitacia", {}, ""], fruit00: ["plants", "Banane", "Banana", "Plátano", { foodEffects: [{ type: 'pa', value: 1 }, { type: 'moral', value: 1 }, { type: 'hp', value: 1 }, { type: 'satisfaction', value: 1 }] }, "fruit"], fruit01: ["plants", "Lianube", "Creepnut", "Lianuba", { foodEffects: [{ type: 'satisfaction', value: 1 }] }, "fruit"], fruit02: ["plants", "Balargine", "Meztine", "Balargina", { foodEffects: [{ type: 'satisfaction', value: 1 }] }, "fruit"], fruit03: ["plants", "Goustiflon", "Guntiflop", "Gustiflón", { foodEffects: [{ type: 'satisfaction', value: 1 }] }, "fruit"], fruit04: ["plants", "Toupimino", "Ploshmina", "Tupimino", { foodEffects: [{ type: 'satisfaction', value: 1 }] }, "fruit"], fruit05: ["plants", "Precati", "Precati", "Precatia", { foodEffects: [{ type: 'satisfaction', value: 1 }] }, "fruit"], fruit06: ["plants", "Bottine", "Bottine", "Botino", { foodEffects: [{ type: 'satisfaction', value: 1 }] }, "fruit"], fruit07: ["plants", "Fragilane", "Fragilane", "Fragilana", { foodEffects: [{ type: 'satisfaction', value: 1 }] }, "fruit"], fruit08: ["plants", "Anémole", "Anemole", "Anémola", { foodEffects: [{ type: 'satisfaction', value: 1 }] }, "fruit"], fruit09: ["plants", "Pénicule", "Peniraft", "Peniclo", { foodEffects: [{ type: 'satisfaction', value: 1 }] }, "fruit"], fruit10: ["plants", "Kubinus", "Kubinus", "Kubinus", { foodEffects: [{ type: 'satisfaction', value: 1 }] }, "fruit"], fruit11: ["plants", "Calebotte", "Caleboot", "Calebota", { foodEffects: [{ type: 'satisfaction', value: 1 }] }, "fruit"], fruit12: ["plants", "Filandru", "Filandra", "Filandru", { foodEffects: [{ type: 'satisfaction', value: 1 }] }, "fruit"], fruit13: ["plants", "Citrouïd", "Jumpkin", "Citroida", { foodEffects: [{ type: 'pa', value: 3 }, { type: 'moral', value: 1 }, { type: 'hp', value: 1 }] }, "fruit"], tree_pot: ["plants", "HydroPot", "HydroPot", "Hydromaceta", {}, ""],
 
 	camera: ["tools", "Caméra", "Camera", "Cámara", {}, ""], camera_installed: ["tools", "Caméra installée", "Installed camera", "Cámara instalada", {}, ""], extinguisher: ["tools", "Extincteur", "Extinguisher", "Extintor", {}, ""], hacker_kit: ["tools", "Bidouilleur", "Hacker Kit", "Kit de Hackeo", {}, ""], aiming_helmet: ["tools", "Casque de Visée", "Sniper's Helmet", "Casco de tiro", {}, ""], ncc_lens: ["tools", "Lentille NCC", "Lenses", "Lentilla NCC", {}, ""], antigrav_scooter: ["tools", "Trottinette Anti-Grav.", "Anti-Grav Scooter", "Patinete Anti-Gravedad", { charges: 8 }, ""], rolling_boulder: ["tools", "Monture Rocheuse", "Rolling Boulder", "Montura Rocosa", {}, ""], wavoscope: ["tools", "Vaguoscope", "Oscilloscope", "Olascopio", {}, ""], wrench: ["tools", "Clé à molette", "Adjustable Wrench", "Llave inglesa", {}, ""], alien_can_opener: ["tools", "Décapsuleur Alien", "Alien Bottle Opener", "Abrebotellas Alien", {}, ""], protection_gloves: ["tools", "Gants de protection", "Protective Gloves", "Guantes de protección", {}, ""], 
 
 	blaster: ["weaponry", "Blaster", "Blaster", "Blaster", { charges: 3 }, ""], grenade: ["weaponry", "Grenade", "Grenade", "Granada", {}, ""], knife: ["weaponry", "Couteau", "Knife", "Cuchillo", {}, ""], machine_gun: ["weaponry", "Sulfateuse", "Old Faithful", "Sulfatosa", { charges: 12 }, ""], missile_launcher: ["weaponry", "Lance-Roquette", "Rocket Launcher", "Lanza-misiles", { charges: 1 }, ""], natamy_riffle: ["weaponry", "Natamy", "Natamy Rifle", "Fusil Natamy", { charges: 3 }, ""], sniper_riffle: ["weaponry", "Lizaro Jungle", "Lizaro Jungle", "Lizaro Jungle", { charges: 1 }, ""]
+};
+
+
+Main.AstroPad.getStorage = function(variable) {
+	return localStorage['ASTROPAD_' + Main.AstroPad.language + variable];
+};
+
+
+Main.AstroPad.setStorage = function(variable, value) {
+	localStorage['ASTROPAD_' + Main.AstroPad.language + variable] = value;
 };
 
 
@@ -479,33 +490,37 @@ Main.AstroPad.getUserInfo = function() {
 Main.AstroPad.getData = function() {
 	var chk = Main.AstroPad.getCheck();
 	var data = Main.AstroPad.getUserInfo();
-	var gid = localStorage['ASTROPAD_' + Main.AstroPad.language + 'gid'];
-	var gkey = localStorage['ASTROPAD_' + Main.AstroPad.language + 'gkey'];
+	var gid = Main.AstroPad.getStorage('gid');
+	var gkey = Main.AstroPad.getStorage('gkey');
 	return data + '&gid=' + gid + '&gkey=' + gkey + '&chk=' + chk;
 };
 
 Main.AstroPad.selectTab = function(el) {
-	if (el.getAttribute('data-tab') != undefined) {
+	if ($(el).attr('data-tab') != undefined) { //Original game tab
 		$("#astrotab").removeClass("tabon").addClass("taboff");
-		$("#astrotab_content").css("display", "none");
+		$("#astrotab_content").hide();
 		Main.AstroPad.fill("");
-		return Main.selChat(el.getAttribute('data-tab'));
+		return Main.selChat($(el).attr('data-tab'));
 	}
-	// Select tab
-	$("#cdTabsChat li").removeClass("tabon").addClass("taboff");
-	$("#astrotab").removeClass("taboff").addClass("tabon");
 
-	// Display content
-	$("#localChannel").css("display", "none");
-	$("#mushChannel").css("display", "none");
-	$(".objective").css("display", "none");
-	$("#cdStdWall").css("display", "none");
-	$("#cdFavWall").css("display", "none");
-	$('#chatBlock > *').css('display', 'none');
-	$("#privateform").css("display", "none");
-	$("#wall").css("display", "none");
-	$("#astrotab_content").css("display", "block");
-	Main.AstroPad.getInventory();
+	//Script tab
+	$("#cdTabsChat li").removeClass("tabon").addClass("taboff");
+	$("#chatBlock > *").hide();
+
+	$(el).removeClass("taboff").addClass("tabon"); //Tab
+	var scriptTab = $(el).attr('data-script-tab');
+	if (scriptTab) {
+		$(scriptTab).show(); //Content
+	}
+	var scriptFunc = $(el).attr('data-script-function');
+	if (scriptFunc) {
+		scriptFunc = scriptFunc.split('.');
+		var func = unsafeWindow;
+		for (var i = 0; i < scriptFunc.length; i++) {
+			func = func[scriptFunc[i]];
+		}
+		func();
+	}
 };
 
 Main.AstroPad.buildAstrotab = function() {
@@ -516,10 +531,10 @@ Main.AstroPad.buildAstrotab = function() {
 	$("<div>").addClass("cdAstroTab").attr("id", "astrotab_content").appendTo($("#chatBlock"));
 
 	var tabschat = $("#cdTabsChat");
-	var tabs = $("<li>").addClass("tab taboff").attr("id", "astrotab").appendTo(tabschat);
+	var tabs = $("<li>").addClass("tab taboff").attr({ id: "astrotab", 'data-script-tab': '#astrotab_content', 'data-script-function': 'Main.AstroPad.getInventory' }).appendTo(tabschat);
 	$("<img>").attr("src", "/img/icons/ui/pa_comp.png").appendTo(tabs);
 	Main.AstroPad.fill("");
-	$("#astrotab_content").css("display", "none");
+	$("#astrotab_content").hide();
 	$("#astrotab_content").parent().css('height', '500px');
 	$("#astrotab").on("mouseover", function() {
 		Main.showTip($(this)[0], "<div class='tiptop'><div class='tipbottom'><div class='tipbg'><div class='tipcontent'> <h1>AstroPad</h1> <p>" + Main.AstroPad.txt.desc + "</p> </div></div></div></div>");
@@ -638,15 +653,11 @@ Main.AstroPad.sendData = function() {
 			var item = Main.AstroPad.items[i];
 			var iname = item.name;
 			var idetail = item.properties;
-			var attrs = '';
-			if (idetail) {
-				var text = Main.AstroPad.propertiesToText(idetail);
-				attrs = text[0] + '$' + text[1]; //Put iname attributes with attrs because iname is capped server-side
-				if (item.pushToConso && text[1]) {
-					conso += item.id + '|' + text[1] + '§';
-				}
+			var text = Main.AstroPad.propertiesToText(idetail);
+			if (item.pushToConso && text[1]) {
+				conso += item.id + '|' + text[1] + '§';
 			}
-			data += encodeURIComponent(item.roomId + '|' + iname + '|' + item.id + '|' + item.amount + '|' + attrs + '|' + item.day + '§');
+			data += encodeURIComponent(item.roomId + '|' + iname + text[0] + '|' + item.id + '|' + item.amount + '|' + text[1] + '|' + item.day + '§');
 		}
 		data = data.slice(0, -1); //Remove the trailing §
 	}
@@ -699,7 +710,7 @@ Main.AstroPad.addItem = function() {
 			if (!$(this).hasClass('astromod-cat-selected')) {
 				$(this).css('background-color', 'transparent');
 			}
-		}).html("<img src='http://" + Main.AstroPad.urlMush + "/img/icons/ui/" + img + ".png' />").appendTo(list).bind('click', function() {
+		}).html("<img src='http://" + Main.AstroPad.urlMush + "/img/icons/ui/" + img + ".png' />").appendTo(list).on('click', function() {
 			var c = $(this).attr('data-astromod-cat');
 			$('#astromod-cat-name').text(cats[c][1]);
 			$("#astromod-add-item table").hide();
@@ -747,26 +758,10 @@ Main.AstroPad.addItem = function() {
 			$('<img>').css({ height: '35px', width: '35px', cursor: 'pointer' }).attr({
 				src: "http://" + Main.AstroPad.urlMush + "/img/icons/items/" + code + ".jpg",
 				'data-astromod-itemcode': item
-			}).bind('click', function() {
+			}).on('click', function() {
 				//Add item and go back to AstroMod
 				var code = $(this).attr('data-astromod-itemcode');
 				var name = Main.AstroPad.allItems[code][Main.AstroPad.lang];
-
-				code = code.replace('camera_installed', 'camera').replace('young_fruit_tree', 'fruit_tree');
-				if (/blueprint/.test(code)) {
-					code = 'blueprint';
-				}
-				else if (/book/.test(code)) {
-					code = 'book';
-				}
-				if (!name) { name = Main.AstroPad.txt.defaultItem; }
-
-				//Get default properties
-				var originalProperties = { charges: null, broken: false, foodState: null, frozen: false, plantThirst: null, plantIll: false, foodEffects: [] };
-				var defaultProperties = Main.AstroPad.allItems[code][4];
-				for (key in defaultProperties) {
-					originalProperties[key] = defaultProperties[key];
-				}
 
 				//Determine whether food effects can be shared via conso
 				var pushToConso = false;
@@ -782,6 +777,25 @@ Main.AstroPad.addItem = function() {
 				}
 				else if (type == 'all') {
 					pushToConso = true;
+				}
+
+				//Get default properties
+				var originalProperties = { charges: null, broken: false, foodState: null, frozen: false, plantThirst: null, plantIll: false, foodEffects: [] };
+				var defaultProperties = Main.AstroPad.allItems[code][4];
+				for (key in defaultProperties) {
+					originalProperties[key] = defaultProperties[key];
+				}
+
+				//Get generic code for images
+				code = code.replace('camera_installed', 'camera').replace('young_fruit_tree', 'fruit_tree');
+				if (/blueprint/.test(code)) {
+					code = 'blueprint';
+				}
+				else if (/book/.test(code)) {
+					code = 'book';
+				}
+				if (!name) {
+					name = Main.AstroPad.txt.defaultItem;
 				}
 
 				Main.AstroPad.items.push({
@@ -805,7 +819,7 @@ Main.AstroPad.addItem = function() {
 	$('<span>').attr('id', 'astromod-cat-name').css('margin-left', '20px').text(Main.AstroPad.txt.itemCatMisc).appendTo(list); //Category name
 	elements.push(list, div);
 
-	elements.push(Main.AstroPad.createButton(Main.AstroPad.txt.cancelAstromod).bind('click', function() {
+	elements.push(Main.AstroPad.createButton(Main.AstroPad.txt.cancelAstromod).on('click', function() {
 		Main.AstroPad.buildAstromod();
 	}));
 
@@ -990,11 +1004,11 @@ Main.AstroPad.changeItemProperties = function(id) {
 		tdDelay.append(" " + Main.AstroPad.txt.cycles);
 
 		//Remove
-		$('<img>').attr('src', '/img/icons/ui/close.png').css('cursor', 'pointer').bind('click', function() { $(this).closest('tr').remove(); }).appendTo($('<td>').appendTo(tr));
+		$('<img>').attr('src', '/img/icons/ui/close.png').css('cursor', 'pointer').on('click', function() { $(this).closest('tr').remove(); }).appendTo($('<td>').appendTo(tr));
 	}
 
 	//Add effect
-	Main.AstroPad.createButton(Main.AstroPad.txt.addEffect).css({ display: 'inline-block', verticalAlign: 'middle', margin: 0 }).appendTo(effectsField).bind('click', function() {
+	Main.AstroPad.createButton(Main.AstroPad.txt.addEffect).css({ display: 'inline-block', verticalAlign: 'middle', margin: 0 }).appendTo(effectsField).on('click', function() {
 		generateEffectLine({ type: $('[name="astromod-add-effect"]').val(), value: 0, chances: null, delay: null });
 	});
 	var addEffect = $('<select>').attr('name', 'astromod-add-effect').css({ color: 'black', verticalAlign: 'middle', marginLeft: '5px' }).appendTo(effectsField);
@@ -1011,7 +1025,7 @@ Main.AstroPad.changeItemProperties = function(id) {
 	}
 
 	//Retrieve properties
-	Main.AstroPad.createButton(Main.AstroPad.txt.applyProperties).appendTo(form).bind('click', function() {
+	Main.AstroPad.createButton(Main.AstroPad.txt.applyProperties).appendTo(form).on('click', function() {
 		var index = parseInt($(this).closest('form').attr('data-astromod-item'));
 		if ($('[name="astromod-hascharges"]').is(':checked')) {
 			Main.AstroPad.items[index].properties.charges = $('[name="astromod-charges"]').val();
@@ -1059,14 +1073,14 @@ Main.AstroPad.changeItemProperties = function(id) {
 	});
 
 	//Set default/original properties
-	Main.AstroPad.createButton(Main.AstroPad.txt.defaultProperties).appendTo(form).bind('click', function() {
+	Main.AstroPad.createButton(Main.AstroPad.txt.defaultProperties).appendTo(form).on('click', function() {
 		var index = parseInt($(this).closest('form').attr('data-astromod-item'));
 		Main.AstroPad.items[index].properties = Main.AstroPad.items[index].originalProperties;
 		Main.AstroPad.changeItemProperties(index);
 	});
 
 	//Cancel
-	Main.AstroPad.createButton(Main.AstroPad.txt.cancelAstromod).appendTo(form).bind('click', function() {
+	Main.AstroPad.createButton(Main.AstroPad.txt.cancelAstromod).appendTo(form).on('click', function() {
 		Main.AstroPad.buildAstromod();
 	});
 
@@ -1127,7 +1141,7 @@ Main.AstroPad.buildAstromod = function() {
 			//Properties
 			$('<a>').text(Main.AstroPad.txt.changeProperties).css({
 				display: 'block', cursor: 'pointer', textDecoration: 'underline'
-			}).bind('click', function() {
+			}).on('click', function() {
 				Main.AstroPad.changeItemProperties(parseInt($(this).closest('tr').attr('data-astromod-id')));
 			}).appendTo(
 				$('<span>').html(attrs).appendTo(
@@ -1136,14 +1150,14 @@ Main.AstroPad.buildAstromod = function() {
 			);
 
 			//Amount
-			$('<input>').attr({ type: 'number', value: item.amount, min: 1, max: 127 }).css({ color: 'black', width: '3em' }).bind('change', function() {
+			$('<input>').attr({ type: 'number', value: item.amount, min: 1, max: 127 }).css({ color: 'black', width: '3em' }).on('change', function() {
 				Main.AstroPad.items[parseInt($(this).closest('tr').attr('data-astromod-id'))].amount = $(this).val();
 			}).appendTo(
 				$('<td>').appendTo(tr)
 			);
 
 			//Delete
-			$('<img>').attr('src', '/img/icons/ui/close.png').css('cursor', 'pointer').bind('click', function() {
+			$('<img>').attr('src', '/img/icons/ui/close.png').css('cursor', 'pointer').on('click', function() {
 				Main.AstroPad.items.splice(parseInt($(this).closest('tr').attr('data-astromod-id')), 1);
 				Main.AstroPad.buildAstromod();
 			}).appendTo(
@@ -1154,15 +1168,15 @@ Main.AstroPad.buildAstromod = function() {
 	
 	elements.push(div);
 
-	elements.push(Main.AstroPad.createButton(Main.AstroPad.txt.addItem).css('margin-bottom', '10px').bind('click', function() {
+	elements.push(Main.AstroPad.createButton(Main.AstroPad.txt.addItem).css('margin-bottom', '10px').on('click', function() {
 		Main.AstroPad.addItem();
 	}));
 
-	elements.push(Main.AstroPad.createButton(Main.AstroPad.txt.sendAstromod).css('margin-bottom', '10px').bind('click', function() {
+	elements.push(Main.AstroPad.createButton(Main.AstroPad.txt.sendAstromod).css('margin-bottom', '10px').on('click', function() {
 		Main.AstroPad.sendData();
 	}));
 
-	elements.push(Main.AstroPad.createButton(Main.AstroPad.txt.cancelAstromod).bind('click', function() {
+	elements.push(Main.AstroPad.createButton(Main.AstroPad.txt.cancelAstromod).on('click', function() {
 		Main.AstroPad.getInventory();
 	}));
 	
@@ -1266,7 +1280,7 @@ Main.AstroPad.updateInventory = function(tamper) {
 			if (shareEffect) {
 				var lines = desc.split('</p>');
 				for (var i = 0; i < lines.length; i++) {
-					var line = lines[i];
+					var line = lines[i].replace(/\\r\\n/g, '').trim();
 					var chances = null;
 					var delay = null;
 					if (Main.AstroPad.txt.chancesRegExp.test(line)) { //Chances of the effect (if any)
@@ -1327,7 +1341,7 @@ Main.AstroPad.updateInventory = function(tamper) {
 			if (dataName.indexOf('hidden.png') == -1) {
 				var qte = li.children('.qty:first');
 				
-				iname = Main.AstroPad.capitalize(decodeURIComponent(/namey[0-9]+:(.+)g$/.exec(dataTip)[1])); //To get the magebook skill
+				iname = Main.AstroPad.capitalize(decodeURIComponent(/namey[0-9]+:(.+)g$/.exec(dataTip)[1])).replace(/\s+/g, ' '); //To get the magebook skill
 
 				var n = parseInt(qte.text().trim());
 				if (n) {
@@ -1384,9 +1398,10 @@ Main.AstroPad.updateInventory = function(tamper) {
 };
 
 Main.AstroPad.reset = function() {
-	if (confirm(Main.AstroPad.txt.unlink.replace('%1', localStorage['ASTROPAD_' + Main.AstroPad.language + 'gid']))) {
+	if (confirm(Main.AstroPad.txt.unlink.replace('%1', Main.AstroPad.getStorage('gid')))) {
 		localStorage.removeItem('ASTROPAD_' + Main.AstroPad.language + 'gid');
 		localStorage.removeItem('ASTROPAD_' + Main.AstroPad.language + 'gkey');
+		localStorage.removeItem('ASTROPAD_' + Main.AstroPad.language + 'rkey');
 		Main.AstroPad.fill("");
 	}
 };
@@ -1394,18 +1409,18 @@ Main.AstroPad.reset = function() {
 Main.AstroPad.configuration = function() {
 	var credits = $('<p>').text(Main.AstroPad.txt.credits).css({ marginBottom: '10px', fontStyle: 'italics', fontSize: '0.9em', textAlign: 'center' });
 
-	var gid = localStorage['ASTROPAD_' + Main.AstroPad.language + 'gid'];
-	var gkey = localStorage['ASTROPAD_' + Main.AstroPad.language + 'gkey'];
-	var rkey = localStorage['ASTROPAD_' + Main.AstroPad.language + 'rkey'];
+	var gid = Main.AstroPad.getStorage('gid');
+	var gkey = Main.AstroPad.getStorage('gkey');
+	var rkey = Main.AstroPad.getStorage('rkey');
 	if (!rkey) {
 		rkey = gkey;
 	}
-	var message = localStorage['ASTROPAD_' + Main.AstroPad.language + 'shareMessage'];
+	var message = Main.AstroPad.getStorage('shareMessage');
 	if (!message) {
 		message = Main.AstroPad.txt.defaultShareMessage;
 	}
 
-	var urlPad = "http://" + Main.AstroPad.urlMush + "/?astroId=" + gid + "&astroKey=" + gkey;
+	var padCode = "astroId:" + gid + ";astroKey:" + gkey;
 	var urlMap = "http://astropad.sunsky.fr/?gid=" + gid + "&rkey=" + rkey + "&language=" + Main.AstroPad.language;
 	var bubble = $('<div>').addClass('cdMushLog cdChatLine').html(
 	  "<div class='bubble bubble2 tid_editorContent tid_parsed'>"
@@ -1421,15 +1436,15 @@ Main.AstroPad.configuration = function() {
 	//Message to share the AstroPad
 	var textarea = $('<textarea>').css({
 		color: 'black', width: '100%', height: '250px', fontSize: '0.9em'
-	}).val(message.replace('%t', Main.AstroPad.txt.helpTopic).replace('%u', urlPad).replace('%v', urlMap));
+	}).val(message.replace('%t', Main.AstroPad.txt.helpTopic).replace('%u', padCode).replace('%v', urlMap));
 
-	var button = Main.AstroPad.createButton(Main.AstroPad.txt.changeShareMessage).css('margin-top', '20px').bind('click', function() {
+	var button = Main.AstroPad.createButton(Main.AstroPad.txt.changeShareMessage).css('margin-top', '20px').on('click', function() {
 		//Change message
 		var newtext = $('<textarea>').attr('id', 'astro-config-message').css({ color: 'black', width: '100%', height: '250px' }).val(message);
-		var save = Main.AstroPad.createButton(Main.AstroPad.txt.saveShareMessage).css('margin-top', '20px').bind('click', function() {
+		var save = Main.AstroPad.createButton(Main.AstroPad.txt.saveShareMessage).css('margin-top', '20px').on('click', function() {
 			var text = $('#astro-config-message').val();
 			if (text) {
-				localStorage['ASTROPAD_' + Main.AstroPad.language + 'shareMessage'] = text;
+				Main.AstroPad.setStorage('shareMessage', text);
 			}
 			Main.AstroPad.configuration();
 		});
@@ -1440,10 +1455,12 @@ Main.AstroPad.configuration = function() {
 };
 
 Main.AstroPad.viewInventory = function() {
-	var gid = localStorage['ASTROPAD_' + Main.AstroPad.language + 'gid'];
-	var gkey = localStorage['ASTROPAD_' + Main.AstroPad.language + 'gkey'];
-	var rkey = localStorage['ASTROPAD_' + Main.AstroPad.language + 'rkey'];
-	if (!rkey) rkey = gkey;
+	var gid = Main.AstroPad.getStorage('gid');
+	var gkey = Main.AstroPad.getStorage('gkey');
+	var rkey = Main.AstroPad.getStorage('rkey');
+	if (!rkey) {
+		rkey = gkey;
+	}
 
 	window.open("http://astropad.sunsky.fr/?gid=" + gid + "&rkey=" + rkey + "&language=" + Main.AstroPad.language, '_blank');
 };
@@ -1463,8 +1480,8 @@ Main.AstroPad.new = function() {
 			var gid = res[0];
 			var gkey = res[1];
 			if (confirm(Main.AstroPad.txt.link.replace('%1', gid).replace('%2', gkey))) {
-				localStorage['ASTROPAD_' + Main.AstroPad.language + 'gid'] = gid;
-				localStorage['ASTROPAD_' + Main.AstroPad.language + 'gkey'] = gkey;
+				Main.AstroPad.setStorage('gid', gid);
+				Main.AstroPad.setStorage('gkey', gkey);
 				Main.AstroPad.getInventory();
 			}
 		}
@@ -1472,7 +1489,7 @@ Main.AstroPad.new = function() {
 };
 
 Main.AstroPad.getInventory = function() {
-	if (!localStorage['ASTROPAD_' + Main.AstroPad.language + 'gid'] || !localStorage['ASTROPAD_' + Main.AstroPad.language + 'gkey']) {
+	if (!Main.AstroPad.getStorage('gid') || !Main.AstroPad.getStorage('gkey')) {
 		return;
 	}
 	var url = Main.AstroPad.urlAstro + "/getItems";
@@ -1492,7 +1509,7 @@ Main.AstroPad.getInventory = function() {
 			var rooms = res.split('#');
 			var infos = rooms[0].split('|');
 
-			localStorage['ASTROPAD_' + Main.AstroPad.language + 'rkey'] = infos[0];
+			Main.AstroPad.setStorage('rkey', infos[0].replace("\n", ''));
 			for (var j = 1; j < rooms.length; j++) {
 				var its = rooms[j].split('\n');
 				var roomid = parseInt(its[0]);
@@ -1507,7 +1524,7 @@ Main.AstroPad.getInventory = function() {
 					for (var i = 1; i < its.length - 1; i++) {
 						var tr = $('<tr>').appendTo(table);
 						var tdImg = $('<td>').css({ width: '35px', height: '35px', padding: 0 }).appendTo(tr);
-						var tdText = $('<td>').css({ textAlign: 'left', padding: 0 }).appendTo(tr);
+						var tdText = $('<td>').css({ textAlign: 'left', padding: 0, paddingLeft: '2px' }).appendTo(tr);
 						var tdFooter = $('<td>').css({ fontSize: '10px', textAlign: 'right', verticalAlign: 'bottom', width: '75px' }).appendTo(tr);
 
 						var parts = its[i].split('|');
@@ -1526,20 +1543,9 @@ Main.AstroPad.getInventory = function() {
 
 						if (parts[4]) { //Attributes sent from the conso var
 							var idetail = parts[4];
-							//Put item attributes in its name
-							var attrs = parts[3].split('$');
-							if (attrs.length == 2) { //If new version; old version will already have item attributes in iname
-								iname += attrs[0];
-							}
 						}
 						else {
 							var idetail = parts[3];
-							//Put item attributes in its name
-							var attrs = idetail.split('$');
-							if (attrs.length == 2) { //If new version; old version will already have item attributes in iname
-								iname += attrs[0];
-								idetail = attrs[1];
-							}
 						}
 
 						//Name and attributes
@@ -1600,7 +1606,7 @@ Main.AstroPad.getInventory = function() {
 };
 
 Main.AstroPad.getInventoryTxt = function() {
-	if (!localStorage['ASTROPAD_' + Main.AstroPad.language + 'gid'] || !localStorage['ASTROPAD_' + Main.AstroPad.language + 'gkey']) {
+	if (!Main.AstroPad.getStorage('gid') || !Main.AstroPad.getStorage('gkey')) {
 		return;
 	}
 	var url = Main.AstroPad.urlAstro + "/getItems";
@@ -1620,10 +1626,10 @@ Main.AstroPad.getInventoryTxt = function() {
 			elements.push($('<h3>').css('text-align', 'center').text(Main.AstroPad.txt.titleTxtInventory));
 
 			var buttons = $('<div>').css('text-align', 'center');
-			Main.AstroPad.createButton(Main.AstroPad.txt.checkAll).css({ display: 'inline-block', width: '45%' }).bind('click', function() {
+			Main.AstroPad.createButton(Main.AstroPad.txt.checkAll).css({ display: 'inline-block', width: '45%' }).on('click', function() {
 				$('.astromod-txtinv-room input').each(function() { $(this)[0].checked = true; });
 			}).appendTo(buttons);
-			Main.AstroPad.createButton(Main.AstroPad.txt.uncheckAll).css({ display: 'inline-block', width: '45%', marginLeft: '5px' }).bind('click', function() {
+			Main.AstroPad.createButton(Main.AstroPad.txt.uncheckAll).css({ display: 'inline-block', width: '45%', marginLeft: '5px' }).on('click', function() {
 				$('.astromod-txtinv-room input').each(function() { $(this)[0].checked = false; });
 			}).appendTo(buttons);
 			elements.push(buttons);
@@ -1633,7 +1639,7 @@ Main.AstroPad.getInventoryTxt = function() {
 			
 			var rooms = res.split('#');
 			var rkey = rooms[0];
-			localStorage['ASTROPAD_' + Main.AstroPad.language + 'rkey'] = rkey;
+			Main.AstroPad.setStorage('rkey', rkey);
 			for (var j = 1; j < rooms.length; j++) {
 				var its = rooms[j].split('\n');
 				var roomid = parseInt(its[0]);
@@ -1655,20 +1661,9 @@ Main.AstroPad.getInventoryTxt = function() {
 
 					if (parts[4]) { //Attributes sent from the conso var
 						var idetail = parts[4];
-						//Put item attributes in its name
-						var attrs = parts[3].split('$');
-						if (attrs.length == 2) { //If new version; old version will already have item attributes in iname
-							iname += attrs[0];
-						}
 					}
 					else {
 						var idetail = parts[3];
-						//Put item attributes in its name
-						var attrs = idetail.split('$');
-						if (attrs.length == 2) { //If new version; old version will already have item attributes in iname
-							iname += attrs[0];
-							idetail = attrs[1];
-						}
 					}
 					iname = Main.AstroPad.capitalize(iname);
 
@@ -1699,7 +1694,7 @@ Main.AstroPad.getInventoryTxt = function() {
 			}
 			elements.push(div);
 			
-			elements.push(Main.AstroPad.createButton(Main.AstroPad.txt.generateTxtInventory).bind('click', function() {
+			elements.push(Main.AstroPad.createButton(Main.AstroPad.txt.generateTxtInventory).on('click', function() {
 				var texts = ["**//" + Main.AstroPad.txt.inventory + "//**"];
 				$('.astromod-txtinv-room').each(function() {
 					//Retrieve all checked rooms
@@ -1715,17 +1710,17 @@ Main.AstroPad.getInventoryTxt = function() {
 };
 
 Main.AstroPad.fill = function(elements, gotoelemid) {
-	var gid = localStorage['ASTROPAD_' + Main.AstroPad.language + 'gid'];
+	var gid = Main.AstroPad.getStorage('gid');
 
 	var mainDiv = $('<div>').css("color", "rgb(9, 10, 97)").appendTo($("#astrotab_content").empty());
 	function addButton(src, text, hasText, func, parent) {
 		$('<img>').attr({ src: src, title: text }).appendTo(
-			$('<a>').addClass('butmini').attr('href', '#').append((hasText ? text : '')).bind('click', func).appendTo(parent)
+			$('<a>').addClass('butmini').attr('href', '#').append((hasText ? text : '')).on('click', func).appendTo(parent)
 		);
 	}
 
 	//Header
-	if (localStorage['ASTROPAD_' + Main.AstroPad.language + 'gid'] && localStorage['ASTROPAD_' + Main.AstroPad.language + 'gkey']) {
+	if (Main.AstroPad.getStorage('gid') && Main.AstroPad.getStorage('gkey')) {
 		$('<div>').addClass('objtitle').html("<img src='/img/icons/ui/pa_comp.png'> AstroPad (n°" + gid + ") <img src='/img/icons/ui/pa_comp.png'>").appendTo(mainDiv);
 		var menu = $('<div>').addClass('replybuttons').appendTo(mainDiv);
 		addButton('/img/icons/ui/projects_done.png', Main.AstroPad.txt.submit, true, function() { Main.AstroPad.updateInventory(false); }, menu);
@@ -1767,7 +1762,7 @@ Main.AstroPad.fill = function(elements, gotoelemid) {
 	if (gotoelemid) {
 		var scroll = $("#astro_scrollpanel");
 		var room = $(gotoelemid);
-		room.css("display", "block");
+		room.show();
 		if (room.offset()) {
 			scroll.scrollTop(scroll.scrollTop() + room.offset().top - scroll.offset().top);
 		}
@@ -1775,11 +1770,11 @@ Main.AstroPad.fill = function(elements, gotoelemid) {
 };
 
 Main.AstroPad.urlToLink = function() {
-	var pad = /https?:\/\/mush\.(vg|twinoid\.(com|es))\/\?astroId=([0123456789]+)&(amp;)?astroKey=([0123456789abcdef]+)/g;
-	var map = /https?:\/\/astropad\.sunsky\.fr\/\?gid=([0123456789]+)&(amp;)?rkey=([0123456789abcdef]+)&(amp;)?language=(fr|en|es)/g;
+	var pad = /astroId:([0-9]+);astroKey:([0-9a-f]+)/g;
+	var map = /https?:\/\/astropad\.sunsky\.fr\/\?gid=([0-9]+)&(amp;)?rkey=([0-9a-f]+)(&(amp;)?language=(fr|en|es))?/g;
 	$('.bubble:not(.AstroPad-url)').each(function() {
 		if (pad.test($(this).text())) {
-			$(this).html($(this).html().replace(pad, "<a href='$&'>$&</a>"));
+			$(this).html($(this).html().replace(pad, "<a href='$&' onclick='Main.AstroPad.joinPad(this); return false;'>$&</a>"));
 		}
 		if (map.test($(this).text())) {
 			$(this).html($(this).html().replace(map, "<a href='$&'>$&</a>"));
@@ -1803,7 +1798,24 @@ Main.AstroPad.setChatBlock = function() {
 	});
 };
 
+Main.AstroPad.joinPad = function(el) {
+	var text = $(el).text();
+	var gid = /astroId:([0-9]+)/.exec(text);
+	var gkey = /astroKey:([0-9a-f]+)/.exec(text);
+
+	if (gid && gkey) {
+		gid = gid[1];
+		gkey = gkey[1];
+		if (confirm(Main.AstroPad.txt.link.replace('%1', gid).replace('%2', gkey))) {
+			Main.AstroPad.setStorage('gid', gid);
+			Main.AstroPad.setStorage('gkey', gkey);
+		}
+	}
+};
+exportFunction(Main.AstroPad.joinPad, unsafeWindow.Main.AstroPad, { defineAs: 'joinPad' });
+
 Main.AstroPad.startScript = function() {
+	//Detect AstroPad (old way)
 	var gid = /astroId=([0123456789]+)/g.exec(window.location.href);
 	var gkey = /astroKey=([0123456789abcdef]+)/g.exec(window.location.href);
 
@@ -1818,12 +1830,12 @@ Main.AstroPad.startScript = function() {
 
 	//Remind players in new ships to get rid of their old AstroPad
 	var curCycle = parseInt(Main.curCycle());
-	if (localStorage['ASTROPAD_' + Main.AstroPad.language + 'gid']  && localStorage['ASTROPAD_' + Main.AstroPad.language + 'gkey']) { //Don't remind them if they haven't got one…
-		if (localStorage['ASTROPAD_' + Main.AstroPad.language + 'curCycle'] && parseInt(localStorage['ASTROPAD_' + Main.AstroPad.language + 'curCycle']) > curCycle) {
+	if (Main.AstroPad.getStorage('gid')  && Main.AstroPad.getStorage('gkey')) { //Don't remind them if they haven't got one…
+		if (Main.AstroPad.getStorage('curCycle') && parseInt(Main.AstroPad.getStorage('curCycle')) > curCycle) {
 			$('<p>').css({ backgroundColor: '#800', padding: '2px', textAlign: 'center' }).text(Main.AstroPad.txt.newShip).appendTo($('#cdContent'));
 		}
-		localStorage['ASTROPAD_' + Main.AstroPad.language + 'curCycle'] = curCycle;
 	}
+	Main.AstroPad.setStorage('curCycle', curCycle);
 
 	if($("#input").length == 0) {
 		return;
@@ -1833,11 +1845,8 @@ Main.AstroPad.startScript = function() {
 	Main.AstroPad.buildAstrotab();
 	Main.AstroPad.urlToLink();
 	Main.AstroPad.setChatBlock();
-	var now = $("#input").attr('now');
 	setInterval(function() {
-		var gameNow = $("#input").attr('now');
-		if (gameNow != now) { //If the page has been updated
-			now = gameNow;
+		if (!$('#astrotab').length) { //If the page has been updated
 			Main.AstroPad.buildAstrotab();
 			Main.AstroPad.urlToLink();
 			Main.AstroPad.setChatBlock();
