@@ -390,13 +390,7 @@ Main.AstroPad.getRoomId = function() {
 };
 
 Main.AstroPad.getCheck = function() {
-	var $it0 = Main.heroes.iterator();
-	var chk = "";
-	while ($it0.hasNext()) {
-		var st1 = $it0.next();
-		chk += "0123456789abcdefghijklMNOPQRSTUVWXYZ"[parseInt(st1.id)];
-	}
-	return chk;
+	return '0';
 };
 
 Main.AstroPad.getHname = function() {
@@ -484,15 +478,14 @@ Main.AstroPad.canReadFruit = function() { //Can read fruits effects
 };
 
 Main.AstroPad.getUserInfo = function() {
-	return 'tid=' + $('#tid_openRight').attr('href').match(/[0-9]+/)[0] + '&hid=' + Main.AstroPad.heronames.indexOf(Main.AstroPad.getHname());
+	return 'tid=0&hid=' + Main.AstroPad.heronames.indexOf(Main.AstroPad.getHname());
 };
 
 Main.AstroPad.getData = function() {
-	var chk = Main.AstroPad.getCheck();
 	var data = Main.AstroPad.getUserInfo();
 	var gid = Main.AstroPad.getStorage('gid');
 	var gkey = Main.AstroPad.getStorage('gkey');
-	return data + '&gid=' + gid + '&gkey=' + gkey + '&chk=' + chk;
+	return data + '&gid=' + gid + '&gkey=' + gkey + '&chk=0';
 };
 
 Main.AstroPad.selectTab = function(el) {
@@ -1420,7 +1413,7 @@ Main.AstroPad.configuration = function() {
 		message = Main.AstroPad.txt.defaultShareMessage;
 	}
 
-	var padCode = "astroId:" + gid + ";astroKey:" + gkey;
+	var padCode = "http://" + document.domain + "?astroId=" + gid + "&astroKey=" + gkey;
 	var urlMap = "http://astropad.sunsky.fr/?gid=" + gid + "&rkey=" + rkey + "&language=" + Main.AstroPad.language;
 	var bubble = $('<div>').addClass('cdMushLog cdChatLine').html(
 	  "<div class='bubble bubble2 tid_editorContent tid_parsed'>"
@@ -1720,7 +1713,7 @@ Main.AstroPad.fill = function(elements, gotoelemid) {
 	}
 
 	//Header
-	if (Main.AstroPad.getStorage('gid') && Main.AstroPad.getStorage('gkey')) {
+	if (gid) {
 		$('<div>').addClass('objtitle').html("<img src='/img/icons/ui/pa_comp.png'> AstroPad (n°" + gid + ") <img src='/img/icons/ui/pa_comp.png'>").appendTo(mainDiv);
 		var menu = $('<div>').addClass('replybuttons').appendTo(mainDiv);
 		addButton('/img/icons/ui/projects_done.png', Main.AstroPad.txt.submit, true, function() { Main.AstroPad.updateInventory(false); }, menu);
@@ -1733,7 +1726,7 @@ Main.AstroPad.fill = function(elements, gotoelemid) {
 		addButton('/img/icons/ui/close.png', Main.AstroPad.txt.exit, false, Main.AstroPad.reset, menu);
 	}
 	else {
-		$('<div>').addClass('objtitle').html("<img src='/img/icons/ui/pa_comp.png'> AstroPad (n°" + gid + ") <img src='/img/icons/ui/pa_comp.png'>").appendTo(mainDiv);
+		$('<div>').addClass('objtitle').html("<img src='/img/icons/ui/pa_comp.png'> AstroPad<img src='/img/icons/ui/pa_comp.png'>").appendTo(mainDiv);
 		addButton('/img/icons/ui/goldplus.png', Main.AstroPad.txt.newPad, true, Main.AstroPad.new, $('<div>').addClass('replybuttons').appendTo(mainDiv));
 	}
 
@@ -1770,8 +1763,8 @@ Main.AstroPad.fill = function(elements, gotoelemid) {
 };
 
 Main.AstroPad.urlToLink = function() {
-	var pad = /astroId:([0-9]+);astroKey:([0-9a-f]+)/g;
-	var map = /https?:\/\/astropad\.sunsky\.fr\/\?gid=([0-9]+)&(amp;)?rkey=([0-9a-f]+)(&(amp;)?language=(fr|en|es))?/g;
+	var pad = /https?:\/\/mush\.(vg|twinoid\.(com|es))\?astroId=([0-9]+)&astroKey=([0-9a-f]+)/g;
+	var map = /https?:\/\/astropad\.sunsky\.fr\/\?gid=([0-9]+)&(amp;)?rkey=([0-9a-f]+)&(amp;)?language=(en|es)?/g;
 	$('.bubble:not(.AstroPad-url)').each(function() {
 		if (pad.test($(this).text())) {
 			$(this).html($(this).html().replace(pad, "<a href='$&' onclick='Main.AstroPad.joinPad(this); return false;'>$&</a>"));
@@ -1800,8 +1793,8 @@ Main.AstroPad.setChatBlock = function() {
 
 Main.AstroPad.joinPad = function(el) {
 	var text = $(el).text();
-	var gid = /astroId:([0-9]+)/.exec(text);
-	var gkey = /astroKey:([0-9a-f]+)/.exec(text);
+	var gid = /astroId=([0-9]+)/.exec(text);
+	var gkey = /astroKey=([0-9a-f]+)/.exec(text);
 
 	if (gid && gkey) {
 		gid = gid[1];
