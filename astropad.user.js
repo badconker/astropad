@@ -9,7 +9,7 @@
 // @match      http://mush.twinoid.com/#
 // @match      http://mush.twinoid.es/*
 // @match      http://mush.twinoid.es/#
-// @require    http://code.jquery.com/jquery-latest.js
+// @require    https://code.jquery.com/jquery-2.2.1.min.js
 // @copyright  2012+, Sunsky (inspiration Skildor' scripts), compatibility with Firefox 32+ by badconker, update by LAbare
 // @downloadURL https://github.com/badconker/astropad/raw/master/astropad.user.js
 // ==/UserScript==
