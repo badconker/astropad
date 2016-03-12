@@ -1763,7 +1763,7 @@ Main.AstroPad.fill = function(elements, gotoelemid) {
 };
 
 Main.AstroPad.urlToLink = function() {
-	var pad = /https?:\/\/mush\.(vg|twinoid\.(com|es))\?astroId=([0-9]+)&astroKey=([0-9a-f]+)/g;
+	var pad = /https?:\/\/mush\.(vg|twinoid\.(com|es))\?astroId=([0-9]+)&(amp;)?astroKey=([0-9a-f]+)/g;
 	var map = /https?:\/\/astropad\.sunsky\.fr\/\?gid=([0-9]+)&(amp;)?rkey=([0-9a-f]+)&(amp;)?language=(en|es)?/g;
 	$('.bubble:not(.AstroPad-url)').each(function() {
 		if (pad.test($(this).text())) {
