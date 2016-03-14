@@ -36,6 +36,7 @@ if (window.location.href.indexOf('mush.twinoid.com') != -1) {
 		'Patrol Ship Tomorrowland', 'Patrol Ship Olive Grove', 'Patrol Ship Yasmin', 'Patrol Ship Wolf', 'Patrol Ship E-Street', 'Patrol Ship Eponine', 'Patrol Ship Carpe Diem', 'Pasiphae',
 		'Front Corridor', 'Central Corridor', 'Rear Corridor', 'Planet', 'Icarus Bay', 'Alpha Dorm', 'Bravo Dorm',
 		'Front Storage', 'Centre Alpha Storage', 'Rear Alpha Storage', 'Centre Bravo Storage', 'Rear Bravo Storage', 'Outer Space', 'Limbo'];
+	Main.AstroPad.roomOrder = [1, 3, 29, 2, 30, 0, 25, 32, 11, 34, 14, 9, 10, 13, 24, 31, 8, 28, 6, 37, 5, 4, 36, 23, 22, 20, 21, 17, 16, 19, 18, 27, 33, 12, 35, 15, 26, 7];
 	Main.AstroPad.physicalDiseases = ["Acid Reflux", "Black Bite", "Cat Allergy", "Cold", "Extreme Tinnitus", "Flu", "Food Poisoning", "Fungic Infection", "Gastroenteritis", "Junkbumpkinitis", "Migraine", "Mush allergy", "Rejuvenation", "Rubella", "Sepsis", "Sinus Storm", "Skin Inflammation", "Slight Nausea", "Smallpox", "Space Rabies", "Syphilis", "Tapeworm", "Vitamin Deficiency"];
 	Main.AstroPad.psychologicalDiseases = ["Agoraphobia", "Ailurophobia", "Chronic Vertigo", "Crabism", "Coprolalia", "Chronic Migraine", "Depression", "Paranoia", "Psychotic Episodes", "Spleen", "Vertigo", "Weapon Phobia"];
 
@@ -120,7 +121,9 @@ if (window.location.href.indexOf('mush.twinoid.com') != -1) {
 
 		updateEffect: "Do you want to update the effects ?\n\n(Cancel = update but without the effects)",
 		greetShareMessage: "Here is the text that you should send to your teammates in order to share your AstroPad:",
-		defaultShareMessage: "Hi! I suggest we use the AstroPad to keep our inventory updated.\nYou may install it from this topic: %t.\nJoin this game's inventory by clicking this code: %u.\nTo see the map, follow this link: %v.\nThanks!",
+		defaultShareMessage: "Hi! I suggest we use the AstroPad to keep our inventory updated.\nYou may install it from this topic: //%t//.\nJoin this game's inventory by following this link: //%u//.\nTo see the map, follow this link: //%v//.\nThanks!",
+		linkPad: "[Pad]",
+		linkMap: "[Map]",
 		helpTopic: "http://TODO", //Topic explaining how to install the script TODO
 		changeShareMessage: "Change default message",
 		helpShareMessage: "You can use the following expressions:<ul><li><b>%t</b> will be replaced by a link to the topic explaining how to install the script;</li><li><b>%u</b> will be replaced by the code to add the AstroPad;</li><li><b>%v</b> will be replaced by the link to the map of the AstroPad.</li></ul>",
@@ -142,6 +145,7 @@ else if (window.location.href.indexOf('mush.twinoid.es') != -1) {
 		'Patrullero Longane', 'Patrullero Jujube', 'Patrullero Tamarindo', 'Patrullero Sócrates', 'Patrullero Epicuro', 'Patrullero Platón', 'Patrullero Wallis', 'Pasiphae',
 		'Pasillo delantero', 'Pasillo central', 'Pasillo trasero', 'Planeta', 'Icarus', 'Dormitorio Alpha', 'Dormitorio Beta',
 		'Almacén delantero', 'Almacén Alpha central', 'Almacén Alpha trasero', 'Almacén Beta central', 'Almacén Beta trasero', 'Espacio infinito', 'El limbo'];
+	Main.AstroPad.roomOrder = [32, 33, 34, 35, 31, 11, 10, 12, 14, 13, 15, 7, 29, 30, 37, 5, 36, 28, 8, 6, 4, 25, 24, 26, 23, 20, 17, 16, 21, 19, 18, 22, 27, 1, 3, 2, 0, 9];
 	Main.AstroPad.physicalDiseases = ["Alergia a los gatos", "Alergia al Mush", "Carencia de vitaminas", "Citroiditis", "Enverdecimiento", "Erupción cutánea", "Gastroenteritis", "Gripe", "Infección aguda", "Infección fúngica", "Intoxicación alimentaria", "Migraña", "Mordida negra", "Náusea Ligera", "Rabia espacial", "Reflujos gástricos", "Resfrío", "Rubéola", "Sífilis", "Solitaria", "Tormenta sinusal", "Virulea", "Zumbido extremo"];
 	Main.AstroPad.psychologicalDiseases = ["Acceso psicótico", "Agorafobia", "Ailurofobia", "Bazo", "Coprolalia", "Crabismo", "Crisis de paranoia", "Depresión", "Mareo", "Mareo crónico", "Migraña crónica", "Temor a las armas"];
 
@@ -226,7 +230,9 @@ else if (window.location.href.indexOf('mush.twinoid.es') != -1) {
 
 		updateEffect: "¿Desea actualizar los efectos? \n\n (Cancelar = actualizadas pero sin los efectos)",
 		greetShareMessage: "Aqui está la prueba a ofrecer a vuestros compañeros de equipo para compartir vuestro AstroPad:",
-		defaultShareMessage: "¡Hola! Le sugiero usar AstroPad para el inventario.\Para instalar el script, lea este tema : %t.\nPara añadir este astropad, haga clic en este código: %u.\nPara ver el mapa, siga este enlace : %v.\n¡Gracias!",
+		defaultShareMessage: "¡Hola! Le sugiero usar AstroPad para el inventario.\nPara instalar el script, lea este tema : //%t//.\nPara añadir este astropad, siga este enlace: //%u//.\nPara ver el mapa, siga este enlace : //%v//.\n¡Gracias!",
+		linkPad: "[AstroPad]",
+		linkMap: "[Mapa]",
 		helpTopic: "http://TODO", //TODO
 		changeShareMessage: "Modificar el mensaje por defecto",
 		helpShareMessage: "Puede itilizar las expresiones siguientes:<br /><ul><li><b>%t</b> será reemplazado por el enlace hacia el tópico explicando como instalar el script;</li><li><b>%u</b> será reemplazado por el codigo para añadir el AstroPad;</li><li><b>%v</b> será reemplazado por el enlace hacia la mapa del AstroPad.</li></ul>",
@@ -248,6 +254,7 @@ else {
 		'Patrouilleur Longane', 'Patrouilleur Jujube', 'Patrouilleur Tamarin', 'Patrouilleur Socrate', 'Patrouilleur Epicure', 'Patrouilleur Planton', 'Patrouilleur Wallis', 'Pasiphae',
 		'Couloir avant', 'Couloir central', 'Couloir arrière', 'Planète', 'Baie Icarus', 'Dortoir Alpha', 'Dortoir Beta',
 		'Stockage Avant', 'Stockage Alpha centre', 'Stockage Alpha arrière', 'Stockage Beta centre', 'Stockage Beta arrière', 'Espace infini', 'Les Limbes'];
+	Main.AstroPad.roomOrder = [1, 3, 2, 28, 26, 24, 25, 29, 30, 36, 5, 8, 6, 37, 4, 23, 20, 17, 16, 21, 19, 18, 22, 27, 0, 7, 9, 33, 32, 31, 35, 34, 12, 10, 11, 15, 13, 14];
 	Main.AstroPad.physicalDiseases = ["Acouphènes Extrême", "Allergie au chat", "Allergie au mush", "Carence en vitamines", "Citrouillite", "Éruption cutanée", "Gastro Entérite", "Grippe", "Infection aïgue", "Infection fongique", "Intoxication alimentaire", "Migraine", "Morsure Noire", "Nausée légère", "Rage spatiale", "Reflux Gastriques", "Rhume", "Rubéole", "Syphilis", "Tempête sinusale", "Variole", "Verdoiement", "Vers Solitaire"];
 	Main.AstroPad.psychologicalDiseases = ["Agoraphobie", "Ailurophobie", "Coprolalie", "Crabisme", "Crise Paranoïaque", "Dépression", "Episodes Psychotiques", "Migraine chronique", "Phobie des armes", "Spleen", "Vertige", "Vertige chronique"];
 
@@ -333,7 +340,9 @@ else {
 
 		updateEffect: "Voulez-vous mettre à jour les effets ?\n\n(Annuler = mise à jour quand même mais sans les effets)",
 		greetShareMessage: "Voici le texte à fournir à vos coéquipiers pour partager votre AstroPad :",
-		defaultShareMessage: "Bonjour ! Je vous propose d'utiliser l'AstroPad pour l'inventaire.\nPour installer le script, lisez ce topic : %t.\nPour ajouter cet astropad, cliquez sur ce code : %u.\nPour voir la carte, suivez ce lien : %v.\nMerci !",
+		defaultShareMessage: "Bonjour ! Je vous propose d'utiliser l'AstroPad pour l'inventaire.\nPour installer le script, lisez ce topic : //%t//.\nPour ajouter cet astropad, suivez ce lien : //%u//.\nPour voir la carte, suivez ce lien : //%v//.\nMerci !",
+		linkPad: "[AstroPad]",
+		linkMap: "[Carte]",
 		helpTopic: "http://TODO", //TODO
 		changeShareMessage: "Modifier le message par défaut",
 		helpShareMessage: "Vous pouvez utiliser les expressions suivantes :<br /><ul><li><b>%t</b> sera remplacé par le lien vers le topic expliquant comment installer le script ;</li><li><b>%u</b> sera remplacé par le code d'ajout de l'AstroPad ;</li><li><b>%v</b> sera remplacé par le lien vers la carte de l'AstroPad.</li></ul>",
@@ -541,11 +550,11 @@ Main.AstroPad.createButton = function(text) {
 }
 
 Main.AstroPad.propertiesToText = function(idetail) {
-	var attrs = '';
+	var attrs = [];
 	var iname = '';
 	
 	if (idetail.charges != null) {
-		attrs += idetail.charges + ' ' + Main.AstroPad.txt.charges;
+		attrs.push(idetail.charges + ' ' + Main.AstroPad.txt.charges);
 	}
 	
 	if (idetail.broken) {
@@ -588,9 +597,7 @@ Main.AstroPad.propertiesToText = function(idetail) {
 	var props = idetail.foodEffects;
 	if (props.length > 0) {
 		for (var j = 0; j < props.length; j++) {
-			if (attrs) {
-				attrs += ", ";
-			}
+			var attr = '';
 			var prop = props[j];
 
 			function sign(n) { //1 → '+1'
@@ -601,43 +608,44 @@ Main.AstroPad.propertiesToText = function(idetail) {
 			};
 			
 			if (prop.chances != undefined && prop.chances) {
-				attrs += prop.chances + "% : ";
+				attr += prop.chances + "% : ";
 			}
 
 			switch (prop.type) {
 				case 'pa':
-					attrs += sign(prop.value) + ":pa:";
+					attr += sign(prop.value) + ":pa:";
 					break;
 				case 'pm':
-					attrs += sign(prop.value) + ":pm:";
+					attr += sign(prop.value) + ":pm:";
 					break;
 				case 'hp':
-					attrs += sign(prop.value) + ":hp:";
+					attr += sign(prop.value) + ":hp:";
 					break;
 				case 'moral':
-					attrs += sign(prop.value) + ":moral:";
+					attr += sign(prop.value) + ":moral:";
 					break;
 				case 'satisfaction':
-					attrs += sign(prop.value) + ":pa_cook:";
+					attr += sign(prop.value) + ":pa_cook:";
 					break;
 				case 'cures':
-					attrs += Main.AstroPad.txt.curesText + " " + prop.value;
+					attr += Main.AstroPad.txt.curesText + " " + prop.value;
 					break;
 				case 'causes':
-					attrs += Main.AstroPad.txt.causesText + " " + prop.value;
+					attr += Main.AstroPad.txt.causesText + " " + prop.value;
 					break;
 			}
 
 			if (prop.delay != undefined && prop.delay) {
-				attrs += ' (' + prop.delay + ' ' + Main.AstroPad.txt.cycles + ')';
+				attr += ' (' + prop.delay + ' ' + Main.AstroPad.txt.cycles + ')';
 			}
+			attrs.push(attr);
 		}
 	}
 
-	return [iname, attrs.trim()];
+	return [iname, attrs.join(',')];
 };
 
-Main.AstroPad.sendData = function() {
+Main.AstroPad.sendData = function(sendCallback) {
 	var data = Main.AstroPad.getData() + '&data=';
 	var url = Main.AstroPad.urlAstro + "/addItems";
 	var conso = '';
@@ -666,11 +674,14 @@ Main.AstroPad.sendData = function() {
 		onload: function(responseDetails) {
 			//console.log(responseDetails.responseText);
 			Main.AstroPad.getInventory();
+			if (typeof sendCallback == 'function') {
+				sendCallback();
+			}
 		}
 	});
 };
 
-Main.AstroPad.addItem = function() {
+Main.AstroPad.addItem = function(sendCallback) {
 	var elements = [];
 	elements.push($('<h3>').css('text-align', 'center').text(Main.AstroPad.txt.itemChoice));
 
@@ -801,7 +812,7 @@ Main.AstroPad.addItem = function() {
 					day: 0,
 					pushToConso: pushToConso
 				});
-				Main.AstroPad.buildAstromod();
+				Main.AstroPad.buildAstromod(sendCallback);
 			}).appendTo(td);
 
 			//Name
@@ -813,13 +824,13 @@ Main.AstroPad.addItem = function() {
 	elements.push(list, div);
 
 	elements.push(Main.AstroPad.createButton(Main.AstroPad.txt.cancelAstromod).on('click', function() {
-		Main.AstroPad.buildAstromod();
+		Main.AstroPad.buildAstromod(sendCallback);
 	}));
 
 	Main.AstroPad.fill(elements);
 };
 
-Main.AstroPad.changeItemProperties = function(id) {
+Main.AstroPad.changeItemProperties = function(id, sendCallback) {
 	var item = Main.AstroPad.items[id];
 	var attrs = item.properties;
 	var form = $('<form>').css('color', 'black !important').attr('data-astromod-item', id);
@@ -1062,25 +1073,25 @@ Main.AstroPad.changeItemProperties = function(id) {
 		$('[data-astromod-effect="satisfaction"]').each(function() { pushEffect($(this), 'satisfaction', true); });
 		$('[data-astromod-effect="cures"]').each(function() { pushEffect($(this), 'cures', false); });
 		$('[data-astromod-effect="causes"]').each(function() { pushEffect($(this), 'causes', false); });
-		Main.AstroPad.buildAstromod();
+		Main.AstroPad.buildAstromod(sendCallback);
 	});
 
 	//Set default/original properties
 	Main.AstroPad.createButton(Main.AstroPad.txt.defaultProperties).appendTo(form).on('click', function() {
 		var index = parseInt($(this).closest('form').attr('data-astromod-item'));
 		Main.AstroPad.items[index].properties = Main.AstroPad.items[index].originalProperties;
-		Main.AstroPad.changeItemProperties(index);
+		Main.AstroPad.changeItemProperties(index, sendCallback);
 	});
 
 	//Cancel
 	Main.AstroPad.createButton(Main.AstroPad.txt.cancelAstromod).appendTo(form).on('click', function() {
-		Main.AstroPad.buildAstromod();
+		Main.AstroPad.buildAstromod(sendCallback);
 	});
 
 	Main.AstroPad.fill(form);
 };
 
-Main.AstroPad.buildAstromod = function() {
+Main.AstroPad.buildAstromod = function(sendCallback) {
 	var elements = [];
 	elements.push($('<h3>').text(Main.AstroPad.txt.astromodTitle).css('text-align', 'center'));
 
@@ -1135,7 +1146,8 @@ Main.AstroPad.buildAstromod = function() {
 			$('<a>').text(Main.AstroPad.txt.changeProperties).css({
 				display: 'block', cursor: 'pointer', textDecoration: 'underline'
 			}).on('click', function() {
-				Main.AstroPad.changeItemProperties(parseInt($(this).closest('tr').attr('data-astromod-id')));
+				var id = parseInt($(this).closest('tr').attr('data-astromod-id'));
+				Main.AstroPad.changeItemProperties(id, sendCallback);
 			}).appendTo(
 				$('<span>').html(attrs).appendTo(
 					$('<td>').css({ textAlign: 'center', padding: '2px' }).appendTo(tr)
@@ -1152,7 +1164,7 @@ Main.AstroPad.buildAstromod = function() {
 			//Delete
 			$('<img>').attr('src', '/img/icons/ui/close.png').css('cursor', 'pointer').on('click', function() {
 				Main.AstroPad.items.splice(parseInt($(this).closest('tr').attr('data-astromod-id')), 1);
-				Main.AstroPad.buildAstromod();
+				Main.AstroPad.buildAstromod(sendCallback);
 			}).appendTo(
 				$('<td>').appendTo(tr)
 			);
@@ -1162,11 +1174,11 @@ Main.AstroPad.buildAstromod = function() {
 	elements.push(div);
 
 	elements.push(Main.AstroPad.createButton(Main.AstroPad.txt.addItem).css('margin-bottom', '10px').on('click', function() {
-		Main.AstroPad.addItem();
+		Main.AstroPad.addItem(sendCallback);
 	}));
 
 	elements.push(Main.AstroPad.createButton(Main.AstroPad.txt.sendAstromod).css('margin-bottom', '10px').on('click', function() {
-		Main.AstroPad.sendData();
+		Main.AstroPad.sendData(sendCallback);
 	}));
 
 	elements.push(Main.AstroPad.createButton(Main.AstroPad.txt.cancelAstromod).on('click', function() {
@@ -1176,9 +1188,8 @@ Main.AstroPad.buildAstromod = function() {
 	Main.AstroPad.fill(elements);
 };
 
-Main.AstroPad.updateInventory = function(tamper) {
+Main.AstroPad.updateInventory = function(tamper, sendCallback) {
 	var rid = Main.AstroPad.getRoomId();
-	var conso = "";
 	Main.AstroPad.items = [];
 
 	var readPillsEffect = Main.AstroPad.canReadPills();
@@ -1383,12 +1394,13 @@ Main.AstroPad.updateInventory = function(tamper) {
 	}
 
 	if (tamper) {
-		Main.AstroPad.buildAstromod();
+		Main.AstroPad.buildAstromod(sendCallback);
 	}
 	else {
-		Main.AstroPad.sendData();
+		Main.AstroPad.sendData(sendCallback);
 	}
 };
+exportFunction(Main.AstroPad.updateInventory, unsafeWindow.Main.AstroPad, { defineAs: 'updateInventory' });
 
 Main.AstroPad.reset = function() {
 	if (confirm(Main.AstroPad.txt.unlink.replace('%1', Main.AstroPad.getStorage('gid')))) {
@@ -1481,7 +1493,172 @@ Main.AstroPad.new = function() {
 	});
 };
 
-Main.AstroPad.getInventory = function() {
+Main.AstroPad.getLocalData = function() {
+	/*
+	Returns an object, each key being a room number and each value an array of items, each item being an object with the following structure:
+		{
+			roomId: int,
+			name: string,
+			id: string,
+			amount: int,
+			properties: {
+				charges: int or false,
+				broken: bool,
+				foodState: string or false,
+				frozen: bool,
+				plantThirst: string or false,
+				plantIll: bool,
+				foodEffects: array
+			},
+			lastUpdate: string,
+			updater: int
+		}
+	If the room is empty, the array will contain only one item object, with the 'id' key having the value 'empty'. This allows access to information about the last update.
+	*/
+	if (!Main.AstroPad.getStorage('localData')) {
+		return false;
+	}
+	var data = {};
+	var rooms = Main.AstroPad.getStorage('localData').split('#');
+	Main.AstroPad.setStorage('rkey', rooms[0].replace("\n", ''));
+	for (var i = 1; i < rooms.length; i++) { //rooms[0] being rkey
+		var items = rooms[i].split('\n');
+		var id = parseInt(items[0]);
+		data[id] = [];
+		for (var j = 1; j < items.length; j++) {
+			if (!items[j]) {
+				continue;
+			}
+			var parts = items[j].split('|');
+			if (parts[1] == 'empty') {
+				parts[0] = Main.AstroPad.txt.empty;
+			}
+			if (parts[4]) { //conso properties
+				parts[3] = parts[4];
+			}
+			var properties = {
+				charges: null,
+				broken: false,
+				foodState: null,
+				frozen: false,
+				plantThirst: null,
+				plantIll: false,
+				foodEffects: []
+			};
+
+			//Analysing raw properties
+			var rawProps = parts[3].split(', ');
+			for (var k = 0; k < rawProps.length; k++) {
+				var line = rawProps[k];
+				//Charges
+				if (line.search(Main.AstroPad.txt.charges) != -1) {
+					properties.charges = parseInt(/[0-9]+/.exec(line)[0]);
+				}
+				//Broken
+				else if (line.search(Main.AstroPad.txt.broken) != -1) {
+					properties.broken = true;
+				}
+				//Food state
+				else if (line.search(Main.AstroPad.txt.unstable) != -1) {
+					properties.foodState = 'unstable';
+				}
+				else if (line.search(Main.AstroPad.txt.hazardous) != -1) {
+					properties.foodState = 'hazardous';
+				}
+				else if (line.search(Main.AstroPad.txt.decaying) != -1) {
+					properties.foodState = 'decaying';
+				}
+				//Frozen
+				else if (line.search(Main.AstroPad.txt.frozen) != -1) {
+					properties.frozen = true;
+				}
+				//Plant thirst
+				else if (line.search(Main.AstroPad.txt.thirsty) != -1) {
+					properties.plantThirst = 'thirsty';
+				}
+				else if (line.search(Main.AstroPad.txt.dry) != -1) {
+					properties.plantThirst = 'dry';
+				}
+				//Plant disease
+				else if (line.search(Main.AstroPad.txt.diseased) != -1) {
+					properties.plantIll = true;
+				}
+				//Food effects
+				else {
+					var delay = new RegExp('\\(([0-9]+-[0-9]+) ' + Main.AstroPad.txt.cycles + '\\)').exec(line);
+					if (delay) {
+						line.replace(delay[0], ''); //Isolate value
+						delay = delay[1];
+					}
+					else {
+						delay = null;
+					}
+
+					var chances = /([0-9]+)% :/.exec(line);
+					if (chances) {
+						line.replace(chances[0], '');
+						chances = parseInt(chances[1]);
+					}
+					else {
+						chances = 100;
+					}
+					
+					var type = '';
+					var value = '';
+					if (line.search(':pa:') != -1) {
+						type = 'pa';
+						value = parseInt(/-?[0-9]+/.exec(line)[1]);
+					}
+					else if (line.search(':pm:') != -1) {
+						type = 'pm';
+						value = parseInt(/-?[0-9]+/.exec(line)[1]);
+					}
+					else if (line.search(':hp:') != -1) {
+						type = 'hp';
+						value = parseInt(/-?[0-9]+/.exec(line)[1]);
+					}
+					else if (line.search(':moral:') != -1) {
+						type = 'moral';
+						value = parseInt(/-?[0-9]+/.exec(line)[1]);
+					}
+					else if (line.search(':pa_cook:') != -1) {
+						type = 'satisfaction';
+						value = parseInt(/-?[0-9]+/.exec(line)[1]);
+					}
+					else if (line.search(Main.AstroPad.txt.curesText) != -1) {
+						type = 'cures';
+						value = line.replace(Main.AstroPad.txt.curesText).trim();
+					}
+					else if (line.search(Main.AstroPad.txt.causesText) != -1) {
+						type = 'causes';
+						value = line.replace(Main.AstroPad.txt.causesText).trim();
+					}
+					else {
+						continue;
+					}
+
+					properties.foodEffects.push({ type: type, value: value, chances: chances, delay: delay });
+				}
+			}
+
+			data[id].push({
+				roomId: id,
+				name: Main.AstroPad.capitalize(parts[0]),
+				id: parts[1],
+				amount: parseInt(parts[2]),
+				properties: properties,
+				lastUpdate: parts[6],
+				updater: parseInt(parts[7])
+			});
+		}
+	}
+	console.log('data:');
+	console.log(data);
+	return data;
+};
+exportFunction(Main.AstroPad.getLocalData, unsafeWindow.Main.AstroPad, { defineAs: 'getLocalData' });
+
+Main.AstroPad.getInventory = function(callback) {
 	if (!Main.AstroPad.getStorage('gid') || !Main.AstroPad.getStorage('gkey')) {
 		return;
 	}
@@ -1495,8 +1672,9 @@ Main.AstroPad.getInventory = function() {
 	GM_xmlhttpRequest({
 		method: 'GET',
 		url: url + "?" + data,
-		onload: function(responseDetails) {
+		onload: function(responseDetails, callback) {
 			var res = responseDetails.responseText;
+			Main.AstroPad.setStorage('localData', res);
 			//console.log(res);
 			var elements = [];
 			var rooms = res.split('#');
@@ -1594,112 +1772,95 @@ Main.AstroPad.getInventory = function() {
 			);
 
 			Main.AstroPad.fill(elements, "#astro_rid_" + Main.AstroPad.getRoomId());
+			if (typeof callback == 'function') {
+				callback();
+			}
 		}
 	});
 };
+exportFunction(Main.AstroPad.getInventory, unsafeWindow.Main.AstroPad, { defineAs: 'getInventory' });
 
 Main.AstroPad.getInventoryTxt = function() {
 	if (!Main.AstroPad.getStorage('gid') || !Main.AstroPad.getStorage('gkey')) {
 		return;
 	}
-	var url = Main.AstroPad.urlAstro + "/getItems";
-	var text = "";
-	var data = Main.AstroPad.getData();
+	var data = Main.AstroPad.getLocalData();
+	if (!data) {
+		console.log("No data found.");
+		return;
+	}
 	var elements = [];
 
-	console.log(url + '?' + data);
-	GM_xmlhttpRequest({
-		method: 'GET',
-		url: url + "?" + data,
-		onload: function(responseDetails) {
-			var res = responseDetails.responseText;
-			var elements = [];
+	//First select which rooms to share
+	elements.push($('<h3>').css('text-align', 'center').text(Main.AstroPad.txt.titleTxtInventory));
 
-			//First select which rooms to share
-			elements.push($('<h3>').css('text-align', 'center').text(Main.AstroPad.txt.titleTxtInventory));
+	var buttons = $('<div>').css('text-align', 'center');
+	Main.AstroPad.createButton(Main.AstroPad.txt.checkAll).css({ display: 'inline-block', width: '45%' }).on('click', function() {
+		$('.astromod-txtinv-room input').each(function() { $(this)[0].checked = true; });
+	}).appendTo(buttons);
+	Main.AstroPad.createButton(Main.AstroPad.txt.uncheckAll).css({ display: 'inline-block', width: '45%', marginLeft: '5px' }).on('click', function() {
+		$('.astromod-txtinv-room input').each(function() { $(this)[0].checked = false; });
+	}).appendTo(buttons);
+	elements.push(buttons);
 
-			var buttons = $('<div>').css('text-align', 'center');
-			Main.AstroPad.createButton(Main.AstroPad.txt.checkAll).css({ display: 'inline-block', width: '45%' }).on('click', function() {
-				$('.astromod-txtinv-room input').each(function() { $(this)[0].checked = true; });
-			}).appendTo(buttons);
-			Main.AstroPad.createButton(Main.AstroPad.txt.uncheckAll).css({ display: 'inline-block', width: '45%', marginLeft: '5px' }).on('click', function() {
-				$('.astromod-txtinv-room input').each(function() { $(this)[0].checked = false; });
-			}).appendTo(buttons);
-			elements.push(buttons);
+	var div = $('<div>').addClass('what_happened');
+	var table = $('<table>').addClass('table').appendTo(div);
 
-			var div = $('<div>').addClass('what_happened');
-			var table = $('<table>').addClass('table').appendTo(div);
-			
-			var rooms = res.split('#');
-			var rkey = rooms[0];
-			Main.AstroPad.setStorage('rkey', rkey);
-			for (var j = 1; j < rooms.length; j++) {
-				var its = rooms[j].split('\n');
-				var roomid = parseInt(its[0]);
-				var txt = "-**" + Main.AstroPad.roomNames[roomid] + "**";
-				for (var i = 1; i < its.length - 1; i++) {
-					var parts = its[i].split('|');
-					var iname = parts[0];
-					var iid = parts[1];
-					var date = parts[6];
-					var heroid = parts[7];
-					var iname = Main.AstroPad.capitalize(iname);
-					if (i == 1) {
-						txt += " [" + Main.AstroPad.heronames[heroid] + ", " + date.substring(6, 8) + "." + date.substring(4, 6) + " " + date.substring(8, 10) + ":" + date.substring(10, 12) + "] : ";
-					}
-					if (iid == "empty") {
-						txt += Main.AstroPad.txt.empty + ".\n";
-						continue;
-					}
-
-					if (parts[4]) { //Attributes sent from the conso var
-						var idetail = parts[4];
-					}
-					else {
-						var idetail = parts[3];
-					}
-					iname = Main.AstroPad.capitalize(iname);
-
-					if (idetail) {
-						idetail = idetail.replace(Main.AstroPad.txt.satisfaction, ":pa_cook:");
-						idetail = idetail.replace(new RegExp(Main.AstroPad.txt.curesText, "g"), ":pa_heal:");
-					}
-
-					//Quantity
-					var inb = parts[2];
-					if (inb != "1") {
-						inb = " (x" + inb + ")";
-					}
-					else {
-						inb = "";
-					}
-					txt += iname + inb;
-					if (idetail) {
-						txt += " //" + idetail + "//";
-					}
-					txt += ", ";
-				}
-				txt = txt.slice(0, -2) + ".";
-
-				var tr = $('<tr>').addClass('astromod-txtinv-room').appendTo(table);
-				$('<input>').attr('type', 'checkbox').appendTo($('<td>').css('width', '25px').appendTo(tr));
-				$('<td>').addClass('astromod-txtinv-text').text(txt).appendTo(tr);
-			}
-			elements.push(div);
-			
-			elements.push(Main.AstroPad.createButton(Main.AstroPad.txt.generateTxtInventory).on('click', function() {
-				var texts = ["**//" + Main.AstroPad.txt.inventory + "//**"];
-				$('.astromod-txtinv-room').each(function() {
-					//Retrieve all checked rooms
-					if ($(this).find('input').is(':checked')) {
-						texts.push($(this).find('.astromod-txtinv-text').text());
-					}
-				});
-				Main.AstroPad.fill($('<textarea>').css({ fontSize: '8pt', color: 'black', width: '100%', height: '100%' }).val(texts.join("\n")));
-			}));
-			Main.AstroPad.fill(elements);
+	for (var i = 0; i < Main.AstroPad.roomOrder.length; i++) {
+		//Alphabetical order
+		var id = Main.AstroPad.roomOrder[i];
+		if (!data.hasOwnProperty(id)) {
+			continue;
 		}
-	});
+
+		var room = data[id];
+		var txt = "-**" + Main.AstroPad.roomNames[id] + "**";
+		for (var j = 0; j < room.length; j++) {
+			//Empty rooms have a special 'empty' item
+			var item = room[j];
+			if (j == 0) {
+				txt += " [" + Main.AstroPad.heronames[item.updater] + ", " + item.lastUpdate.substring(6, 8) + "." + item.lastUpdate.substring(4, 6) + " " + item.lastUpdate.substring(8, 10) + ":" + item.lastUpdate.substring(10, 12) + "] : ";
+			}
+
+			//Quantity
+			var inb = item.amount;
+			if (inb > 1) {
+				inb = " (x" + inb + ")";
+			}
+			else {
+				inb = "";
+			}
+			txt += item.name + inb;
+
+			//Properties
+			var idetail = Main.AstroPad.propertiesToText(item.properties)[1];
+			if (idetail) {
+				idetail = idetail.replace(Main.AstroPad.txt.satisfaction, ":pa_cook:");
+				idetail = idetail.replace(new RegExp(Main.AstroPad.txt.curesText, "g"), ":pa_heal:");
+				txt += " //" + idetail + "//";
+			}
+
+			txt += ", ";
+		}
+		txt = txt.slice(0, -2) + ".";
+
+		var tr = $('<tr>').addClass('astromod-txtinv-room').appendTo(table);
+		$('<input>').attr('type', 'checkbox').appendTo($('<td>').css('width', '25px').appendTo(tr));
+		$('<td>').addClass('astromod-txtinv-text').text(txt).appendTo(tr);
+	}
+	elements.push(div);
+			
+	elements.push(Main.AstroPad.createButton(Main.AstroPad.txt.generateTxtInventory).on('click', function() {
+		var texts = ["**//" + Main.AstroPad.txt.inventory + "//**"];
+		$('.astromod-txtinv-room').each(function() {
+			//Retrieve all checked rooms
+			if ($(this).find('input').is(':checked')) {
+				texts.push($(this).find('.astromod-txtinv-text').text());
+			}
+		});
+		Main.AstroPad.fill($('<textarea>').css({ fontSize: '8pt', color: 'black', width: '100%', height: '100%' }).val(texts.join("\n")));
+	}));
+	Main.AstroPad.fill(elements);
 };
 
 Main.AstroPad.fill = function(elements, gotoelemid) {
@@ -1767,10 +1928,10 @@ Main.AstroPad.urlToLink = function() {
 	var map = /https?:\/\/astropad\.sunsky\.fr\/\?gid=([0-9]+)&(amp;)?rkey=([0-9a-f]+)&(amp;)?language=(en|es)?/g;
 	$('.bubble:not(.AstroPad-url)').each(function() {
 		if (pad.test($(this).text())) {
-			$(this).html($(this).html().replace(pad, "<a href='$&' onclick='Main.AstroPad.joinPad(this); return false;'>$&</a>"));
+			$(this).html($(this).html().replace(pad, "<a href='$&' onclick='Main.AstroPad.joinPad(this); return false;'>" + Main.AstroPad.txt.linkPad + "</a>"));
 		}
 		if (map.test($(this).text())) {
-			$(this).html($(this).html().replace(map, "<a href='$&'>$&</a>"));
+			$(this).html($(this).html().replace(map, "<a href='$&' target='_blank'>" + Main.AstroPad.txt.linkMap + "</a>"));
 		}
 		$(this).addClass('AstroPad-url');
 	});
@@ -1792,7 +1953,7 @@ Main.AstroPad.setChatBlock = function() {
 };
 
 Main.AstroPad.joinPad = function(el) {
-	var text = $(el).text();
+	var link = $(el).attr('href');
 	var gid = /astroId=([0-9]+)/.exec(text);
 	var gkey = /astroKey=([0-9a-f]+)/.exec(text);
 
@@ -1804,6 +1965,7 @@ Main.AstroPad.joinPad = function(el) {
 			Main.AstroPad.setStorage('gkey', gkey);
 		}
 	}
+	return false;
 };
 exportFunction(Main.AstroPad.joinPad, unsafeWindow.Main.AstroPad, { defineAs: 'joinPad' });
 
