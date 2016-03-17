@@ -1879,7 +1879,7 @@ Main.AstroPad.fill = function(elements, gotoelemid) {
 		var menu = $('<div>').addClass('replybuttons').appendTo(mainDiv);
 		addButton('/img/icons/ui/projects_done.png', Main.AstroPad.txt.submit, true, function() { Main.AstroPad.updateInventory(false); }, menu);
 		addButton('/img/icons/ui/pa_comp.png', Main.AstroPad.txt.accessAstromod, true, function() { Main.AstroPad.updateInventory(true); }, menu);
-		addButton('http://twinoid.com/img/icons/refresh.png', Main.AstroPad.txt.refresh, false, Main.AstroPad.getInventory, menu);
+		addButton('http://twinoid.com/img/icons/refresh.png', Main.AstroPad.txt.refresh, false, function() { Main.AstroPad.getInventory(); }, menu);
 		addButton('/img/icons/ui/notes.gif', Main.AstroPad.txt.list, false, Main.AstroPad.getInventoryTxt, menu);
 		addButton('http://www.hordes.fr/gfx/forum/smiley/h_exploration.gif', Main.AstroPad.txt.show, false, Main.AstroPad.viewInventory, menu);
 		addButton('/img/icons/ui/guide.png', Main.AstroPad.txt.help, true, Main.AstroPad.configuration, menu);
@@ -1887,7 +1887,7 @@ Main.AstroPad.fill = function(elements, gotoelemid) {
 		addButton('/img/icons/ui/close.png', Main.AstroPad.txt.exit, false, Main.AstroPad.reset, menu);
 	}
 	else {
-		$('<div>').addClass('objtitle').html("<img src='/img/icons/ui/pa_comp.png'> AstroPad<img src='/img/icons/ui/pa_comp.png'>").appendTo(mainDiv);
+		$('<div>').addClass('objtitle').html("<img src='/img/icons/ui/pa_comp.png'> AstroPad <img src='/img/icons/ui/pa_comp.png'>").appendTo(mainDiv);
 		addButton('/img/icons/ui/goldplus.png', Main.AstroPad.txt.newPad, true, Main.AstroPad.new, $('<div>').addClass('replybuttons').appendTo(mainDiv));
 	}
 
@@ -1954,8 +1954,8 @@ Main.AstroPad.setChatBlock = function() {
 
 Main.AstroPad.joinPad = function(el) {
 	var link = $(el).attr('href');
-	var gid = /astroId=([0-9]+)/.exec(text);
-	var gkey = /astroKey=([0-9a-f]+)/.exec(text);
+	var gid = /astroId=([0-9]+)/.exec(link);
+	var gkey = /astroKey=([0-9a-f]+)/.exec(link);
 
 	if (gid && gkey) {
 		gid = gid[1];
