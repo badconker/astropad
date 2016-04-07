@@ -1674,7 +1674,7 @@ Main.AstroPad.getInventory = function(callback) {
 		method: 'GET',
 		url: url + "?" + data,
 		onload: function(responseDetails, callback) {
-			var res = responseDetails.responseText.replace('�', 'è');
+			var res = responseDetails.responseText.replace(/�/g, 'è');
 			Main.AstroPad.setStorage('localData', res);
 			//console.log(res);
 			var elements = [];
