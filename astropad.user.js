@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name       AstroPad
-// @version    0.26
+// @version    0.26.1
 // @grant      unsafeWindow
 // @grant      GM_xmlhttpRequest
 // @connect    astropad.sunsky.fr
@@ -1604,27 +1604,27 @@ Main.AstroPad.getLocalData = function() {
 						chances = 100;
 					}
 					
-					var type = '';
-					var value = '';
+					var type;
+					var value;
 					if (line.search(':pa:') != -1) {
 						type = 'pa';
-						value = parseInt(/-?[0-9]+/.exec(line)[1]);
+						value = parseInt(/-?[0-9]+/.exec(line)[0]);
 					}
 					else if (line.search(':pm:') != -1) {
 						type = 'pm';
-						value = parseInt(/-?[0-9]+/.exec(line)[1]);
+						value = parseInt(/-?[0-9]+/.exec(line)[0]);
 					}
 					else if (line.search(':hp:') != -1) {
 						type = 'hp';
-						value = parseInt(/-?[0-9]+/.exec(line)[1]);
+						value = parseInt(/-?[0-9]+/.exec(line)[0]);
 					}
 					else if (line.search(':moral:') != -1) {
 						type = 'moral';
-						value = parseInt(/-?[0-9]+/.exec(line)[1]);
+						value = parseInt(/-?[0-9]+/.exec(line)[0]);
 					}
 					else if (line.search(':pa_cook:') != -1) {
 						type = 'satisfaction';
-						value = parseInt(/-?[0-9]+/.exec(line)[1]);
+						value = parseInt(/-?[0-9]+/.exec(line)[0]);
 					}
 					else if (line.search(Main.AstroPad.txt.curesText) != -1) {
 						type = 'cures';
