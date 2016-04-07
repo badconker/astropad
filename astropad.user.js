@@ -1838,7 +1838,7 @@ Main.AstroPad.getInventoryTxt = function() {
 			if (idetail) {
 				idetail = idetail.replace(Main.AstroPad.txt.satisfaction, ":pa_cook:");
 				idetail = idetail.replace(new RegExp(Main.AstroPad.txt.curesText, "g"), ":pa_heal:");
-				txt += " //" + idetail + "//";
+				txt += " //" + idetail + "****//";
 			}
 
 			txt += ", ";
