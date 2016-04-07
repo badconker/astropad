@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name       AstroPad
-// @version    0.26.1
+// @version    0.26.2
 // @grant      unsafeWindow
 // @grant      GM_xmlhttpRequest
 // @connect    astropad.sunsky.fr
@@ -1520,7 +1520,7 @@ Main.AstroPad.getLocalData = function() {
 		return false;
 	}
 	var data = {};
-	var rooms = Main.AstroPad.getStorage('localData').split('#');
+	var rooms = Main.AstroPad.getStorage('localData').replace('�', 'è').split('#');
 	Main.AstroPad.setStorage('rkey', rooms[0].replace("\n", ''));
 	for (var i = 1; i < rooms.length; i++) { //rooms[0] being rkey
 		var items = rooms[i].split('\n');
@@ -1675,7 +1675,7 @@ Main.AstroPad.getInventory = function(callback) {
 		url: url + "?" + data,
 		onload: function(responseDetails, callback) {
 			var res = responseDetails.responseText;
-			Main.AstroPad.setStorage('localData', res);
+			Main.AstroPad.setStorage('localData', res.replace('�', 'è'));
 			//console.log(res);
 			var elements = [];
 			var rooms = res.split('#');
@@ -1700,7 +1700,7 @@ Main.AstroPad.getInventory = function(callback) {
 						var tdFooter = $('<td>').css({ fontSize: '10px', textAlign: 'right', verticalAlign: 'bottom', width: '75px' }).appendTo(tr);
 
 						var parts = its[i].split('|');
-						var iname = parts[0];
+						var iname = parts[0].replace('�', 'è');
 						var iid = parts[1];
 						var date = parts[6];
 						var heroid = parts[7];
@@ -1714,10 +1714,10 @@ Main.AstroPad.getInventory = function(callback) {
 						}
 
 						if (parts[4]) { //Attributes sent from the conso var
-							var idetail = parts[4];
+							var idetail = parts[4].replace('�', 'è');
 						}
 						else {
-							var idetail = parts[3];
+							var idetail = parts[3].replace('�', 'è');
 						}
 
 						//Name and attributes
