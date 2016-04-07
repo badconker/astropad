@@ -1,8 +1,9 @@
 // ==UserScript==
 // @name       AstroPad
 // @version    0.26
-// @grant      GM_xmlhttpRequest
 // @grant      unsafeWindow
+// @grant      GM_xmlhttpRequest
+// @connect    astropad.sunsky.fr
 // @match      http://mush.vg/*
 // @match      http://mush.vg/#
 // @match      http://mush.twinoid.com/*
@@ -124,7 +125,7 @@ if (window.location.href.indexOf('mush.twinoid.com') != -1) {
 		defaultShareMessage: "Hi! I suggest we use the AstroPad to keep our inventory updated.\nYou may install it from this topic: //%t//.\nJoin this game's inventory by following this link: //%u//.\nTo see the map, follow this link: //%v//.\nThanks!",
 		linkPad: "[Pad]",
 		linkMap: "[Map]",
-		helpTopic: "http://TODO", //Topic explaining how to install the script TODO
+		helpTopic: "http://twd.io/e/WhgQ0M/0", //Topic explaining how to install the script
 		changeShareMessage: "Change default message",
 		helpShareMessage: "You can use the following expressions:<ul><li><b>%t</b> will be replaced by a link to the topic explaining how to install the script;</li><li><b>%u</b> will be replaced by the code to add the AstroPad;</li><li><b>%v</b> will be replaced by the link to the map of the AstroPad.</li></ul>",
 		saveShareMessage: "Save",
@@ -233,7 +234,7 @@ else if (window.location.href.indexOf('mush.twinoid.es') != -1) {
 		defaultShareMessage: "¡Hola! Le sugiero usar AstroPad para el inventario.\nPara instalar el script, lea este tema : //%t//.\nPara añadir este astropad, siga este enlace: //%u//.\nPara ver el mapa, siga este enlace : //%v//.\n¡Gracias!",
 		linkPad: "[AstroPad]",
 		linkMap: "[Mapa]",
-		helpTopic: "http://TODO", //TODO
+		helpTopic: "http://twd.io/e/VNgQ0M/0",
 		changeShareMessage: "Modificar el mensaje por defecto",
 		helpShareMessage: "Puede itilizar las expresiones siguientes:<br /><ul><li><b>%t</b> será reemplazado por el enlace hacia el tópico explicando como instalar el script;</li><li><b>%u</b> será reemplazado por el codigo para añadir el AstroPad;</li><li><b>%v</b> será reemplazado por el enlace hacia la mapa del AstroPad.</li></ul>",
 		saveShareMessage: "Registrar",
@@ -343,7 +344,7 @@ else {
 		defaultShareMessage: "Bonjour ! Je vous propose d'utiliser l'AstroPad pour l'inventaire.\nPour installer le script, lisez ce topic : //%t//.\nPour ajouter cet astropad, suivez ce lien : //%u//.\nPour voir la carte, suivez ce lien : //%v//.\nMerci !",
 		linkPad: "[AstroPad]",
 		linkMap: "[Carte]",
-		helpTopic: "http://TODO", //TODO
+		helpTopic: "http://twd.io/e/UxgQ0M/0",
 		changeShareMessage: "Modifier le message par défaut",
 		helpShareMessage: "Vous pouvez utiliser les expressions suivantes :<br /><ul><li><b>%t</b> sera remplacé par le lien vers le topic expliquant comment installer le script ;</li><li><b>%u</b> sera remplacé par le code d'ajout de l'AstroPad ;</li><li><b>%v</b> sera remplacé par le lien vers la carte de l'AstroPad.</li></ul>",
 		saveShareMessage: "Sauvegarder",
@@ -1879,7 +1880,7 @@ Main.AstroPad.fill = function(elements, gotoelemid) {
 		var menu = $('<div>').addClass('replybuttons').appendTo(mainDiv);
 		addButton('/img/icons/ui/projects_done.png', Main.AstroPad.txt.submit, true, function() { Main.AstroPad.updateInventory(false); }, menu);
 		addButton('/img/icons/ui/pa_comp.png', Main.AstroPad.txt.accessAstromod, true, function() { Main.AstroPad.updateInventory(true); }, menu);
-		addButton('http://twinoid.com/img/icons/refresh.png', Main.AstroPad.txt.refresh, false, Main.AstroPad.getInventory, menu);
+		addButton('http://twinoid.com/img/icons/refresh.png', Main.AstroPad.txt.refresh, false, function() { Main.AstroPad.getInventory(); }, menu);
 		addButton('/img/icons/ui/notes.gif', Main.AstroPad.txt.list, false, Main.AstroPad.getInventoryTxt, menu);
 		addButton('http://www.hordes.fr/gfx/forum/smiley/h_exploration.gif', Main.AstroPad.txt.show, false, Main.AstroPad.viewInventory, menu);
 		addButton('/img/icons/ui/guide.png', Main.AstroPad.txt.help, true, Main.AstroPad.configuration, menu);
@@ -1887,7 +1888,7 @@ Main.AstroPad.fill = function(elements, gotoelemid) {
 		addButton('/img/icons/ui/close.png', Main.AstroPad.txt.exit, false, Main.AstroPad.reset, menu);
 	}
 	else {
-		$('<div>').addClass('objtitle').html("<img src='/img/icons/ui/pa_comp.png'> AstroPad<img src='/img/icons/ui/pa_comp.png'>").appendTo(mainDiv);
+		$('<div>').addClass('objtitle').html("<img src='/img/icons/ui/pa_comp.png'> AstroPad <img src='/img/icons/ui/pa_comp.png'>").appendTo(mainDiv);
 		addButton('/img/icons/ui/goldplus.png', Main.AstroPad.txt.newPad, true, Main.AstroPad.new, $('<div>').addClass('replybuttons').appendTo(mainDiv));
 	}
 
@@ -1954,8 +1955,8 @@ Main.AstroPad.setChatBlock = function() {
 
 Main.AstroPad.joinPad = function(el) {
 	var link = $(el).attr('href');
-	var gid = /astroId=([0-9]+)/.exec(text);
-	var gkey = /astroKey=([0-9a-f]+)/.exec(text);
+	var gid = /astroId=([0-9]+)/.exec(link);
+	var gkey = /astroKey=([0-9a-f]+)/.exec(link);
 
 	if (gid && gkey) {
 		gid = gid[1];
