@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name       AstroPad
-// @version    0.26.3
+// @version    0.26.4
 // @grant      unsafeWindow
 // @grant      GM_xmlhttpRequest
 // @connect    astropad.sunsky.fr
@@ -608,7 +608,7 @@ Main.AstroPad.propertiesToText = function(idetail) {
 				return n;
 			};
 			
-			if (prop.chances != undefined && prop.chances) {
+			if (prop.chances != undefined && prop.chances && prop.chances != 100) {
 				attr += prop.chances + "% : ";
 			}
 
@@ -1836,6 +1836,10 @@ Main.AstroPad.getInventoryTxt = function() {
 			//Properties
 			var idetail = Main.AstroPad.propertiesToText(item.properties)[1];
 			if (idetail) {
+				console.log(item.name + ':');
+				console.log(item.properties.foodEffects);
+				console.log(idetail);
+				console.log('**********');
 				idetail = idetail.replace(Main.AstroPad.txt.satisfaction, ":pa_cook:");
 				idetail = idetail.replace(new RegExp(Main.AstroPad.txt.curesText, "g"), ":pa_heal:");
 				txt += " //" + idetail + "****//";
