@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name       AstroPad
-// @version    0.26.2
+// @version    0.26.3
 // @grant      unsafeWindow
 // @grant      GM_xmlhttpRequest
 // @connect    astropad.sunsky.fr
@@ -1586,7 +1586,7 @@ Main.AstroPad.getLocalData = function() {
 				}
 				//Food effects
 				else {
-					var delay = new RegExp('\\(([0-9]+-[0-9]+) ' + Main.AstroPad.txt.cycles + '\\)').exec(line);
+					var delay = new RegExp('\\(([0-9]+-[0-9]+) ' + Main.AstroPad.txt.cycles.replace(/\(|\)/g, '\\$&') + '\\)').exec(line);
 					if (delay) {
 						line.replace(delay[0], ''); //Isolate value
 						delay = delay[1];
