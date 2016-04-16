@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name       AstroPad
-// @version    0.26.4
+// @version    0.26.5
 // @grant      unsafeWindow
 // @grant      GM_xmlhttpRequest
 // @connect    astropad.sunsky.fr
@@ -643,7 +643,7 @@ Main.AstroPad.propertiesToText = function(idetail) {
 		}
 	}
 
-	return [iname, attrs.join(',')];
+	return [iname, attrs.join(', ')];
 };
 
 Main.AstroPad.sendData = function(sendCallback) {
@@ -1628,11 +1628,11 @@ Main.AstroPad.getLocalData = function() {
 					}
 					else if (line.search(Main.AstroPad.txt.curesText) != -1) {
 						type = 'cures';
-						value = line.replace(Main.AstroPad.txt.curesText).trim();
+						value = line.replace(Main.AstroPad.txt.curesText, '').trim();
 					}
 					else if (line.search(Main.AstroPad.txt.causesText) != -1) {
 						type = 'causes';
-						value = line.replace(Main.AstroPad.txt.causesText).trim();
+						value = line.replace(Main.AstroPad.txt.causesText, '').trim();
 					}
 					else {
 						continue;
@@ -1836,10 +1836,6 @@ Main.AstroPad.getInventoryTxt = function() {
 			//Properties
 			var idetail = Main.AstroPad.propertiesToText(item.properties)[1];
 			if (idetail) {
-				console.log(item.name + ':');
-				console.log(item.properties.foodEffects);
-				console.log(idetail);
-				console.log('**********');
 				idetail = idetail.replace(Main.AstroPad.txt.satisfaction, ":pa_cook:");
 				idetail = idetail.replace(new RegExp(Main.AstroPad.txt.curesText, "g"), ":pa_heal:");
 				txt += " //" + idetail + "****//";
