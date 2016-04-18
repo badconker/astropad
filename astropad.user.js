@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name       AstroPad
-// @version    0.26.6
+// @version    0.26.7
 // @grant      unsafeWindow
 // @grant      GM_xmlhttpRequest
 // @connect    astropad.sunsky.fr
@@ -1821,6 +1821,9 @@ Main.AstroPad.getInventoryTxt = function() {
 			var item = room[j];
 			if (j == 0) {
 				txt += " //[" + Main.AstroPad.heronames[item.updater] + ", " + item.lastUpdate.substring(6, 8) + "." + item.lastUpdate.substring(4, 6) + " " + item.lastUpdate.substring(8, 10) + ":" + item.lastUpdate.substring(10, 12) + "]// : ";
+				if (item.id != 'empty') {
+					txt += "\n";
+				}
 			}
 
 			//Quantity
