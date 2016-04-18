@@ -1820,7 +1820,7 @@ Main.AstroPad.getInventoryTxt = function() {
 			//Empty rooms have a special 'empty' item
 			var item = room[j];
 			if (j == 0) {
-				txt += " //[" + Main.AstroPad.heronames[item.updater] + ", " + item.lastUpdate.substring(6, 8) + "." + item.lastUpdate.substring(4, 6) + " " + item.lastUpdate.substring(8, 10) + ":" + item.lastUpdate.substring(10, 12) + "]// : ";
+				txt += " //[" + Main.AstroPad.heronames[item.updater] + ", " + item.lastUpdate.substring(6, 8) + "/" + item.lastUpdate.substring(4, 6) + " " + item.lastUpdate.substring(8, 10) + ":" + item.lastUpdate.substring(10, 12) + "]// : ";
 				if (item.id != 'empty') {
 					txt += "\n";
 				}
