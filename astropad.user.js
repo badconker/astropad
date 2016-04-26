@@ -135,6 +135,7 @@ if (window.location.href.indexOf('mush.twinoid.com') != -1) {
 		loading: "Loading…",
 		credits: "AstroPad v." + Main.AstroPad.version + " — Original sin by Sunsky, passed on by badconker and LAbare.",
 		foodNote: "Note: Food effects shared by a specialist are kept in memory for the whole ship. The AstroPad cannot reveal a Mush in any way.",
+		inciteUpdateMessage: "36%7C0)%20Warning%7Cspeaker%7C1%7C%3Cstrong%3ESafety%20update%3C%2Fstrong%3E%7C0%C2%A736%7C1)%7Cpostit%7C1%7CYour%20AstroPad%20version%20(0.25)%20is%20outdated%20and%20unsafe.%7C0%C2%A736%7C2)%7Cpostit%7C1%7CThe%20new%20versions%20(0.26%2B)%20are%20hosted%7C0%C2%A736%7C3)%7Cpostit%7C1%7Con%20a%20new%20platform%3A%20you%20will%20need%20to%20update%20the%20script%7C0%C2%A736%7C4)%7Cpostit%7C1%7Conce%20by%20hand%20(all%20following%20updates%20will%20be%20automated).%7C0%C2%A736%7C5)%7Cpostit%7C1%7CPlease%20follow%20the%20instructions%20here%3A%7C0%C2%A736%7C6)%7Cpostit%7C1%7Chttp%3A%2F%2Ftwd.io%2Fe%2FWhgQ0M%2F0%7C0%C2%A736%7C7)%7Cvoodoo_doll%7C1%7CYou%20will%20see%20this%20warning%20as%20long%20as%20your%20version%20is%20outdated.%7C0",
 	};
 }
 else if (window.location.href.indexOf('mush.twinoid.es') != -1) {
@@ -244,6 +245,7 @@ else if (window.location.href.indexOf('mush.twinoid.es') != -1) {
 		loading: "Cargando…",
 		credits: "AstroPad v." + Main.AstroPad.version + " — Pecado original por Sunsky, transmitido por badconker y LAbare.",
 		foodNote: "Nota: los efectos nutritivos compartidos por un especialista se quedarán en memoria para todo la nave. AstroPad no permite en ningún caso detectar Mush.",
+		inciteUpdateMessage: "36%7C0)%20Warning%7Cspeaker%7C1%7C%3Cstrong%3ESafety%20update%3C%2Fstrong%3E%7C0%C2%A736%7C1)%7Cpostit%7C1%7CYour%20AstroPad%20version%20(0.25)%20is%20outdated%20and%20unsafe.%7C0%C2%A736%7C2)%7Cpostit%7C1%7CThe%20new%20versions%20(0.26%2B)%20are%20hosted%7C0%C2%A736%7C3)%7Cpostit%7C1%7Con%20a%20new%20platform%3A%20you%20will%20need%20to%20update%20the%20script%7C0%C2%A736%7C4)%7Cpostit%7C1%7Conce%20by%20hand%20(all%20following%20updates%20will%20be%20automated).%7C0%C2%A736%7C5)%7Cpostit%7C1%7CPlease%20follow%20the%20instructions%20here%3A%7C0%C2%A736%7C6)%7Cpostit%7C1%7Chttp%3A%2F%2Ftwd.io%2Fe%2FWhgQ0M%2F0%7C0%C2%A736%7C7)%7Cvoodoo_doll%7C1%7CYou%20will%20see%20this%20warning%20as%20long%20as%20your%20version%20is%20outdated.%7C0",
 	};
 }
 else {
@@ -354,6 +356,7 @@ else {
 		loading: "Chargement en cours…",
 		credits: "AstroPad v." + Main.AstroPad.version + " — Péché originel par Sunsky, transmis par badconker et LAbare.",
 		foodNote: "Note : Les effets nutritifs partagés par un spécialiste restent en mémoire pour tout le vaisseau. L'AstroPad ne permet en aucun cas de détecter un Mush.",
+		inciteUpdateMessage: "36%7C0)%20Important%7Cspeaker%7C1%7CMise%20%C3%A0%20jour%20de%20s%C3%A9curit%C3%A9%7C0%C2%A736%7C1)%7Cpostit%7C1%7CVotre%20version%20de%20l'AstroPad%20(0.25)%20n'est%20pas%20%C3%A0%20jour%7C0%C2%A736%7C2)%7Cpostit%7C1%7Cet%20pr%C3%A9sente%20des%20risques%20de%20s%C3%A9curit%C3%A9.%7C0%C2%A736%7C3)%7Cpostit%7C1%7CLes%20nouvelles%20versions%20(0.26%2B)%20sont%20h%C3%A9berg%C3%A9es%7C0%C2%A736%7C4)%7Cpostit%7C1%7Csur%20GitHub.%20Vous%20devez%20mettre%20le%20script%20%C3%A0%20jour%7C0%C2%A736%7C5)%7Cpostit%7C1%7Cmanuellement%20cette%20fois-ci%20mais%20toutes%20les%20mises%7C0%C2%A736%7C6)%7Cpostit%7C1%7C%C3%A0%20jour%20suivantes%20seront%20automatiques.%7C0%C2%A736%7C7)%7Cpostit%7C1%7CPour%20ce%20faire%2C%20suivez%20les%20instructions%20ici%20%3A%7C0%C2%A736%7C8)%7Cpostit%7C1%7Chttp%3A%2F%2Fmush.vg%2Ftid%2Fforum%26num%3B!view%2F67061%26vert%3Bthread%2F53744866%2F0%7C0%C2%A736%7CX)%7Cvoodoo_doll%7C1%7CCe%20message%20sera%20visible%20tant%20que%20votre%20version%7C0%C2%A736%7CY)%7Cvoodoo_doll%7C1%7Cne%20corrigera%20pas%20ce%20d%C3%A9faut%20de%20s%C3%A9curit%C3%A9.%7C0",
 	};
 }
 
@@ -487,15 +490,11 @@ Main.AstroPad.canReadFruit = function() { //Can read fruits effects
 	return false;
 };
 
-Main.AstroPad.getUserInfo = function() {
-	return 'tid=0&hid=' + Main.AstroPad.heronames.indexOf(Main.AstroPad.getHname());
-};
-
 Main.AstroPad.getData = function() {
-	var data = Main.AstroPad.getUserInfo();
+	var hero = Main.AstroPad.heronames.indexOf(Main.AstroPad.getHname());
 	var gid = Main.AstroPad.getStorage('gid');
 	var gkey = Main.AstroPad.getStorage('gkey');
-	return data + '&gid=' + gid + '&gkey=' + gkey + '&chk=0';
+	return 'hid=' + hero + '&gid=' + gid + '&gkey=' + gkey + '&tid=0&chk=0';
 };
 
 Main.AstroPad.selectTab = function(el) {
@@ -1680,11 +1679,16 @@ Main.AstroPad.getInventory = function(callback) {
 			var elements = [];
 			var rooms = res.split('#');
 			var infos = rooms[0].split('|');
+			var inciteUpdateMessage = false; //Transitional
 
 			Main.AstroPad.setStorage('rkey', infos[0].replace("\n", ''));
 			for (var j = 1; j < rooms.length; j++) {
 				var its = rooms[j].split('\n');
 				var roomid = parseInt(its[0]);
+				if (roomid == 36) { //Transitional
+					inciteUpdateMessage = true;
+					continue;
+				}
 				var roomTitle = $('<div>').addClass('astro_rid_' + roomid).attr('id', 'astro_rid_' + roomid);
 				$('<b>').text(Main.AstroPad.roomNames[roomid]).appendTo(roomTitle);
 				elements.push(roomTitle);
@@ -1761,6 +1765,15 @@ Main.AstroPad.getInventory = function(callback) {
 					elements.push(div);
 				}
 			}
+
+			//0.27: Incite 0.25 people to update (Transitional)
+			/*if (!inciteUpdateMessage) {
+				var url = Main.AstroPad.urlAstro + '/addItems';
+				var data = 'tid=0&hid=-1&gid=' + Main.AstroPad.getStorage('gid') + '&gkey=' + Main.AstroPad.getStorage('gkey') + '&chk=0&conso=&data=' + Main.AstroPad.txt.inciteUpdateMessage;
+				GM_xmlhttpRequest({
+					method: 'POST', url: url, data: data, headers: { 'Content-type': 'application/x-www-form-urlencoded' }
+				});
+			}*/
 
 			//Note on Mushes and food effects
 			elements.push(
