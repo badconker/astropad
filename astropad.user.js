@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name       AstroPad
-// @version    0.26.7
+// @version    0.27
 // @grant      unsafeWindow
 // @grant      GM_xmlhttpRequest
 // @connect    astropad.sunsky.fr
@@ -80,7 +80,7 @@ if (window.location.href.indexOf('mush.twinoid.com') != -1) {
 		newPad: "New",
 		exit: "Exit",
 
-		astromodTitle: "Changing the AstroPad",
+		astromodTitle: "Altering AstroPad data",
 		itemChoice: "Choose an item:",
 		itemCatMisc: "Miscellaneous",
 		itemCatTools: "Tools",
@@ -122,7 +122,7 @@ if (window.location.href.indexOf('mush.twinoid.com') != -1) {
 
 		updateEffect: "Do you want to update the effects ?\n\n(Cancel = update but without the effects)",
 		greetShareMessage: "Here is the text that you should send to your teammates in order to share your AstroPad:",
-		defaultShareMessage: "Hi! I suggest we use the AstroPad to keep our inventory updated.\nYou may install it from this topic: //%t//.\nJoin this game's inventory by following this link: //%u//.\nTo see the map, follow this link: //%v//.\nThanks!",
+		defaultShareMessage: "Hi! I suggest we use the AstroPad to keep our inventory updated.\nYou may install it from this topic: //%t//\nJoin this game's inventory by following this link: //%u//\nTo see the map, follow this link: //%v//\nThanks!",
 		linkPad: "[Pad]",
 		linkMap: "[Map]",
 		helpTopic: "http://twd.io/e/WhgQ0M/0", //Topic explaining how to install the script
@@ -134,7 +134,7 @@ if (window.location.href.indexOf('mush.twinoid.com') != -1) {
 		newShip: "It seems you are in a new game. Don't forget to create a new AstroPad!",
 		loading: "Loading…",
 		credits: "AstroPad v." + Main.AstroPad.version + " — Original sin by Sunsky, passed on by badconker and LAbare.",
-		foodNote: "Note: Food effects shared by a specialist are kept in memory for the whole ship. The AstroPad cannot reveal a Mush in any way."
+		foodNote: "Note: Food effects shared by a specialist are kept in memory for the whole ship. The AstroPad cannot reveal a Mush in any way.",
 	};
 }
 else if (window.location.href.indexOf('mush.twinoid.es') != -1) {
@@ -231,7 +231,7 @@ else if (window.location.href.indexOf('mush.twinoid.es') != -1) {
 
 		updateEffect: "¿Desea actualizar los efectos? \n\n (Cancelar = actualizadas pero sin los efectos)",
 		greetShareMessage: "Aqui está la prueba a ofrecer a vuestros compañeros de equipo para compartir vuestro AstroPad:",
-		defaultShareMessage: "¡Hola! Le sugiero usar AstroPad para el inventario.\nPara instalar el script, lea este tema : //%t//.\nPara añadir este astropad, siga este enlace: //%u//.\nPara ver el mapa, siga este enlace : //%v//.\n¡Gracias!",
+		defaultShareMessage: "¡Hola! Le sugiero usar AstroPad para el inventario.\nPara instalar el script, lea este tema : //%t//\nPara añadir este astropad, siga este enlace: //%u//\nPara ver el mapa, siga este enlace : //%v//\n¡Gracias!",
 		linkPad: "[AstroPad]",
 		linkMap: "[Mapa]",
 		helpTopic: "http://twd.io/e/VNgQ0M/0",
@@ -243,7 +243,7 @@ else if (window.location.href.indexOf('mush.twinoid.es') != -1) {
 		newShip: "Parece que usted comenzó una nueva partida. ¡Considere la creación de un nuevo AstroPad!",
 		loading: "Cargando…",
 		credits: "AstroPad v." + Main.AstroPad.version + " — Pecado original por Sunsky, transmitido por badconker y LAbare.",
-		foodNote: "Nota: los efectos nutritivos compartidos por un especialista se quedarán en memoria para todo la nave. AstroPad no permite en ningún caso detectar Mush."
+		foodNote: "Nota: los efectos nutritivos compartidos por un especialista se quedarán en memoria para todo la nave. AstroPad no permite en ningún caso detectar Mush.",
 	};
 }
 else {
@@ -341,7 +341,7 @@ else {
 
 		updateEffect: "Voulez-vous mettre à jour les effets ?\n\n(Annuler = mise à jour quand même mais sans les effets)",
 		greetShareMessage: "Voici le texte à fournir à vos coéquipiers pour partager votre AstroPad :",
-		defaultShareMessage: "Bonjour ! Je vous propose d'utiliser l'AstroPad pour l'inventaire.\nPour installer le script, lisez ce topic : //%t//.\nPour ajouter cet astropad, suivez ce lien : //%u//.\nPour voir la carte, suivez ce lien : //%v//.\nMerci !",
+		defaultShareMessage: "Bonjour ! Je vous propose d'utiliser l'AstroPad pour l'inventaire.\nPour installer le script, lisez ce topic : //%t//\nPour ajouter cet astropad, suivez ce lien : //%u//\nPour voir la carte, suivez ce lien : //%v//\nMerci !",
 		linkPad: "[AstroPad]",
 		linkMap: "[Carte]",
 		helpTopic: "http://twd.io/e/UxgQ0M/0",
@@ -353,7 +353,7 @@ else {
 		newShip: "Il semblerait que vous ayiez commencé une nouvelle partie. Pensez à recréer un AstroPad !",
 		loading: "Chargement en cours…",
 		credits: "AstroPad v." + Main.AstroPad.version + " — Péché originel par Sunsky, transmis par badconker et LAbare.",
-		foodNote: "Note : Les effets nutritifs partagés par un spécialiste restent en mémoire pour tout le vaisseau. L'AstroPad ne permet en aucun cas de détecter un Mush."
+		foodNote: "Note : Les effets nutritifs partagés par un spécialiste restent en mémoire pour tout le vaisseau. L'AstroPad ne permet en aucun cas de détecter un Mush.",
 	};
 }
 
@@ -374,7 +374,7 @@ Main.AstroPad.allItems = {
 
 	camera: ["tools", "Caméra", "Camera", "Cámara", {}, ""], camera_installed: ["tools", "Caméra installée", "Installed camera", "Cámara instalada", {}, ""], extinguisher: ["tools", "Extincteur", "Extinguisher", "Extintor", {}, ""], hacker_kit: ["tools", "Bidouilleur", "Hacker Kit", "Kit de Hackeo", {}, ""], aiming_helmet: ["tools", "Casque de Visée", "Sniper's Helmet", "Casco de tiro", {}, ""], ncc_lens: ["tools", "Lentille NCC", "Lenses", "Lentilla NCC", {}, ""], antigrav_scooter: ["tools", "Trottinette Anti-Grav.", "Anti-Grav Scooter", "Patinete Anti-Gravedad", { charges: 8 }, ""], rolling_boulder: ["tools", "Monture Rocheuse", "Rolling Boulder", "Montura Rocosa", {}, ""], wavoscope: ["tools", "Vaguoscope", "Oscilloscope", "Olascopio", {}, ""], wrench: ["tools", "Clé à molette", "Adjustable Wrench", "Llave inglesa", {}, ""], alien_can_opener: ["tools", "Décapsuleur Alien", "Alien Bottle Opener", "Abrebotellas Alien", {}, ""], protection_gloves: ["tools", "Gants de protection", "Protective Gloves", "Guantes de protección", {}, ""], 
 
-	blaster: ["weaponry", "Blaster", "Blaster", "Blaster", { charges: 3 }, ""], grenade: ["weaponry", "Grenade", "Grenade", "Granada", {}, ""], knife: ["weaponry", "Couteau", "Knife", "Cuchillo", {}, ""], machine_gun: ["weaponry", "Sulfateuse", "Old Faithful", "Sulfatosa", { charges: 12 }, ""], missile_launcher: ["weaponry", "Lance-Roquette", "Rocket Launcher", "Lanza-misiles", { charges: 1 }, ""], natamy_riffle: ["weaponry", "Natamy", "Natamy Rifle", "Fusil Natamy", { charges: 3 }, ""], sniper_riffle: ["weaponry", "Lizaro Jungle", "Lizaro Jungle", "Lizaro Jungle", { charges: 1 }, ""]
+	blaster: ["weaponry", "Blaster", "Blaster", "Blaster", { charges: 3 }, ""], grenade: ["weaponry", "Grenade", "Grenade", "Granada", {}, ""], knife: ["weaponry", "Couteau", "Knife", "Cuchillo", {}, ""], machine_gun: ["weaponry", "Sulfateuse", "Old Faithful", "Sulfatosa", { charges: 12 }, ""], missile_launcher: ["weaponry", "Lance-Roquette", "Rocket Launcher", "Lanza-misiles", { charges: 1 }, ""], natamy_riffle: ["weaponry", "Natamy", "Natamy Rifle", "Fusil Natamy", { charges: 3 }, ""], sniper_riffle: ["weaponry", "Lizaro Jungle", "Lizaro Jungle", "Lizaro Jungle", { charges: 1 }, ""],
 };
 
 
@@ -671,7 +671,7 @@ Main.AstroPad.sendData = function(sendCallback) {
 	console.log(url + '?' + data);
 
 	GM_xmlhttpRequest({
-		method: 'POST', url: url, data: data, headers: {'Content-type': 'application/x-www-form-urlencoded'},
+		method: 'POST', url: url, data: data, headers: { 'Content-type': 'application/x-www-form-urlencoded' },
 		onload: function(responseDetails) {
 			//console.log(responseDetails.responseText);
 			Main.AstroPad.getInventory();
@@ -1202,7 +1202,7 @@ Main.AstroPad.updateInventory = function(tamper, sendCallback) {
 	var inb_drone = 0;
 	while ($it1.hasNext()) {
 		$it = $it1.next();
-		if ($it.iid == "CAMERA" && !document.querySelector('[serial="' + $it.serial + '"]')) { //If it's not an item
+		if ($it.iid == "CAMERA" && !$('[serial="' + $it.serial + '"]').length) { //If it's not an item
 			inb_cam++;
 		}
 		if ($it.iid == "HELP_DRONE") {
@@ -1230,7 +1230,7 @@ Main.AstroPad.updateInventory = function(tamper, sendCallback) {
 		});
 	}
 	var $it2 = Main.npc.iterator();
-	if ($it2.hasNext()) {
+	if ($it2.hasNext() && !$('#myInventory [data-id="BODY_CAT"]').length) {
 		Main.AstroPad.items.push({
 			roomId: rid,
 			name: "Schrödinger",
@@ -1674,7 +1674,7 @@ Main.AstroPad.getInventory = function(callback) {
 		method: 'GET',
 		url: url + "?" + data,
 		onload: function(responseDetails, callback) {
-			var res = responseDetails.responseText.replace(/�/g, 'è');
+			var res = responseDetails.responseText.replace(/�/g, 'è').replace(/</g, "&lt;").replace(/>/g, "&gt;");
 			Main.AstroPad.setStorage('localData', res);
 			//console.log(res);
 			var elements = [];
