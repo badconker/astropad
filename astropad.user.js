@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name       AstroPad
-// @version    0.27.1
+// @version    0.28
 // @grant      unsafeWindow
 // @grant      GM_xmlhttpRequest
 // @connect    astropad.sunsky.fr
@@ -37,7 +37,7 @@ if (window.location.href.indexOf('mush.twinoid.com') != -1) {
 		'Patrol Ship Tomorrowland', 'Patrol Ship Olive Grove', 'Patrol Ship Yasmin', 'Patrol Ship Wolf', 'Patrol Ship E-Street', 'Patrol Ship Eponine', 'Patrol Ship Carpe Diem', 'Pasiphae',
 		'Front Corridor', 'Central Corridor', 'Rear Corridor', 'Planet', 'Icarus Bay', 'Alpha Dorm', 'Bravo Dorm',
 		'Front Storage', 'Centre Alpha Storage', 'Rear Alpha Storage', 'Centre Bravo Storage', 'Rear Bravo Storage', 'Outer Space', 'Limbo'];
-	Main.AstroPad.roomOrder = [1, 3, 29, 2, 30, 0, 25, 32, 11, 34, 14, 9, 10, 13, 24, 31, 8, 28, 6, 37, 5, 4, 36, 23, 22, 20, 21, 17, 16, 19, 18, 27, 33, 12, 35, 15, 26, 7];
+	Main.AstroPad.roomOrder = [1, 3, 29, 2, 30, 0, 25, 32, 11, 34, 14, 9, 10, 13, 24, 31, 8, 28, 6, 5, 4, 36, 23, 22, 20, 21, 17, 16, 19, 18, 27, 33, 12, 35, 15, 26, 7];
 	Main.AstroPad.physicalDiseases = ["Acid Reflux", "Black Bite", "Cat Allergy", "Cold", "Extreme Tinnitus", "Flu", "Food Poisoning", "Fungic Infection", "Gastroenteritis", "Junkbumpkinitis", "Migraine", "Mush allergy", "Rejuvenation", "Rubella", "Sepsis", "Sinus Storm", "Skin Inflammation", "Slight Nausea", "Smallpox", "Space Rabies", "Syphilis", "Tapeworm", "Vitamin Deficiency"];
 	Main.AstroPad.psychologicalDiseases = ["Agoraphobia", "Ailurophobia", "Chronic Vertigo", "Crabism", "Coprolalia", "Chronic Migraine", "Depression", "Paranoia", "Psychotic Episodes", "Spleen", "Vertigo", "Weapon Phobia"];
 
@@ -45,6 +45,7 @@ if (window.location.href.indexOf('mush.twinoid.com') != -1) {
 		desc: "Inventory Manager developed by Sunsky.",
 		camera: "Installed camera",
 		drone: "Drone",
+		intoxRegExp: /Food Poisoning/,
 		broken: "Broken",
 		frozen: "Frozen",
 		unstable: "Unstable",
@@ -135,6 +136,8 @@ if (window.location.href.indexOf('mush.twinoid.com') != -1) {
 		loading: "Loading…",
 		credits: "AstroPad v." + Main.AstroPad.version + " — Original sin by Sunsky, passed on by badconker and LAbare.",
 		foodNote: "Note: Food effects shared by a specialist are kept in memory for the whole ship. The AstroPad cannot reveal a Mush in any way.",
+		allFoodEffectsTitle: "Known food effects",
+		allFoodEffectsButton: "Share known food effects",
 	};
 }
 else if (window.location.href.indexOf('mush.twinoid.es') != -1) {
@@ -146,7 +149,7 @@ else if (window.location.href.indexOf('mush.twinoid.es') != -1) {
 		'Patrullero Longane', 'Patrullero Jujube', 'Patrullero Tamarindo', 'Patrullero Sócrates', 'Patrullero Epicuro', 'Patrullero Platón', 'Patrullero Wallis', 'Pasiphae',
 		'Pasillo delantero', 'Pasillo central', 'Pasillo trasero', 'Planeta', 'Icarus', 'Dormitorio Alpha', 'Dormitorio Beta',
 		'Almacén delantero', 'Almacén Alpha central', 'Almacén Alpha trasero', 'Almacén Beta central', 'Almacén Beta trasero', 'Espacio infinito', 'El limbo'];
-	Main.AstroPad.roomOrder = [32, 33, 34, 35, 31, 11, 10, 12, 14, 13, 15, 7, 29, 30, 37, 5, 36, 28, 8, 6, 4, 25, 24, 26, 23, 20, 17, 16, 21, 19, 18, 22, 27, 1, 3, 2, 0, 9];
+	Main.AstroPad.roomOrder = [32, 33, 34, 35, 31, 11, 10, 12, 14, 13, 15, 7, 29, 30, 5, 36, 28, 8, 6, 4, 25, 24, 26, 23, 20, 17, 16, 21, 19, 18, 22, 27, 1, 3, 2, 0, 9];
 	Main.AstroPad.physicalDiseases = ["Alergia a los gatos", "Alergia al Mush", "Carencia de vitaminas", "Citroiditis", "Enverdecimiento", "Erupción cutánea", "Gastroenteritis", "Gripe", "Infección aguda", "Infección fúngica", "Intoxicación alimentaria", "Migraña", "Mordida negra", "Náusea Ligera", "Rabia espacial", "Reflujos gástricos", "Resfrío", "Rubéola", "Sífilis", "Solitaria", "Tormenta sinusal", "Virulea", "Zumbido extremo"];
 	Main.AstroPad.psychologicalDiseases = ["Acceso psicótico", "Agorafobia", "Ailurofobia", "Bazo", "Coprolalia", "Crabismo", "Crisis de paranoia", "Depresión", "Mareo", "Mareo crónico", "Migraña crónica", "Temor a las armas"];
 
@@ -154,6 +157,7 @@ else if (window.location.href.indexOf('mush.twinoid.es') != -1) {
 		desc: "Gestor de inventario desarrollado por Sunsky. Traducción xxbrut0xx y Guilherande.",
 		camera: "Cámara instalada",
 		drone: "Dron",
+		intoxRegExp: /Intoxicación alimentaria/,
 		broken: "Roto",
 		frozen: "Congelado",
 		unstable: "Sospechosa",
@@ -244,6 +248,8 @@ else if (window.location.href.indexOf('mush.twinoid.es') != -1) {
 		loading: "Cargando…",
 		credits: "AstroPad v." + Main.AstroPad.version + " — Pecado original por Sunsky, transmitido por badconker y LAbare.",
 		foodNote: "Nota: los efectos nutritivos compartidos por un especialista se quedarán en memoria para todo la nave. AstroPad no permite en ningún caso detectar Mush.",
+		allFoodEffectsTitle: "Known food effects",
+		allFoodEffectsButton: "Share known food effects",
 	};
 }
 else {
@@ -255,7 +261,7 @@ else {
 		'Patrouilleur Longane', 'Patrouilleur Jujube', 'Patrouilleur Tamarin', 'Patrouilleur Socrate', 'Patrouilleur Epicure', 'Patrouilleur Planton', 'Patrouilleur Wallis', 'Pasiphae',
 		'Couloir avant', 'Couloir central', 'Couloir arrière', 'Planète', 'Baie Icarus', 'Dortoir Alpha', 'Dortoir Beta',
 		'Stockage Avant', 'Stockage Alpha centre', 'Stockage Alpha arrière', 'Stockage Beta centre', 'Stockage Beta arrière', 'Espace infini', 'Les Limbes'];
-	Main.AstroPad.roomOrder = [1, 3, 2, 28, 26, 24, 25, 29, 30, 36, 5, 8, 6, 37, 4, 23, 20, 17, 16, 21, 19, 18, 22, 27, 0, 7, 9, 33, 32, 31, 35, 34, 12, 10, 11, 15, 13, 14];
+	Main.AstroPad.roomOrder = [1, 3, 2, 28, 26, 24, 25, 29, 30, 36, 5, 8, 6, 4, 23, 20, 17, 16, 21, 19, 18, 22, 27, 0, 7, 9, 33, 32, 31, 35, 34, 12, 10, 11, 15, 13, 14];
 	Main.AstroPad.physicalDiseases = ["Acouphènes Extrême", "Allergie au chat", "Allergie au mush", "Carence en vitamines", "Citrouillite", "Éruption cutanée", "Gastro Entérite", "Grippe", "Infection aïgue", "Infection fongique", "Intoxication alimentaire", "Migraine", "Morsure Noire", "Nausée légère", "Rage spatiale", "Reflux Gastriques", "Rhume", "Rubéole", "Syphilis", "Tempête sinusale", "Variole", "Verdoiement", "Vers Solitaire"];
 	Main.AstroPad.psychologicalDiseases = ["Agoraphobie", "Ailurophobie", "Coprolalie", "Crabisme", "Crise Paranoïaque", "Dépression", "Episodes Psychotiques", "Migraine chronique", "Phobie des armes", "Spleen", "Vertige", "Vertige chronique"];
 
@@ -263,7 +269,7 @@ else {
 		desc: "Gestionnaire d'inventaire développé par Sunsky.",
 		camera: "Caméra installée",
 		drone: "Drone",
-		intox: "Intoxication Alimentaire",
+		intoxRegExp: /Intoxication Alimentaire/,
 		broken: "Cassé(e)",
 		frozen: "Congelé",
 		unstable: "Instable",
@@ -354,6 +360,8 @@ else {
 		loading: "Chargement en cours…",
 		credits: "AstroPad v." + Main.AstroPad.version + " — Péché originel par Sunsky, transmis par badconker et LAbare.",
 		foodNote: "Note : Les effets nutritifs partagés par un spécialiste restent en mémoire pour tout le vaisseau. L'AstroPad ne permet en aucun cas de détecter un Mush.",
+		allFoodEffectsTitle: "Effets nutritifs connus",
+		allFoodEffectsButton: "Partager les effets nutritifs connus",
 	};
 }
 
@@ -1282,6 +1290,10 @@ Main.AstroPad.updateInventory = function(tamper, sendCallback) {
 				var lines = desc.split('</p>');
 				for (var i = 0; i < lines.length; i++) {
 					var line = lines[i].replace(/\\r\\n/g, '').trim();
+					//Don't update Food poisoning, else it messes with different
+					if (Main.AstroPad.txt.intoxRegExp.test(line)) {
+						continue;
+					}
 					var chances = null;
 					var delay = null;
 					if (Main.AstroPad.txt.chancesRegExp.test(line)) { //Chances of the effect (if any)
@@ -1490,6 +1502,62 @@ Main.AstroPad.new = function() {
 	});
 };
 
+Main.AstroPad.analyseFoodEffect = function(line) {
+	var delay = new RegExp('\\(([0-9]+-[0-9]+) ' + Main.AstroPad.txt.cycles.replace(/\(|\)/g, '\\$&') + '\\)').exec(line);
+	if (delay) {
+		line.replace(delay[0], ''); //Isolate value
+		delay = delay[1];
+	}
+	else {
+		delay = null;
+	}
+
+	var chances = /([0-9]+)% :/.exec(line);
+	if (chances) {
+		line.replace(chances[0], '');
+		chances = parseInt(chances[1]);
+	}
+	else {
+		chances = 100;
+	}
+
+	var type;
+	var value;
+	if (line.search(':pa:') != -1) {
+		type = 'pa';
+		value = parseInt(/-?[0-9]+/.exec(line)[0]);
+	}
+	else if (line.search(':pm:') != -1) {
+		type = 'pm';
+		value = parseInt(/-?[0-9]+/.exec(line)[0]);
+	}
+	else if (line.search(':hp:') != -1) {
+		type = 'hp';
+		value = parseInt(/-?[0-9]+/.exec(line)[0]);
+	}
+	else if (line.search(':moral:') != -1) {
+		type = 'moral';
+		value = parseInt(/-?[0-9]+/.exec(line)[0]);
+	}
+	else if (line.search(':pa_cook:') != -1) {
+		type = 'satisfaction';
+		value = parseInt(/-?[0-9]+/.exec(line)[0]);
+	}
+	else if (line.search(Main.AstroPad.txt.curesText) != -1) {
+		type = 'cures';
+		value = line.replace(Main.AstroPad.txt.curesText, '').trim();
+	}
+	else if (line.search(Main.AstroPad.txt.causesText) != -1) {
+		type = 'causes';
+		value = line.replace(Main.AstroPad.txt.causesText, '').trim();
+	}
+	else { //Invalid effect
+		return false;
+	}
+
+	return { type: type, value: value, chances: chances, delay: delay };
+}
+
 Main.AstroPad.getLocalData = function() {
 	/*
 	Returns an object, each key being a room number and each value an array of items, each item being an object with the following structure:
@@ -1511,16 +1579,47 @@ Main.AstroPad.getLocalData = function() {
 			updater: int
 		}
 	If the room is empty, the array will contain only one item object, with the 'id' key having the value 'empty'. This allows access to information about the last update.
+	Known food effects are stored under the key 'allFoodEffects' as an array of items, each being an object with the following structure:
+		{
+			id: string,
+			name: string,
+			foodEffects: array
+		}
+	A foodEffects array contains one object for each food effect, with the following structure:
+		{
+			type: string, //'pa', 'pm', 'hp', 'moral', 'satisfaction', 'cures', 'causes'
+			value: string if type in ['cures', 'causes'], else int,
+			chances: int,
+			delay: string ('A-B') or null
+		}
 	*/
 	if (!Main.AstroPad.getStorage('localData')) {
 		return false;
 	}
-	var data = {};
+	var data = { allFoodEffects: [] };
 	var rooms = Main.AstroPad.getStorage('localData').split('#');
 	Main.AstroPad.setStorage('rkey', rooms[0].replace("\n", ''));
 	for (var i = 1; i < rooms.length; i++) { //rooms[0] being rkey
 		var items = rooms[i].split('\n');
 		var id = parseInt(items[0]);
+		if (id == 37) { //General food effects
+			for (var j = 1; j < items.length; j++) {
+				if (!items[j]) {
+					continue;
+				}
+				var effects = [];
+				var parts = items[j].split('|');
+				//Analysing raw properties
+				var rawProps = parts[4].split(', ');
+				for (var k = 0; k < rawProps.length; k++) {
+					var effect = Main.AstroPad.analyseFoodEffect(rawProps[k]);
+					if (effect) {
+						effects.push(effect);
+					}
+				}
+				data.allFoodEffects.push({ id: parts[1], name: Main.AstroPad.allItems[parts[1]][Main.AstroPad.lang], foodEffects: effects });
+			}
+		}
 		data[id] = [];
 		for (var j = 1; j < items.length; j++) {
 			if (!items[j]) {
@@ -1582,59 +1681,13 @@ Main.AstroPad.getLocalData = function() {
 				}
 				//Food effects
 				else {
-					var delay = new RegExp('\\(([0-9]+-[0-9]+) ' + Main.AstroPad.txt.cycles.replace(/\(|\)/g, '\\$&') + '\\)').exec(line);
-					if (delay) {
-						line.replace(delay[0], ''); //Isolate value
-						delay = delay[1];
-					}
-					else {
-						delay = null;
-					}
-
-					var chances = /([0-9]+)% :/.exec(line);
-					if (chances) {
-						line.replace(chances[0], '');
-						chances = parseInt(chances[1]);
-					}
-					else {
-						chances = 100;
-					}
-					
-					var type;
-					var value;
-					if (line.search(':pa:') != -1) {
-						type = 'pa';
-						value = parseInt(/-?[0-9]+/.exec(line)[0]);
-					}
-					else if (line.search(':pm:') != -1) {
-						type = 'pm';
-						value = parseInt(/-?[0-9]+/.exec(line)[0]);
-					}
-					else if (line.search(':hp:') != -1) {
-						type = 'hp';
-						value = parseInt(/-?[0-9]+/.exec(line)[0]);
-					}
-					else if (line.search(':moral:') != -1) {
-						type = 'moral';
-						value = parseInt(/-?[0-9]+/.exec(line)[0]);
-					}
-					else if (line.search(':pa_cook:') != -1) {
-						type = 'satisfaction';
-						value = parseInt(/-?[0-9]+/.exec(line)[0]);
-					}
-					else if (line.search(Main.AstroPad.txt.curesText) != -1) {
-						type = 'cures';
-						value = line.replace(Main.AstroPad.txt.curesText, '').trim();
-					}
-					else if (line.search(Main.AstroPad.txt.causesText) != -1) {
-						type = 'causes';
-						value = line.replace(Main.AstroPad.txt.causesText, '').trim();
+					var effect = Main.AstroPad.analyseFoodEffect(line);
+					if (effect) {
+						properties.foodEffects.push(effect);
 					}
 					else {
 						continue;
 					}
-
-					properties.foodEffects.push({ type: type, value: value, chances: chances, delay: delay });
 				}
 			}
 
@@ -1677,12 +1730,43 @@ Main.AstroPad.getInventory = function(callback) {
 			var rooms = res.split('#');
 			var infos = rooms[0].split('|');
 
+			var allFoodEffectsBlock = $('<div>').addClass('what_happened');
+			var allFoodEffectsTable = $('<table>').addClass('table').appendTo(allFoodEffectsBlock);
+
 			Main.AstroPad.setStorage('rkey', infos[0].replace("\n", ''));
 			for (var j = 1; j < rooms.length; j++) {
 				var its = rooms[j].split('\n');
-				var roomid = parseInt(its[0]);
-				var roomTitle = $('<div>').addClass('astro_rid_' + roomid).attr('id', 'astro_rid_' + roomid);
-				$('<b>').text(Main.AstroPad.roomNames[roomid]).appendTo(roomTitle);
+				var roomId = parseInt(its[0]);
+				if (roomId == 37) { //Food effects
+					for (var i = 1; i < its.length - 1; i++) {
+						var parts = its[i].split('|');
+						var idetail = parts[4];
+						var tr = $('<tr>').appendTo(allFoodEffectsTable);
+						var tdImg = $('<td>').css({ width: '35px', height: '35px', padding: 0 }).appendTo(tr);
+						var tdText = $('<td>').css({ textAlign: 'left', padding: 0, paddingLeft: '2px' }).appendTo(tr);
+
+						//Name and attributes
+						function toImg(text, exp, img, alt) {
+							return text.replace(exp, "<img src='/img/icons/ui/" + img + ".png' alt='" + alt + "' title='" + alt + "' />");
+						}
+						idetail = toImg(idetail, /:pa:/g, 'pa_slot1', 'pa');
+						idetail = toImg(idetail, /:moral:/g, 'moral', 'moral');
+						idetail = toImg(idetail, /:pm:/g, 'pa_slot2', 'pm');
+						idetail = toImg(idetail, /:hp:/g, 'lp', 'hp');
+						idetail = toImg(idetail, Main.AstroPad.txt.satisfaction, 'pa_cook', Main.AstroPad.txt.satisfaction);
+						idetail = toImg(idetail, /:pa_cook:/g, 'pa_cook', Main.AstroPad.txt.satisfaction);
+						idetail = toImg(idetail, ' ' + Main.AstroPad.txt.charges, 'charge', Main.AstroPad.txt.charges);
+						idetail = toImg(idetail, new RegExp(Main.AstroPad.txt.curesText, "g"), "pa_heal", 'heal');
+
+						$('<img>').attr('src', "http://" + Main.AstroPad.urlMush + "/img/icons/items/" + parts[1] + ".jpg").css({ width: '35px', height: '35px' }).appendTo(tdImg);
+						$('<b>').html(Main.AstroPad.allItems[parts[1]][Main.AstroPad.lang]).appendTo(tdText);
+						tdText.append(" : <i>" + idetail + "</i>");
+					}
+					continue;
+				}
+
+				var roomTitle = $('<div>').addClass('astro_rid_' + roomId).attr('id', 'astro_rid_' + roomId);
+				$('<b>').text(Main.AstroPad.roomNames[roomId]).appendTo(roomTitle);
 				elements.push(roomTitle);
 
 				if (its.length > 2) {
@@ -1758,15 +1842,15 @@ Main.AstroPad.getInventory = function(callback) {
 				}
 			}
 
+			elements.push(
+				$('<p>').html('<b>' + Main.AstroPad.txt.allFoodEffectsTitle + '</b>').css('margin-top', '15px')
+			);
 			//Note on Mushes and food effects
 			elements.push(
-				$('<p>').text(Main.AstroPad.txt.foodNote).css({
-					color: 'white',
-					marginTop: '10px',
-					backgroundColor: '#802',
-					padding: '2px'
-				})
+				$('<p>').text(Main.AstroPad.txt.foodNote).css({ color: 'white', backgroundColor: '#802', padding: '2px' })
 			);
+			//Add general food effects table
+			elements.push(allFoodEffectsBlock);
 
 			Main.AstroPad.fill(elements, "#astro_rid_" + Main.AstroPad.getRoomId());
 			if (typeof callback == 'function') {
@@ -1797,6 +1881,21 @@ Main.AstroPad.getInventoryTxt = function() {
 	}).appendTo(buttons);
 	Main.AstroPad.createButton(Main.AstroPad.txt.uncheckAll).css({ display: 'inline-block', width: '45%', marginLeft: '5px' }).on('click', function() {
 		$('.astromod-txtinv-room input').each(function() { $(this)[0].checked = false; });
+	}).appendTo(buttons);
+	//Share general food effects
+	Main.AstroPad.createButton(Main.AstroPad.txt.allFoodEffectsButton).on('click', function() {
+		var txt = "**" + Main.AstroPad.txt.allFoodEffectsTitle + "**\n";
+		for (var i = 0; i < data.allFoodEffects.length; i++) {
+			var idetail = Main.AstroPad.propertiesToText({
+				charges: null, broken: null, foodState: null, frozen: null, plantThirst: null, plantIll: null,
+				foodEffects: data.allFoodEffects[i].foodEffects
+			});
+			idetail = idetail[1];
+			idetail = idetail.replace(Main.AstroPad.txt.satisfaction, ":pa_cook:");
+			idetail = idetail.replace(new RegExp(Main.AstroPad.txt.curesText, "g"), ":pa_heal:");
+			txt += "- " + data.allFoodEffects[i].name + " : //" + idetail + "****//\n";
+		}
+		Main.AstroPad.fill($('<textarea>').css({ fontSize: '8pt', color: 'black', width: '100%', height: '100%' }).val(txt));
 	}).appendTo(buttons);
 	elements.push(buttons);
 
