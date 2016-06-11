@@ -11,7 +11,7 @@
 // @match      http://mush.twinoid.es/*
 // @match      http://mush.twinoid.es/#
 // @require    https://code.jquery.com/jquery-2.2.1.min.js
-// @copyright  2012+, Sunsky (inspiration Skildor' scripts), compatibility with Firefox 32+ by badconker, update by LAbare
+// @copyright  2012+, Sunsky (inspiration Skildor's scripts), compatibility with Firefox 32+ by badconker, update by LAbare
 // @downloadURL https://github.com/badconker/astropad/raw/master/astropad.user.js
 // ==/UserScript==
 
@@ -248,8 +248,8 @@ else if (window.location.href.indexOf('mush.twinoid.es') != -1) {
 		loading: "Cargando…",
 		credits: "AstroPad v." + Main.AstroPad.version + " — Pecado original por Sunsky, transmitido por badconker y LAbare.",
 		foodNote: "Nota: los efectos nutritivos compartidos por un especialista se quedarán en memoria para todo la nave. AstroPad no permite en ningún caso detectar Mush.",
-		allFoodEffectsTitle: "Known food effects",
-		allFoodEffectsButton: "Share known food effects",
+		allFoodEffectsTitle: "Efectos nutritivos conocidos",
+		allFoodEffectsButton: "Compartir los efectos nutritivos conocidos",
 	};
 }
 else {
