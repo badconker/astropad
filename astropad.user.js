@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name       AstroPad
-// @version    0.28
+// @version    0.28.2
 // @grant      unsafeWindow
 // @grant      GM_xmlhttpRequest
 // @connect    astropad.sunsky.fr
@@ -15,13 +15,16 @@
 // @downloadURL https://github.com/badconker/astropad/raw/master/astropad.user.js
 // ==/UserScript==
 
+//TODO: talkies in shelves create a blank space
+//TODO: check analyseFoodEffect line.replace → line = line.replace DONE?
+
 var console = unsafeWindow.console;
 var localStorage = unsafeWindow.localStorage;
 var Main = unsafeWindow.Main;
 
 Main.AstroPad = createObjectIn(unsafeWindow.Main, { defineAs: 'AstroPad' });
 
-Main.AstroPad.version = GM_info.script.version;
+Main.AstroPad.version = GM_info.script.version || "0.28.2"; //For use by other scripts
 Main.AstroPad.urlAstro = "http://astropad.sunsky.fr/api.py";
 Main.AstroPad.heronames = ['Jin Su', 'Frieda', 'Kuan Ti', 'Janice', 'Roland', 'Hua', 'Paola', 'Chao', 'Finola', 'Stephen', 'Ian', 'Chun', 'Raluca', 'Gioele', 'Eleesha', 'Terrence', 'Derek', 'Andie'];
 Main.AstroPad.heronames[-1] = "?";
@@ -288,7 +291,7 @@ else {
 		botanist: "Botaniste",
 		satisfaction: "satiété",
 		thirsty: "assoiffé",
-		dry: "desseché",
+		dry: "desséché",
 		diseased: "malade",
 		cycles: "cycles",
 
@@ -366,6 +369,7 @@ else {
 }
 
 Main.AstroPad.allItems = {
+	//id: ["category", "French name", "English name", "Spanish name", { default food effects or empty }, "food type ('pill', 'food' or 'fruit') for canRead*() or empty"]
 	super_map: ["alien", "Morceau de carte stellaire", "Starmap Fragment", "Trozo de Mapa Estelar", {}, ""], alien_holographic_tv: ["alien", "Télé Holographique alien", "Alien Holographic TV", "Televisión Alien", {}, ""], alien_oil: ["alien", "Lubrifiant Alien", "Jar of Alien Oil", "Lubricante Alien", {}, ""], computer_jelly: ["alien", "Gelée à Circuits Imprimés", "Printed Circuit Jelly", "Pomada Refrescante", {}, ""], insectoid_shell: ["alien", "Cartouche Invertébré", "Invertebrate Shell", "Proyectil Invertebrado", {}, ""], magellan_liquid_map: ["alien", "Carte Liquide de Magellan", "Magellan Liquid Map", "Mapa Líquido de Magallanes", {}, ""], water_stick: ["alien", "Batonnet Aqueux", "Water Stick", "Barrilla acuosa", {}, ""], 
 
 	document: ["documents", "Document", "Document", "Documento", {}, ""], postit: ["documents", "Pense-Bête", "Post-it", "Taco de post-it", {}, ""], postit_bloc: ["documents", "Bloc de Pense-Bête", "Block of Post-it Notes", "Bloc de Notas", {}, ""], blueprint_0: ["documents", "Plan du Casque de Visée", "Blueprint: Sniper Helmet", "Plano: Casco de tiro", {}, ""], blueprint_1: ["documents", "Plan du Drapeau Blanc", "Blueprint: White Flag", "Plano: Bandera blanca", {}, ""], blueprint_2: ["documents", "Plan du Drone de Soutien", "Blueprint: Support Drone", "Plano: Dron de apoyo", {}, ""], blueprint_3: ["documents", "Plan de l'EchoLocateur", "Blueprint: EchoLocator", "Plano: Eco-Localizador", {}, ""], blueprint_4: ["documents", "Plan de l'Extincteur", "Blueprint: Extinguisher", "Plano: Extintor", {}, ""], blueprint_5: ["documents", "Plan de la Grenade", "Blueprint: Grenade", "Plano: Granada", {}, ""], blueprint_6: ["documents", "Plan du Lance-Roquette", "Blueprint: Rocket Launcher", "Plano: Lanza-misiles", {}, ""], blueprint_7: ["documents", "Plan du Lizaro Jungle", "Blueprint: Lizaro Jungle", "Plano: Lizaro Jungle", {}, ""], blueprint_8: ["documents", "Plan du Module Babel", "Blueprint: Babel Module", "Plano: Módulo Babel", {}, ""], blueprint_9: ["documents", "Plan du Sofa Suédois", "Blueprint: Swedish Sofa", "Plano: Sofá sueco", {}, ""], blueprint_10: ["documents", "Plan de la Sulfateuse", "Blueprint: Old Faithful", "Plano: Sulfatosa", {}, ""], blueprint_11: ["documents", "Plan du ThermoSenseur", "Blueprint: Thermosensor", "Plano: TermoSensor", {}, ""], blueprint_12: ["documents", "Plan du Vaguoscope", "Blueprint: Oscilloscope", "Plano: Olascopio", {}, ""], book_0: ["documents", "Apprentron : Astrophysicien", "Astrophysicist Mage Book", "Librotron : Astrofísico", {}, ""], book_1: ["documents", "Apprentron : Biologiste", "Biologist Mage Book", "Librotron : Biólogo", {}, ""], book_2: ["documents", "Apprentron : Botaniste", "Botanist Mage Book", "Librotron : Botánico", {}, ""], book_3: ["documents", "Apprentron : Cuistot", "Chef Mage Book", "Librotron : Chef", {}, ""], book_4: ["documents", "Apprentron : Diplomatie", "Diplomat Mage Book", "Librotron : Diplomático", {}, ""], book_5: ["documents", "Apprentron : Expert radio", "Radio Expert Mage Book", "Librotron : Experto en comunicaciones", {}, ""], book_6: ["documents", "Apprentron : Informaticien", "IT Expert Mage Book", "Librotron : Informático", {}, ""], book_7: ["documents", "Apprentron : Logistique", "Logistics Expert Mage Book", "Librotron : Logística", {}, ""], book_8: ["documents", "Apprentron : Médecin", "Medic Mage Book", "Librotron : Médico", {}, ""], book_9: ["documents", "Apprentron : Pilote", "Pilot Mage Book", "Librotron : Piloto", {}, ""], book_10: ["documents", "Apprentron : Pompier", "Firefighter Mage Book", "Librotron : Bombero", {}, ""], book_11: ["documents", "Apprentron : Psy", "Shrink Mage Book", "Librotron : Psicólogo", {}, ""], book_12: ["documents", "Apprentron : Robotiques", "Robotics Expert Mage Book", "Librotron : Ing. Robótico", {}, ""], book_13: ["documents", "Apprentron : Sprinter", "Sprinter Mage Book", "Librotron : Velocista", {}, ""], book_14: ["documents", "Apprentron : Technicien", "Technician Mage Book", "Librotron : Técnico", {}, ""], book_15: ["documents", "Apprentron : Tireur", "Shooter Mage Book", "Librotron : Artillero", {}, ""], book_16: ["documents", "De la Recherche sur le Mush.", "Mush Research Review", "Estudio sobre los Mush.", {}, ""], book_17: ["documents", "Manuel du commandant", "Commander's Manual", "Manual del Comandante", {}, ""], 
@@ -374,7 +378,7 @@ Main.AstroPad.allItems = {
 
 	ration_5: ["food", "Steack alien", "Alien Steak", "Bistec Alien", { foodEffects: [{ type: 'pa', value: 4 }, { type: 'moral', value: -1 }, { type: 'satisfaction', value: 4 }, { type: 'causes', value: ["", "Reflux Gastriques", "Acid Reflux", "Reflujos gástricos"][Main.AstroPad.lang], chances: 50, delay: '4-8' }, { type: 'causes', value: ["", "Vers Solitaire", "Tapeworm", "Solitaria"][Main.AstroPad.lang], chances: 25, delay: '4-8' }] }, "food"], ration_0: ["food", "Ration standard", "Standard Ration", "Ración Estándar", { foodEffects: [{ type: 'pa', value: 4 }, { type: 'moral', value: -1 }, { type: 'satisfaction', value: 4 }] }, "food"], ration_1: ["food", "Ration cuisinée", "Cooked Ration", "Ración Cocinada", { foodEffects: [{ type: 'pa', value: 4 }, { type: 'satisfaction', value: 4 }] }, "food"], ration_7: ["food", "Café", "Coffee", "Café", { foodEffects: [{ type: 'pa', value: 2 }] }, "food"], ration_2: ["food", "Riz soufflé proactif", "Proactive Puffed Rice", "Cereal Proactivo", { foodEffects: [{ type: 'pa', value: 10 }, { type: 'satisfaction', value: 5 }] }, "all"], ration_3: ["food", "Patate spatiale", "Space Potato", "Patata Espacial", { foodEffects: [{ type: 'pa', value: 8 }, { type: 'satisfaction', value: 8 }] }, "all"], ration_4: ["food", "Barre de Lombrics", "Lombrick Bar", "Barra de Lombrices", { foodEffects: [{ type: 'pa', value: 6 }, { type: 'moral', value: 2 }, { type: 'satisfaction', value: 8 }] }, "all"], ration_8: ["food", "Barre Supravitaminée", "SuperVitamin Bar", "Barra Supervitaminada", { foodEffects: [{ type: 'pa', value: 8 }, { type: 'pm', value: 4 }, { type: 'satisfaction', value: 6 }, { type: 'causes', value: ["", "Nausée légère", "Slight Nausea", "Náusea Ligera"][Main.AstroPad.lang], chances: 55 }] }, "all"], coffee_thermos: ["food", "Thermos de Café", "Thermos of Coffee", "Termo con Café", { charges: 4 }, ""], lunchbox: ["food", "Panier Repas", "Lunchbox", "Canasta de comida", { charges: 3 }, ""], ration_9: ["food", "Déchets Organiques", "Organic Waste", "Desechos orgánicos", { foodEffects: [{ type: 'pa', value: 6 }, { type: 'moral', value: -4 }, { type: 'satisfaction', value: 16 }] }, "food"], 
 
-	bandage: ["health", "Bandage", "Bandage", "Vendaje", {}, ""], medikit: ["health", "Médikit", "Medikit", "Medikit", {}, ""], pill_box: ["health", "Kit de survie", "Survival Kit", "Kit de supervivencia", { charges: 3 }, ""], drug_0: ["health", "Twïnoid", "Twinoid", "Twinoid", {}, "pill"], drug_1: ["health", "Xenox", "Xenox", "Xenox", {}, "pill"], drug_2: ["health", "Rixolam", "Puuquf", "Risolam", {}, "pill"], drug_3: ["health", "Eufurysant", "Eufurylate", "Euforidyl", {}, "pill"], drug_4: ["health", "Soma", "Soma", "Macamaca", {}, "pill"], drug_5: ["health", "Epice", "Spyce", "Nuke", {}, "pill"], drug_6: ["health", "Nuke", "Newke", "Japiyú", {}, "pill"], drug_7: ["health", "Ponay", "Pinq", "Ñapepa", {}, "pill"], drug_8: ["health", "Bacta", "Bacta", "Betapropyl", {}, "pill"], drug_9: ["health", "Betapropyl", "Betapropyl", "Pimp", {}, "pill"], drug_10: ["health", "Pimp", "Pymp", "Ontoy", {}, "pill"], drug_11: ["health", "Rosebud", "Rosebud", "Ming", {}, "pill"], ration_6: ["health", "Anabolisant", "Anabolic", "Anabólicos", { foodEffects: [{ type: 'pm', value: 8 }] }, "food"], 
+	bandage: ["health", "Bandage", "Bandage", "Vendaje", {}, ""], medikit: ["health", "Médikit", "Medikit", "Medikit", {}, ""], pill_box: ["health", "Kit de survie", "Survival Kit", "Kit de supervivencia", { charges: 3 }, ""], drug_0: ["health", "Twïnoid", "Twinoid", "Twinoid", {}, "pill"], drug_1: ["health", "Xenox", "Xenox", "Xenox", {}, "pill"], drug_2: ["health", "Rixolam", "Phuxx", "Risolam", {}, "pill"], drug_3: ["health", "Eufurysant", "Eufurylate", "Euforidyl", {}, "pill"], drug_4: ["health", "Soma", "Soma", "Macamaca", {}, "pill"], drug_5: ["health", "Epice", "Spyce", "Nuke", {}, "pill"], drug_6: ["health", "Nuke", "Newke", "Japiyú", {}, "pill"], drug_7: ["health", "Ponay", "Pinq", "Ñapepa", {}, "pill"], drug_8: ["health", "Bacta", "Bacta", "Betapropyl", {}, "pill"], drug_9: ["health", "Betapropyl", "Betapropyl", "Pimp", {}, "pill"], drug_10: ["health", "Pimp", "Pymp", "Ontoy", {}, "pill"], drug_11: ["health", "Rosebud", "Rosebud", "Ming", {}, "pill"], ration_6: ["health", "Anabolisant", "Anabolic", "Anabólicos", { foodEffects: [{ type: 'pm', value: 8 }] }, "food"], 
 
 	spore_extractor: ["misc", "Suceur de Spore", "Spore Sucker", "Extractor de Esporas", {}, ""], anti_mush_serum: ["misc", "Sérum Rétro-Fongique", "Retro-Fungal Serum", "Antídoto Retrofúngico", {}, ""], apron: ["misc", "Tablier intachable", "Stainproof Apron", "Mandil anti-manchas", {}, ""], mush_floppy_disk: ["misc", "Disquette du Génome Mush", "Mush Genome Disk", "Diskette Del Genoma Mush", {}, ""], mush_sample: ["misc", "Souche de test Mush", "Mush Sample", "Muestra De Raíz Mush", {}, ""], myco_alarm: ["misc", "Myco-Alarme", "Myco-Alarm", "MycoAlarma", {}, ""], body_cat: ["misc", "Schrödinger", "Schrödinger", "Schrödinger", {}, ""], help_drone: ["misc", "Drone de Soutien", "Support Drone", "Dron", {}, ""], freezer: ["misc", "Supergélateur", "Superfreezer", "Supergelador", {}, ""], microwave: ["misc", "Micro-onde", "Microwave", "Microondas", { charges: 4 }, ""], sofa: ["misc", "Sofa Suédois", "Swedish Sofa", "Sofá Sueco", {}, ""], plastenite_armor: ["misc", "Armure de plastenite", "Plastenite Armor", "Armadura De Plastenita", {}, ""], soap: ["misc", "Savon", "Soap", "Jabón", {}, ""], super_soap: ["misc", "Super Savon", "Super Soaper", "Jabón mushicida", {}, ""], metal_scraps: ["misc", "Débris métallique", "Scrap Metal", "Pieza metálica", {}, ""], plastic_scraps: ["misc", "Débris plastique", "Plastic Scraps", "Pieza plástica", {}, ""], space_capsule: ["misc", "Capsule Spatiale", "Space Capsule", "Cápsula Espacial", {}, ""], fuel_capsule: ["misc", "Capsule de Fuel", "Fuel Capsule", "Cápsula De Combustible", {}, ""], oxy_capsule: ["misc", "Capsule d'Oxygène", "Oxygen Capsule", "Cápsula De Oxígeno", {}, ""], thick_tube: ["misc", "Tube épais", "Thick Tube", "Tubo grueso", {}, ""], duck_tape: ["misc", "Ruban Adhésif", "Duct Tape", "Cinta adhesiva", {}, ""], mad_kube: ["misc", "MAD Kube", "MAD Kube", "MAD Kube", {}, ""], old_shirt: ["misc", "Vieux T-Shirt", "Old T-Shirt", "Vieja camiseta", {}, ""], printer: ["misc", "Tabulatrice", "Tabulatrix", "Tabuladora", {}, ""], 
 
@@ -405,10 +409,6 @@ Main.AstroPad.capitalize = function(str) {
 
 Main.AstroPad.getRoomId = function() {
 	return Main.AstroPad.roomNames.indexOf($("#input").attr('d_name'));
-};
-
-Main.AstroPad.getCheck = function() {
-	return '0';
 };
 
 Main.AstroPad.getHname = function() {
@@ -515,8 +515,8 @@ Main.AstroPad.selectTab = function(el) {
 	$("#chatBlock > *").hide();
 
 	$(el).removeClass("taboff").addClass("tabon"); //Tab
-	var scriptTab = $(el).attr('data-script-tab');
-	if (scriptTab) {
+	var scriptTab = $($(el).attr('data-script-tab'));
+	if (scriptTab.length) {
 		$(scriptTab).show(); //Content
 	}
 	var scriptFunc = $(el).attr('data-script-function');
@@ -535,18 +535,19 @@ Main.AstroPad.buildAstrotab = function() {
 		return;
 	}
 	//Astrotab
-	$("<div>").addClass("cdAstroTab").attr("id", "astrotab_content").appendTo($("#chatBlock"));
+	var content = $("<div>").addClass("cdAstroTab").attr("id", "astrotab_content").appendTo($("#chatBlock"));
 
 	var tabschat = $("#cdTabsChat");
-	var tabs = $("<li>").addClass("tab taboff").attr({ id: "astrotab", 'data-script-tab': '#astrotab_content', 'data-script-function': 'Main.AstroPad.getInventory' }).appendTo(tabschat);
-	$("<img>").attr("src", "/img/icons/ui/pa_comp.png").appendTo(tabs);
+	var tab = $("<li>").addClass("tab taboff").css('margin-right', '3px').appendTo(tabschat);
+	tab.attr({ id: "astrotab", 'data-script-tab': '#astrotab_content', 'data-script-function': 'Main.AstroPad.getInventory' });
+	$("<img>").attr("src", "/img/icons/ui/pa_comp.png").appendTo(tab);
 	Main.AstroPad.fill("");
-	$("#astrotab_content").hide();
-	$("#astrotab_content").parent().css('height', '500px');
-	$("#astrotab").on("mouseover", function() {
+	content.hide();
+	content.parent().css('height', '500px');
+	tab.on("mouseover", function() {
 		Main.showTip($(this)[0], "<div class='tiptop'><div class='tipbottom'><div class='tipbg'><div class='tipcontent'> <h1>AstroPad</h1> <p>" + Main.AstroPad.txt.desc + "</p> </div></div></div></div>");
 	});
-	$("#astrotab").on("mouseout", function() { Main.hideTip(); });
+	tab.on("mouseout", function() { Main.hideTip(); });
 	$("#cdTabsChat li").on("click", function() { Main.AstroPad.selectTab(this); });
 };
 
@@ -1258,6 +1259,10 @@ Main.AstroPad.updateInventory = function(tamper, sendCallback) {
 			var idetail = { charges: null, broken: false, foodState: null, frozen: false, plantThirst: null, plantIll: false, foodEffects: [] };
 			var desc = li.attr("data-desc");
 			var pushToConso = false;
+			
+			if (['tracker', 'super_talky', 'talky_walky'].indexOf(iid) != -1) {
+				return true; //jQuery .each: non-false return = continue
+			}
 
 			var shareEffect = false;
 			if (desc.indexOf(Main.AstroPad.txt.effect) != -1 || desc.indexOf(Main.AstroPad.txt.effect2) != -1 ) { //If the item has food effects
@@ -1505,7 +1510,7 @@ Main.AstroPad.new = function() {
 Main.AstroPad.analyseFoodEffect = function(line) {
 	var delay = new RegExp('\\(([0-9]+-[0-9]+) ' + Main.AstroPad.txt.cycles.replace(/\(|\)/g, '\\$&') + '\\)').exec(line);
 	if (delay) {
-		line.replace(delay[0], ''); //Isolate value
+		line = line.replace(delay[0], ''); //Isolate value
 		delay = delay[1];
 	}
 	else {
@@ -1514,7 +1519,7 @@ Main.AstroPad.analyseFoodEffect = function(line) {
 
 	var chances = /([0-9]+)% :/.exec(line);
 	if (chances) {
-		line.replace(chances[0], '');
+		line = line.replace(chances[0], '');
 		chances = parseInt(chances[1]);
 	}
 	else {
