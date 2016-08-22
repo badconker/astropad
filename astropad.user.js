@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name       AstroPad
-// @version    0.28.2
+// @version    0.28.3
 // @grant      unsafeWindow
 // @grant      GM_xmlhttpRequest
 // @connect    astropad.sunsky.fr
@@ -1733,42 +1733,21 @@ Main.AstroPad.getInventory = function(callback) {
 			//console.log(res);
 			var elements = [];
 			var rooms = res.split('#');
+			var roomsDict = {};
 			var infos = rooms[0].split('|');
-
-			var allFoodEffectsBlock = $('<div>').addClass('what_happened');
-			var allFoodEffectsTable = $('<table>').addClass('table').appendTo(allFoodEffectsBlock);
 
 			Main.AstroPad.setStorage('rkey', infos[0].replace("\n", ''));
 			for (var j = 1; j < rooms.length; j++) {
 				var its = rooms[j].split('\n');
 				var roomId = parseInt(its[0]);
-				if (roomId == 37) { //Food effects
-					for (var i = 1; i < its.length - 1; i++) {
-						var parts = its[i].split('|');
-						var idetail = parts[4];
-						var tr = $('<tr>').appendTo(allFoodEffectsTable);
-						var tdImg = $('<td>').css({ width: '35px', height: '35px', padding: 0 }).appendTo(tr);
-						var tdText = $('<td>').css({ textAlign: 'left', padding: 0, paddingLeft: '2px' }).appendTo(tr);
-
-						//Name and attributes
-						function toImg(text, exp, img, alt) {
-							return text.replace(exp, "<img src='/img/icons/ui/" + img + ".png' alt='" + alt + "' title='" + alt + "' />");
-						}
-						idetail = toImg(idetail, /:pa:/g, 'pa_slot1', 'pa');
-						idetail = toImg(idetail, /:moral:/g, 'moral', 'moral');
-						idetail = toImg(idetail, /:pm:/g, 'pa_slot2', 'pm');
-						idetail = toImg(idetail, /:hp:/g, 'lp', 'hp');
-						idetail = toImg(idetail, Main.AstroPad.txt.satisfaction, 'pa_cook', Main.AstroPad.txt.satisfaction);
-						idetail = toImg(idetail, /:pa_cook:/g, 'pa_cook', Main.AstroPad.txt.satisfaction);
-						idetail = toImg(idetail, ' ' + Main.AstroPad.txt.charges, 'charge', Main.AstroPad.txt.charges);
-						idetail = toImg(idetail, new RegExp(Main.AstroPad.txt.curesText, "g"), "pa_heal", 'heal');
-
-						$('<img>').attr('src', "http://" + Main.AstroPad.urlMush + "/img/icons/items/" + parts[1] + ".jpg").css({ width: '35px', height: '35px' }).appendTo(tdImg);
-						$('<b>').html(Main.AstroPad.allItems[parts[1]][Main.AstroPad.lang]).appendTo(tdText);
-						tdText.append(" : <i>" + idetail + "</i>");
-					}
+				roomsDict[roomId] = its;
+			}
+			for (var j = 0; j < Main.AstroPad.roomOrder.length; j++) {
+				var roomId = Main.AstroPad.roomOrder[j];
+				if (!(roomId in roomsDict)) {
 					continue;
 				}
+				var its = roomsDict[roomId];
 
 				var roomTitle = $('<div>').addClass('astro_rid_' + roomId).attr('id', 'astro_rid_' + roomId);
 				$('<b>').text(Main.AstroPad.roomNames[roomId]).appendTo(roomTitle);
@@ -1844,6 +1823,37 @@ Main.AstroPad.getInventory = function(callback) {
 						tdFooter.html(footer);
 					}
 					elements.push(div);
+				}
+			}
+			
+			//Food effects table
+			var allFoodEffectsBlock = $('<div>').addClass('what_happened');
+			var allFoodEffectsTable = $('<table>').addClass('table').appendTo(allFoodEffectsBlock);
+			if (37 in roomsDict) {
+				var its = roomsDict[37];
+				for (var i = 1; i < its.length - 1; i++) {
+					var parts = its[i].split('|');
+					var idetail = parts[4];
+					var tr = $('<tr>').appendTo(allFoodEffectsTable);
+					var tdImg = $('<td>').css({ width: '35px', height: '35px', padding: 0 }).appendTo(tr);
+					var tdText = $('<td>').css({ textAlign: 'left', padding: 0, paddingLeft: '2px' }).appendTo(tr);
+
+					//Name and attributes
+					function toImg(text, exp, img, alt) {
+						return text.replace(exp, "<img src='/img/icons/ui/" + img + ".png' alt='" + alt + "' title='" + alt + "' />");
+					}
+					idetail = toImg(idetail, /:pa:/g, 'pa_slot1', 'pa');
+					idetail = toImg(idetail, /:moral:/g, 'moral', 'moral');
+					idetail = toImg(idetail, /:pm:/g, 'pa_slot2', 'pm');
+					idetail = toImg(idetail, /:hp:/g, 'lp', 'hp');
+					idetail = toImg(idetail, Main.AstroPad.txt.satisfaction, 'pa_cook', Main.AstroPad.txt.satisfaction);
+					idetail = toImg(idetail, /:pa_cook:/g, 'pa_cook', Main.AstroPad.txt.satisfaction);
+					idetail = toImg(idetail, ' ' + Main.AstroPad.txt.charges, 'charge', Main.AstroPad.txt.charges);
+					idetail = toImg(idetail, new RegExp(Main.AstroPad.txt.curesText, "g"), "pa_heal", 'heal');
+
+					$('<img>').attr('src', "http://" + Main.AstroPad.urlMush + "/img/icons/items/" + parts[1] + ".jpg").css({ width: '35px', height: '35px' }).appendTo(tdImg);
+					$('<b>').html(Main.AstroPad.allItems[parts[1]][Main.AstroPad.lang]).appendTo(tdText);
+					tdText.append(" : <i>" + idetail + "</i>");
 				}
 			}
 
