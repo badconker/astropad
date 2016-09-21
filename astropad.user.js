@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name       AstroPad
-// @version    0.28.3
+// @version    0.28.5
 // @grant      unsafeWindow
 // @grant      GM_xmlhttpRequest
 // @connect    astropad.sunsky.fr
@@ -15,8 +15,6 @@
 // @downloadURL https://github.com/badconker/astropad/raw/master/astropad.user.js
 // ==/UserScript==
 
-//TODO: talkies in shelves create a blank space
-//TODO: check analyseFoodEffect line.replace → line = line.replace DONE?
 
 var console = unsafeWindow.console;
 var localStorage = unsafeWindow.localStorage;
@@ -24,7 +22,7 @@ var Main = unsafeWindow.Main;
 
 Main.AstroPad = createObjectIn(unsafeWindow.Main, { defineAs: 'AstroPad' });
 
-Main.AstroPad.version = GM_info.script.version || "0.28.2"; //For use by other scripts
+Main.AstroPad.version = GM_info.script.version || "0.28.5"; //For use by other scripts
 Main.AstroPad.urlAstro = "http://astropad.sunsky.fr/api.py";
 Main.AstroPad.heronames = ['Jin Su', 'Frieda', 'Kuan Ti', 'Janice', 'Roland', 'Hua', 'Paola', 'Chao', 'Finola', 'Stephen', 'Ian', 'Chun', 'Raluca', 'Gioele', 'Eleesha', 'Terrence', 'Derek', 'Andie'];
 Main.AstroPad.heronames[-1] = "?";
@@ -412,7 +410,14 @@ Main.AstroPad.getRoomId = function() {
 };
 
 Main.AstroPad.getHname = function() {
-	return $('.who').html().trim();
+	var $it0 = Main.heroes.iterator();
+	while ($it0.hasNext()) {
+		var st1 = $it0.next();
+		if (st1.me) {
+			return st1.surname;
+		}
+	}
+	return $('.who').html().trim(); //In case the loop somehow didn't work
 };
 
 Main.AstroPad.getMushStatus = function() {
@@ -488,6 +493,26 @@ Main.AstroPad.canReadFruit = function() { //Can read fruits effects
 		var $it1 = st1.skills.iterator();
 		while ($it1.hasNext()) {
 			if (["botanic", "skilful"].indexOf($it1.next().img) != -1) {
+				return true;
+			}
+		}
+	}
+	return false;
+};
+
+Main.AstroPad.isFrugivore = function() { //Is a frugivore (adds +2 to food effects)
+	var $it0 = Main.heroes.iterator();
+	while ($it0.hasNext()) {
+		var st1 = $it0.next();
+		if (st1.skills == null) {
+			continue;
+		}
+		if (!st1.me) {
+			continue;
+		}
+		var $it1 = st1.skills.iterator();
+		while ($it1.hasNext()) {
+			if ($it1.next().img == "frugivore") {
 				return true;
 			}
 		}
@@ -1201,6 +1226,7 @@ Main.AstroPad.updateInventory = function(tamper, sendCallback) {
 	var readPillsEffect = Main.AstroPad.canReadPills();
 	var readFoodEffect = Main.AstroPad.canReadFood();
 	var readFruitEffect = Main.AstroPad.canReadFruit();
+	var isFrugivore = Main.AstroPad.isFrugivore();
 	var confirmed = 0; //1: confirmed; 0: didn't ask yet; -1: refused
 	var $it1 = Main.items.iterator();
 	var inb_cam = 0;
@@ -1324,9 +1350,18 @@ Main.AstroPad.updateInventory = function(tamper, sendCallback) {
 						});
 					}
 					else if (/pa_slot1\.png/.exec(line)) {
+						var effectAP = parseInt(/(\+|-)[0-9]+/.exec(line)[0]);
+						if (isFrugivore && Main.AstroPad.allItems[iid][5] == 'fruit') {
+							if (iid == 'fruit00') {
+								effectAP -= 1;
+							}
+							else {
+								effectAP -= 2;
+							}
+						}
 						idetail.foodEffects.push({
 							type: 'pa', chances: chances, delay: delay,
-							value: parseInt(/(\+|-)[0-9]+/.exec(line)[0])
+							value: effectAP
 						});
 					}
 					else if (/pa_slot2\.png/.exec(line)) {
