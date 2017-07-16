@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name       AstroPad
-// @version    0.28.6
+// @version    0.28.8
 // @grant      unsafeWindow
 // @grant      GM_xmlhttpRequest
 // @connect    astropad.sunsky.fr
@@ -123,13 +123,14 @@ if (window.location.href.indexOf('mush.twinoid.com') != -1) {
 		generateTxtInventory: "Generate text inventory",
 
 		updateEffect: "Do you want to update the effects ?\n\n(Cancel = update but without the effects)",
-		greetShareMessage: "Here is the text that you should send to your teammates in order to share your AstroPad:",
+		greetShareMessage: "Here is the text that you should send to your teammates in order to share your AstroPad.",
+		greetShareMessage2: "You may set a text for a link by putting it between square brackets right after the link, without spaces. For example, \"http://mush.vg?astroId=XXX&astroKey=YYY[Ship inventory]\" will return <a href='#'>Ship inventory</a>.",
 		defaultShareMessage: "Hi! I suggest we use the AstroPad to keep our inventory updated.\nYou may install it from this topic: //%t//\nJoin this game's inventory by following this link: //%u//\nTo see the map, follow this link: //%v//\nThanks!",
 		linkPad: "[Pad]",
 		linkMap: "[Map]",
 		helpTopic: "http://twd.io/e/WhgQ0M/0", //Topic explaining how to install the script
 		changeShareMessage: "Change default message",
-		helpShareMessage: "You can use the following expressions:<ul><li><b>%t</b> will be replaced by a link to the topic explaining how to install the script;</li><li><b>%u</b> will be replaced by the link to add the AstroPad;</li><li><b>%v</b> will be replaced by the link to the map of the AstroPad.</li></ul>",
+		helpShareMessage: "You can use the following expressions:<ul><li><b>%t</b> will be replaced by a link to the topic explaining how to install the script;</li><li><b>%u</b> will be replaced by the link to add the AstroPad;</li><li><b>%v</b> will be replaced by the link to the map of the AstroPad.</li></ul><br />A link directly followed by a text between square brackets, without spaces, will be replaced by that text.",
 		saveShareMessage: "Save",
 		link: "Do you want to bind Astropad #%1 (which key is %2) to this game?",
 		unlink: "Do you really want to delete the link between AstroPad #%1 and this game?\nIf you lose the Astropad Key, you cannot get it back.",
@@ -235,13 +236,14 @@ else if (window.location.href.indexOf('mush.twinoid.es') != -1) {
 		generateTxtInventory: "Generar texto de inventario",
 
 		updateEffect: "¿Desea actualizar los efectos? \n\n (Cancelar = actualizadas pero sin los efectos)",
-		greetShareMessage: "Aqui está la prueba a ofrecer a vuestros compañeros de equipo para compartir vuestro AstroPad:",
+		greetShareMessage: "Aqui está la prueba a ofrecer a vuestros compañeros de equipo para compartir vuestro AstroPad.",
+		greetShareMessage2: "You may set a text for a link by putting it between square brackets right after the link, without spaces. For example, \"http://mush.vg?astroId=XXX&astroKey=YYY[Ship inventory]\" will return <a href='#'>Ship inventory</a>.",
 		defaultShareMessage: "¡Hola! Le sugiero usar AstroPad para el inventario.\nPara instalar el script, lea este tema : //%t//\nPara añadir este astropad, siga este enlace: //%u//\nPara ver el mapa, siga este enlace : //%v//\n¡Gracias!",
 		linkPad: "[AstroPad]",
 		linkMap: "[Mapa]",
 		helpTopic: "http://twd.io/e/VNgQ0M/0",
 		changeShareMessage: "Modificar el mensaje por defecto",
-		helpShareMessage: "Puede itilizar las expresiones siguientes:<br /><ul><li><b>%t</b> será reemplazado por el enlace hacia el tópico explicando como instalar el script;</li><li><b>%u</b> será reemplazado por el enlace para añadir el AstroPad;</li><li><b>%v</b> será reemplazado por el enlace hacia la mapa del AstroPad.</li></ul>",
+		helpShareMessage: "Puede itilizar las expresiones siguientes:<br /><ul><li><b>%t</b> será reemplazado por el enlace hacia el tópico explicando como instalar el script;</li><li><b>%u</b> será reemplazado por el enlace para añadir el AstroPad;</li><li><b>%v</b> será reemplazado por el enlace hacia la mapa del AstroPad.</li></ul><br />A link directly followed by a text between square brackets, without spaces, will be replaced by that text.",
 		saveShareMessage: "Registrar",
 		link: "¿Deseas vincular el AstroPad n°%1 (cuya clave es %2) a la partida?",
 		unlink: "¿Estás seguro que quieres eliminar el enlace entre el AstroPad n°%1 y la partida ?\nSi pierde la clave relativa a su partida, no será capaz de encontrarla.",
@@ -347,13 +349,14 @@ else {
 		generateTxtInventory: "Générer l'inventaire texte",
 
 		updateEffect: "Voulez-vous mettre à jour les effets ?\n\n(Annuler = mise à jour quand même mais sans les effets)",
-		greetShareMessage: "Voici le texte à fournir à vos coéquipiers pour partager votre AstroPad :",
+		greetShareMessage: "Voici le texte à fournir à vos coéquipiers pour partager votre AstroPad.",
+		greetShareMessage2: "Vous pouvez assigner un texte à un lien en le mettant entre crochets juste ensuite, sans espace. Par exemple, \"http://mush.vg?astroId=XXX&astroKey=YYY[Inventaire du vaisseau]\" donnera <a href='#'>Inventaire du vaisseau</a>.",
 		defaultShareMessage: "Bonjour ! Je vous propose d'utiliser l'AstroPad pour l'inventaire.\nPour installer le script, lisez ce topic : //%t//\nPour ajouter cet astropad, suivez ce lien : //%u//\nPour voir la carte, suivez ce lien : //%v//\nMerci !",
 		linkPad: "[AstroPad]",
 		linkMap: "[Carte]",
 		helpTopic: "http://twd.io/e/UxgQ0M/0",
 		changeShareMessage: "Modifier le message par défaut",
-		helpShareMessage: "Vous pouvez utiliser les expressions suivantes :<br /><ul><li><b>%t</b> sera remplacé par le lien vers le topic expliquant comment installer le script ;</li><li><b>%u</b> sera remplacé par le lien d'ajout de l'AstroPad ;</li><li><b>%v</b> sera remplacé par le lien vers la carte de l'AstroPad.</li></ul>",
+		helpShareMessage: "Vous pouvez utiliser les expressions suivantes :<br /><ul><li><b>%t</b> sera remplacé par le lien vers le topic expliquant comment installer le script ;</li><li><b>%u</b> sera remplacé par le lien d'ajout de l'AstroPad ;</li><li><b>%v</b> sera remplacé par le lien vers la carte de l'AstroPad.</li></ul><br />Un lien directement suivi d'un texte entre crochets, sans espace, sera remplacé par ce texte.",
 		saveShareMessage: "Sauvegarder",
 		link: "Voulez-vous lier l'AstroPad n°%1 (dont la clé est %2) à cette partie ?",
 		unlink: "Voulez-vous vraiment supprimer le lien entre l'AstroPad n°%1 et cette partie ?\nSi vous perdez la clé relative à votre partie, vous ne serez plus en mesure de la retrouver.",
@@ -847,7 +850,7 @@ Main.AstroPad.addItem = function(sendCallback) {
 			}).appendTo(td);
 
 			//Name
-			$('<td>').css('padding', '0').text(Main.AstroPad.allItems[item][Main.AstroPad.lang]).appendTo(tr);
+			$('<td>').css('padding', '0').text(Main.AstroPad.capitalize(Main.AstroPad.allItems[item][Main.AstroPad.lang])).appendTo(tr);
 			p += 1;
 		}
 	}
@@ -1133,7 +1136,7 @@ Main.AstroPad.buildAstromod = function(sendCallback) {
 		for (var i = 0; i < Main.AstroPad.items.length; i++) {
 			var item = Main.AstroPad.items[i];
 			var attrs = '';
-			var name = item.name;
+			var name = Main.AstroPad.capitalize(item.name);
 			if (item.properties) {
 				var properties = Main.AstroPad.propertiesToText(item.properties);
 				name += properties[0];
@@ -1476,7 +1479,8 @@ Main.AstroPad.configuration = function() {
 
 	var padCode = "http://" + document.domain + "?astroId=" + gid + "&astroKey=" + gkey;
 	var urlMap = "http://astropad.sunsky.fr/?gid=" + gid + "&rkey=" + rkey + "&language=" + Main.AstroPad.language;
-	var bubble = $('<div>').addClass('cdMushLog cdChatLine').html(
+	var instructionsDiv = $('<div>');
+	$('<div>').addClass('cdMushLog cdChatLine').html(
 	  "<div class='bubble bubble2 tid_editorContent tid_parsed'>"
 	+ "    <img src='/img/design/pixel.gif' class='char' style='background: url(http://imgup.motion-twin.com/twinoid/0/1/d9869944_14716.jpg) !important; height: 42px;'>"
 	+ "    <div class='talks'>"
@@ -1485,7 +1489,17 @@ Main.AstroPad.configuration = function() {
 	+ "        <p>" + Main.AstroPad.txt.greetShareMessage + "</p>"
 	+ "        <div class='clear'></div>"
 	+ "    </div>"
-	+ "</div>");
+	+ "</div>").appendTo(instructionsDiv);
+	$('<div>').addClass('cdMushLog cdChatLine').html(
+	  "<div class='bubble tid_editorContent tid_parsed'>"
+	+ "    <img src='/img/design/pixel.gif' class='char derek'>"
+	+ "    <div class='talks'>"
+	+ "        <div class='triangleleft'></div>"
+	+ "        <span class='buddy'>LAbare :</span>"
+	+ "        <p>" + Main.AstroPad.txt.greetShareMessage2 + "</p>"
+	+ "        <div class='clear'></div>"
+	+ "    </div>"
+	+ "</div>").appendTo(instructionsDiv);
 
 	//Message to share the AstroPad
 	var textarea = $('<textarea>').css({
@@ -1494,7 +1508,7 @@ Main.AstroPad.configuration = function() {
 
 	var button = Main.AstroPad.createButton(Main.AstroPad.txt.changeShareMessage).css('margin-top', '20px').on('click', function() {
 		//Change message
-		var newtext = $('<textarea>').attr('id', 'astro-config-message').css({ color: 'black', width: '100%', height: '250px' }).val(message);
+		var newtext = $('<textarea>').attr('id', 'astro-config-message').css({ color: 'black', width: '100%', height: '150px' }).val(message);
 		var save = Main.AstroPad.createButton(Main.AstroPad.txt.saveShareMessage).css('margin-top', '20px').on('click', function() {
 			var text = $('#astro-config-message').val();
 			if (text) {
@@ -1505,7 +1519,7 @@ Main.AstroPad.configuration = function() {
 		Main.AstroPad.fill([$('<p>').html(Main.AstroPad.txt.helpShareMessage).css('padding', '3px'), newtext, save]);
 	});
 
-	Main.AstroPad.fill([credits, bubble, textarea, button]);
+	Main.AstroPad.fill([credits, instructionsDiv, textarea, button]);
 };
 
 Main.AstroPad.viewInventory = function() {
@@ -2073,14 +2087,26 @@ Main.AstroPad.fill = function(elements, gotoelemid) {
 };
 
 Main.AstroPad.urlToLink = function() {
-	var pad = /https?:\/\/mush\.(vg|twinoid\.(com|es))\?astroId=([0-9]+)&(amp;)?astroKey=([0-9a-f]+)/g;
-	var map = /https?:\/\/astropad\.sunsky\.fr\/\?gid=([0-9]+)&(amp;)?rkey=([0-9a-f]+)&(amp;)?language=(en|es)?/g;
+	var pad = /(https?:\/\/mush\.(vg|twinoid\.(com|es))\/?\?astroId=([0-9]+)&(amp;)?astroKey=([0-9a-f]+))(?:\[[^\]]+\])?/;
+	var map = /(https?:\/\/astropad\.sunsky\.fr\/\?gid=([0-9]+)&(amp;)?rkey=([0-9a-f]+)&(amp;)?language=(en|es)?)(?:\[[^\]]+\])?/;
+	var padTextRegexp = /https?:\/\/mush\.(?:vg|twinoid\.(?:com|es))\?astroId=[0-9]+&(?:amp;)?astroKey=[0-9a-f]+\[([^\]]+)\]/;
+	var mapTextRegexp = /https?:\/\/astropad\.sunsky\.fr\/\?gid=[0-9]+&(?:amp;)?rkey=[0-9a-f]+&(?:amp;)?language=(?:en|es)?\[([^\]]+)\]/;
 	$('.bubble:not(.AstroPad-url)').each(function() {
+		var padText = Main.AstroPad.txt.linkPad;
+		var mapText = Main.AstroPad.txt.linkMap;
 		if (pad.test($(this).text())) {
-			$(this).html($(this).html().replace(pad, "<a href='$&' onclick='Main.AstroPad.joinPad(this); return false;'>" + Main.AstroPad.txt.linkPad + "</a>"));
+			var padTest = $(this).html().match(padTextRegexp);
+			if (padTest && padTest.length == 2) {
+				padText = padTest[1];
+			}
+			$(this).html($(this).html().replace(pad, "<a href='$1' onclick='Main.AstroPad.joinPad(this); return false;'>" + padText + "</a>"));
 		}
 		if (map.test($(this).text())) {
-			$(this).html($(this).html().replace(map, "<a href='$&' target='_blank'>" + Main.AstroPad.txt.linkMap + "</a>"));
+			var mapTest = $(this).html().match(mapTextRegexp);
+			if (mapTest && mapTest.length == 2) {
+				mapText = mapTest[1];
+			}
+			$(this).html($(this).html().replace(map, "<a href='$1' target='_blank'>" + mapText + "</a>"));
 		}
 		$(this).addClass('AstroPad-url');
 	});
