@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name       AstroPad
-// @version    0.28.8
+// @version    0.28.11
 // @grant      unsafeWindow
 // @grant      GM_xmlhttpRequest
 // @connect    astropad.sunsky.fr
@@ -1701,7 +1701,7 @@ Main.AstroPad.getLocalData = function() {
 			for (var k = 0; k < rawProps.length; k++) {
 				var line = rawProps[k];
 				//Charges
-				if (line.search(Main.AstroPad.txt.charges) != -1) {
+				if (line.indexOf(Main.AstroPad.txt.charges) != -1) {
 					properties.charges = parseInt(/[0-9]+/.exec(line)[0]);
 				}
 				//Broken
@@ -2087,28 +2087,47 @@ Main.AstroPad.fill = function(elements, gotoelemid) {
 };
 
 Main.AstroPad.urlToLink = function() {
-	var pad = /(https?:\/\/mush\.(vg|twinoid\.(com|es))\/?\?astroId=([0-9]+)&(amp;)?astroKey=([0-9a-f]+))(?:\[[^\]]+\])?/;
-	var map = /(https?:\/\/astropad\.sunsky\.fr\/\?gid=([0-9]+)&(amp;)?rkey=([0-9a-f]+)&(amp;)?language=(en|es)?)(?:\[[^\]]+\])?/;
-	var padTextRegexp = /https?:\/\/mush\.(?:vg|twinoid\.(?:com|es))\?astroId=[0-9]+&(?:amp;)?astroKey=[0-9a-f]+\[([^\]]+)\]/;
-	var mapTextRegexp = /https?:\/\/astropad\.sunsky\.fr\/\?gid=[0-9]+&(?:amp;)?rkey=[0-9a-f]+&(?:amp;)?language=(?:en|es)?\[([^\]]+)\]/;
+	var pad = /(?:<[a-oq-z<>]+>)?(https?:\/\/mush\.(?:vg|twinoid\.(?:com|es))\/?\?astroId=(?:[0-9]+)&(?:amp;)?astroKey=[0-9a-f]+)(?:<[a-oq-z<>\/]+>)?(?:\[[^\]]+\])?/;
+	var map = /(?:<[a-oq-z<>]+>)?(https?:\/\/astropad\.sunsky\.fr\/\?gid=(?:[0-9]+)&(?:amp;)?rkey=(?:[0-9a-f]+)&(?:amp;)?language=(?:en|es)?)(?:<[a-oq-z<>\/]+>)?(?:\[[^\]]+\])?/;
+	var padTextRegexp = /(<[a-oq-z<>]+>)?https?:\/\/mush\.(?:vg|twinoid\.(?:com|es))\?astroId=[0-9]+&(?:amp;)?astroKey=[0-9a-f]+(<[a-oq-z<>\/]+>)?(?:\[([^\]]+)\])?/;
+	var mapTextRegexp = /(<[a-oq-z<>]+>)?https?:\/\/astropad\.sunsky\.fr\/\?gid=[0-9]+&(?:amp;)?rkey=[0-9a-f]+&(?:amp;)?language=(?:en|es)?(<[a-oq-z<>\/]+>)?(?:\[([^\]]+)\])?/;
 	$('.bubble:not(.AstroPad-url)').each(function() {
+		var bubble = $(this);
 		var padText = Main.AstroPad.txt.linkPad;
 		var mapText = Main.AstroPad.txt.linkMap;
-		if (pad.test($(this).text())) {
-			var padTest = $(this).html().match(padTextRegexp);
-			if (padTest && padTest.length == 2) {
-				padText = padTest[1];
+		if (pad.test(bubble.text())) {
+			var padTest = bubble.html().match(padTextRegexp);
+			var before = "";
+			var after = "";
+			if (padTest && padTest.length >= 3) {
+				if (padTest[3]) {
+					padText = padTest[3];
+				}
+				if (padTest[1] && padTest[2]) { //HTML tags
+					before = padTest[1];
+					after = padTest[2];
+				}
 			}
-			$(this).html($(this).html().replace(pad, "<a href='$1' onclick='Main.AstroPad.joinPad(this); return false;'>" + padText + "</a>"));
+			bubble.html(bubble.html().replace(pad, before + "<a href='$1' onclick='Main.AstroPad.joinPad(this); return false;'>" + padText + "</a>" + after));
+			bubble.css('padding-bottom', '24px');
 		}
-		if (map.test($(this).text())) {
-			var mapTest = $(this).html().match(mapTextRegexp);
-			if (mapTest && mapTest.length == 2) {
-				mapText = mapTest[1];
+		if (map.test(bubble.text())) {
+			var mapTest = bubble.html().match(mapTextRegexp);
+			var before = "";
+			var after = "";
+			if (mapTest && mapTest.length >= 3) {
+				if (mapTest[3]) {
+					mapText = mapTest[3];
+				}
+				if (mapTest[1] && mapTest[2]) { //HTML tags
+					before = mapTest[1];
+					after = mapTest[2];
+				}
 			}
-			$(this).html($(this).html().replace(map, "<a href='$1' target='_blank'>" + mapText + "</a>"));
+			bubble.html(bubble.html().replace(map, before + "<a href='$1' target='_blank'>" + mapText + "</a>" + after));
+			bubble.css('padding-bottom', '24px');
 		}
-		$(this).addClass('AstroPad-url');
+		bubble.addClass('AstroPad-url');
 	});
 };
 
