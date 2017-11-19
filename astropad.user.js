@@ -3,6 +3,7 @@
 // @version    0.28.11
 // @grant      unsafeWindow
 // @grant      GM_xmlhttpRequest
+// @grant      GM.xmlHttpRequest
 // @connect    astropad.sunsky.fr
 // @match      http://mush.vg/*
 // @match      http://mush.vg/#
@@ -11,6 +12,7 @@
 // @match      http://mush.twinoid.es/*
 // @match      http://mush.twinoid.es/#
 // @require    https://code.jquery.com/jquery-2.2.1.min.js
+// @require    https://greasemonkey.github.io/gm4-polyfill/gm4-polyfill.js
 // @copyright  2012+, Sunsky (inspiration Skildor's scripts), compatibility with Firefox 32+ by badconker, update by LAbare
 // @downloadURL https://github.com/badconker/astropad/raw/master/astropad.user.js
 // ==/UserScript==
@@ -22,7 +24,7 @@ var Main = unsafeWindow.Main;
 
 Main.AstroPad = createObjectIn(unsafeWindow.Main, { defineAs: 'AstroPad' });
 
-Main.AstroPad.version = GM_info.script.version || "0.28.5"; //For use by other scripts
+Main.AstroPad.version = GM.info.script.version || "0.28.5"; //For use by other scripts
 Main.AstroPad.urlAstro = "http://astropad.sunsky.fr/api.py";
 Main.AstroPad.heronames = ['Jin Su', 'Frieda', 'Kuan Ti', 'Janice', 'Roland', 'Hua', 'Paola', 'Chao', 'Finola', 'Stephen', 'Ian', 'Chun', 'Raluca', 'Gioele', 'Eleesha', 'Terrence', 'Derek', 'Andie'];
 Main.AstroPad.heronames[-1] = "?";
@@ -703,7 +705,7 @@ Main.AstroPad.sendData = function(sendCallback) {
 	data += "&conso=" + encodeURIComponent(conso);
 	console.log(url + '?' + data);
 
-	GM_xmlhttpRequest({
+	GM.xmlHttpRequest({
 		method: 'POST', url: url, data: data, headers: { 'Content-type': 'application/x-www-form-urlencoded' },
 		onload: function(responseDetails) {
 			//console.log(responseDetails.responseText);
@@ -1537,7 +1539,7 @@ Main.AstroPad.new = function() {
 	var url = Main.AstroPad.urlAstro + "/newInv";
 	var data = "api=1";
 	console.log(url + '?' + data);
-	GM_xmlhttpRequest({
+	GM.xmlHttpRequest({
 		method: 'GET',
 		url: url + "?" + data,
 		onload: function(responseDetails) {
@@ -1773,7 +1775,7 @@ Main.AstroPad.getInventory = function(callback) {
 	Main.AstroPad.fill($('<div>').css('text-align', 'center').html("<img src='/img/icons/ui/loading1.gif' /> " + Main.AstroPad.txt.loading));
 
 	console.log(url + '?' + data);
-	GM_xmlhttpRequest({
+	GM.xmlHttpRequest({
 		method: 'GET',
 		url: url + "?" + data,
 		onload: function(responseDetails, callback) {
